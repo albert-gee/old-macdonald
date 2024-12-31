@@ -2,21 +2,9 @@
 
 Required Components:
 
-- **Grow Tent**:
-    - For indoor plant cultivation (24” x 24” x 48”, 61cm x 61cm x 122cm)
-
-- **Ventilation**:
-    - Waterproof Fan, 80 mm
-
-- **Fog System**:
-    - Canadian Tire Plastic Food Grade Safe Bucket, 5-Gal/19-L (37.20 cm x 31.00 cm) or 7.5-L
-    - Mylar Films
-    - Ultrasonic Mist Maker
-    - Food-grade hoses
-    - Aquarium air pump
-
-- **Plant Slots**:
-    - Net pots
-    - Organic cotton balls
-    - Clay Pebbles
-    - Arugula Seeds
+- Grow Tent for indoor plant cultivation (24" x 24" x 48", 61cm x 61cm x 122cm)
+- Full Spectrum Grow Light for Indoor Plants
+- Inline Fan: 4-inch diameter
+- Carbon Filter: 4-inch flange diameter, 14 inches long
+- Ducting: 4-inch diameter, 8 feet long
+- Rubber Coupler Connector: Compatible with a 4-inch diameter
