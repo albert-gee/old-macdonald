@@ -7,3 +7,8 @@ low-power IoT applications with native Matter protocol support, enabling seamles
 ESP-Matter version 1.3 was used to implement Matter protocol support.
 
 ESP32 boards communicate with sensors via the I2C (Inter-Integrated Circuit) protocol. 
+
+**Matter onboarding codes on network.**
+```bash
+matter onboardingcodes onnetwork
+```

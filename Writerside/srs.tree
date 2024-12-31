@@ -3,12 +3,10 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="srs"
-                 name="System Requirements Specification"
-                 start-page="Overview.md">
+                 name="Old Macdonald - Decentralised Precision Agriculture System"
+                 start-page="Introduction.md">
 
     <toc-element topic="Introduction.md">
-        <toc-element topic="Overview.md"/>
-        <toc-element topic="Background.md"/>
     </toc-element>
     <toc-element topic="System-Design.md">
         <toc-element topic="Grow-Chambers.md"/>
@@ -20,10 +18,19 @@
     </toc-element>
     <toc-element topic="Methodology.md">
         <toc-element topic="Grow-Chamber-Assembly.md"/>
-        <toc-element topic="Accessory-Devices.md"/>
+        <toc-element topic="Accessory-Devices.md">
+            <toc-element topic="Development-Environment-Setup.md"/>
+            <toc-element topic="Pressure-and-Temperature-Sensor.md"/>
+            <toc-element topic="Relay-Switch.md"/>
+            <toc-element topic="Ventilation.md"/>
+        </toc-element>
+        <toc-element topic="Matter-Controller-on-Raspberry-Pi.md"/>
         <toc-element topic="Orchestrator.md"/>
         <toc-element topic="GUI.md"/>
         <toc-element topic="Microservices.md"/>
     </toc-element>
+    <toc-element topic="Discussion.md"/>
+    <toc-element topic="Conclusion.md"/>
+    <toc-element topic="References.md"/>
 
 </instance-profile>

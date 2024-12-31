@@ -12,4 +12,16 @@
         </description>
         <accepts>starter-topic.html</accepts>
     </rule>
+    <rule id="a09ba7e">
+        <description>Created after removal of "Overview" from Old Macdonald - Decentralised Precision Agriculture
+            System
+        </description>
+        <accepts>Overview.html</accepts>
+    </rule>
+    <rule id="61b461f2">
+        <description>Created after removal of "Background" from Old Macdonald - Decentralised Precision Agriculture
+            System
+        </description>
+        <accepts>Background.html</accepts>
+    </rule>
 </rules>
