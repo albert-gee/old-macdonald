@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project focuses on creating a decentralised precision agriculture system.
+This project aims to develop a **decentralized system** for **Controlled Environment Agriculture** (CEA).
 
 The system has a modular structure and operates without a central hub. Each module manages its own sub-network of
 accessory devices such as sensors (e.g., temperature and humidity sensors) and actuators (e.g., mist makers and
@@ -18,21 +18,27 @@ transmission and access control, enhancing the system's resilience and scalabili
 
 ## Background
 
-Precision Agriculture and Wireless Sensor Networks are key technologies driving automation in agriculture. The Internet
-of Things (IoT) has made crop monitoring easier and more efficient, boosting farmers' productivity and profits.
+Advancements in IoT-based monitoring and control systems have improved automation in agriculture, increasing efficiency
+and productivity.
 
-However, many farming automation startups struggle to succeed. One major challenge is the high cost of research and
-development. Building advanced automation systems requires significant investment, which often raises food prices,
-making it hard for startups to compete with traditional farms that have much lower operational costs.
+**Precision Agriculture** enhances field farming by using sensor data, GPS, and automated equipment to precisely manage
+inputs like water, fertilizers, and pesticides. **Controlled-Environment Agriculture** (CEA) extends this approach by
+eliminating limitations such as external environmental factors, soil variability, and large-scale deployment challenges
+through enclosed systems where temperature, humidity, light, and CO₂ are actively regulated. This allows for
+year-round production, reduces reliance on weather conditions, and ensures consistent crop yields, making it more
+reliable than traditional open-field farming.
 
-Automated farms often rely on expensive centralised servers or cloud resources for data processing and control. This
-setup requires complex communication infrastructure and significant coordination, which increases costs and complicates
-scalability for larger farms.
+However, many farming automation startups struggle to succeed, primarily due to the high cost of research and
+development. Building advanced automation systems requires substantial investment, which raises food production costs
+and makes it difficult for startups to compete with traditional farms that operate at lower expenses.
+
+A major factor driving these costs is the reliance on centralized servers or cloud resources for data processing and
+control. This setup requires complex communication infrastructure, increases operational expenses, and complicates
+scalability, particularly for larger farms. Additionally, centralized systems create a single point of failure - if the
+central server or cloud service fails or is compromised, the entire operation can be disrupted. For example, an AWS IoT
+outage in 2020 caused significant downtime for applications relying on AWS IoT Core, demonstrating the risks of
+centralized dependency.
 
 Another issue is the difficulty of integrating components from different manufacturers. Automated farms use a variety of
 sensors, actuators, and equipment, but differences in APIs and communication protocols can make it challenging to
 connect these systems smoothly.
-
-Additionally, reliance on centralised systems creates a single point of failure. If the central server or cloud service
-fails or is compromised, the entire operation can be disrupted. For example, an AWS IoT outage in 2020 caused major
-downtime for several applications relying on AWS IoT Core, highlighting the risks of depending on a single hub.
