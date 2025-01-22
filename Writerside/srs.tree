@@ -13,7 +13,6 @@
         <toc-element topic="Sensors.md"/>
         <toc-element topic="Actuators.md"/>
         <toc-element topic="Orchestrators.md"/>
-        <toc-element topic="SCADA.md"/>
         <toc-element topic="Controllers.md"/>
     </toc-element>
     <toc-element topic="Methodology.md">
