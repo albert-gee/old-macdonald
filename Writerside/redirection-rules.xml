@@ -29,4 +29,10 @@
         </description>
         <accepts>SCADA.html</accepts>
     </rule>
+    <rule id="6f023b9c">
+        <description>Created after removal of "Microservices" from Old Macdonald - Decentralised Precision Agriculture
+            System
+        </description>
+        <accepts>Microservices.html</accepts>
+    </rule>
 </rules>

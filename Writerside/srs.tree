@@ -21,16 +21,20 @@
             <toc-element topic="Root-Chamber-Assembly.md"/>
             <toc-element topic="Seed-Planting.md"/>
         </toc-element>
-        <toc-element topic="Accessory-Devices.md">
-            <toc-element topic="Development-Environment-Setup.md"/>
-            <toc-element topic="Pressure-and-Temperature-Sensor.md"/>
-            <toc-element topic="Relay-Switch.md"/>
-            <toc-element topic="Ventilation.md"/>
+        <toc-element topic="Software-Development.md">
+            <toc-element topic="Accessory-Devices-Firmware.md">
+                <toc-element topic="Development-Environment-Setup.md"/>
+                <toc-element topic="Pressure-and-Temperature-Sensor.md"/>
+                <toc-element topic="Relay-Switch.md"/>
+                <toc-element topic="Ventilation.md"/>
+                <toc-element topic="Testing-Accessory-Devices.md"/>
+            </toc-element>
+            <toc-element topic="Orchestrator.md">
+                <toc-element topic="Matter-Controller-on-Raspberry-Pi.md"/>
+            </toc-element>
+            <toc-element topic="Controller-Software.md">
+            </toc-element>
         </toc-element>
-        <toc-element topic="Matter-Controller-on-Raspberry-Pi.md"/>
-        <toc-element topic="Orchestrator.md"/>
-        <toc-element topic="GUI.md"/>
-        <toc-element topic="Microservices.md"/>
     </toc-element>
     <toc-element topic="Discussion.md"/>
     <toc-element topic="Conclusion.md"/>
