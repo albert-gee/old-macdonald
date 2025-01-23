@@ -1,18 +1,18 @@
 # Development Plan
 
-## Milestone 0: System Design
+## Sprint 0: System Design
 
-The primary goal of this milestone is to design the system architecture.
+The primary goal of this sprint is to design the system architecture.
 
 Timeline: September 6, 2024 - October 6, 2024
 
 - ✅ Design system architecture
-- ✅ Design network infrastructure  
+- ✅ Design network infrastructure
 - ✅ Define hardware and software components
 
-## Milestone 1: Accessory Device Development
+## Sprint 1: Accessory Device Development
 
-The primary goal of this milestone is to develop and validate an accessory device, a temperature sensor.
+The primary goal of this sprint is to develop and validate an accessory device, a temperature sensor.
 
 Timeline: October 6, 2024 - November 7, 2024
 
@@ -23,9 +23,9 @@ Timeline: October 6, 2024 - November 7, 2024
 - ✅ Configure Matter Controller on Raspberry Pi
 - ✅ Test Matter Device Commissioning (BLE & Wi-Fi Pairing)
 
-## Milestone 2: Grow Chamber Assembly
+## Sprint 2: Grow Chamber Assembly
 
-The primary goal of this milestone is to assemble the Grow Chamber.
+The primary goal of this sprint is to assemble the Grow Chamber.
 
 Timeline: November 8, 2024 - December 10, 2024
 
@@ -33,38 +33,72 @@ Timeline: November 8, 2024 - December 10, 2024
 - ✅ Install exhaust fan
 - ✅ Install lighting
 - ✅ Assemble root chamber
-- ✅ Integrate a temperature sensor 
+- ✅ Integrate a temperature sensor
 - ✅ Integrate a Mist Maker
 
-## Milestone 3: Orchestrator Device Development
+## Sprint 3: Orchestrator Device Development
 
-The primary goal of this milestone is to develop and validate an orchestrator device.
+The primary goal of this sprint is to develop and validate an orchestrator device.
 
-Timeline: January 8, 2025 - February 9, 2025
+Timeline: January 8, 2025 - February 5, 2025
 
-- ⬜ Replace Raspberry Pi with ESP32-C6 for Orchestrator
-- ⬜ Implement Thread Border Router  
-- ⬜ Develop Real-Time Decision-Making Algorithms for Crop Growth
+**User Stories:**
+- US1: Orchestrator Device Assembly & Configuration
+- US2: Communication Reliability Across Protocols
+- US3: Real-Time Sensor Monitoring
+- US4: Actuator Control Based on Sensor Inputs
+- US5: Orchestrator Local Data Storage
+- US6: Device Discovery & Integration
 
-## Milestone 4: Controller Development
+**Functional Requirements:**
+- FR1: Orchestrator Device Management
+- FR2: Sensor Monitoring & Alerts
+- FR3: Actuator Control & Automation
+- FR4: Device Discovery & Integration
 
-The primary goal of this milestone is to develop and validate a controller device.
+**Non-Functional Requirements:**
+- NFR1: Performance
+- NFR2: Reliability
+- NFR4: Scalability
 
-Timeline: February 10, 2025 - March 10, 2025
+## Sprint 4: Controller Development
 
-- ⬜ Develop Mobile App for Remote Control
-- ⬜ Validate control and test Matter Device Commissioning (BLE & Wi-Fi Pairing)
+The primary goal of this sprint is to develop and validate a controller device.
 
-## Milestone 5: System Integration
+Timeline: February 6, 2025 - February 19, 2025
 
-The primary goal of this milestone is to integrate all components into the system.
+**User Stories:**
+- US7: Controller Device Assembly & Configuration
+- US8: Environment Profiles in Orchestrator
+- US9: Selecting Environmental Profiles and Settings
+- US10: Remote Monitoring via Controller Application
+- US11: Real-Time Alerts for Environmental Deviations
 
-Timeline: March 11, 2025 - April 10, 2025
+**Functional Requirements:**
+- FR5: Environmental Profiles & Grow Chamber Management
+- FR6: Remote Monitoring & Control
+- FR7: User Authentication & Access Control
 
-- ⬜ Develop and test DHT22 (Temperature & Humidity Sensor)  
-- ⬜ Develop and test MH-Z19B (CO₂ Sensor)
-- ⬜ Integrate all sensors and actuators into the grow chamber
+**Non-Functional Requirements:**
+- NFR3: Security & Access Control
+- NFR6: Usability & User Experience
 
+## Sprint 5: System Integration
 
+The primary goal of this sprint is to integrate all components into the system.
 
+Timeline: February 20, 2025 - March 5, 2025
 
+**User Stories:**
+- US12: Integration of Third-Party Agricultural Sensors
+- US13: Grow Chamber Management & Scaling
+- US14: Development of Humidity Sensor
+- US15: Development of CO₂ Sensor
+
+**Functional Requirements:**
+- FR5: Environmental Profiles & Grow Chamber Management
+- FR6: Remote Monitoring & Control
+
+**Non-Functional Requirements:**
+- NFR5: Interoperability
+- NFR7: Compliance & Standards

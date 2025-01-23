@@ -25,7 +25,7 @@
         <accepts>Background.html</accepts>
     </rule>
     <rule id="125310ef">
-        <description>Created after removal of "SCADA" from Old Macdonald - Decentralised Precision Agriculture System
+        <description>Created after removal of "SCADA" from Old Macdonald - Decentralised Controlled Environment Agriculture System
         </description>
         <accepts>SCADA.html</accepts>
     </rule>

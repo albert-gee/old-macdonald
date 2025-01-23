@@ -3,7 +3,7 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="srs"
-                 name="Old Macdonald - Decentralised Precision Agriculture System"
+                 name="Old Macdonald - Decentralised Controlled Environment Agriculture System"
                  start-page="Introduction.md">
 
     <toc-element topic="Introduction.md">
@@ -15,7 +15,10 @@
         <toc-element topic="Orchestrators.md"/>
         <toc-element topic="Controllers.md"/>
     </toc-element>
-    <toc-element topic="Development-Plan.md"/>
+    <toc-element topic="Development-Plan.md">
+        <toc-element topic="Requirements.md"/>
+        <toc-element topic="Backlog.md"/>
+    </toc-element>
     <toc-element topic="Methodology.md">
         <toc-element topic="Grow-Chamber.md">
             <toc-element topic="Grow-Chamber-Assembly.md"/>

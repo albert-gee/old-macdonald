@@ -1,6 +1,6 @@
 # Overview
 
-This project focuses on creating a decentralised precision agriculture system.
+This project focuses on creating a decentralised Controlled Environment Agriculture system.
 
 The system has a modular structure and operates without a central hub. Each module manages its own sub-network of
 accessory devices such as sensors (e.g., temperature and humidity sensors) and actuators (e.g., mist makers and

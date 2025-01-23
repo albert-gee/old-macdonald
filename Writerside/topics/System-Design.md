@@ -1,6 +1,6 @@
 # System Design
 
-The automated precision agriculture system is designed with a modular structure composed of independent Grow Chambers.
+The automated Controlled Environment Agriculture system is designed with a modular structure composed of independent Grow Chambers.
 
 Each Grow Chamber includes a mesh network of sensors and actuators that monitor and regulate environmental conditions.
 Sensors collect data, such as temperature and humidity, while actuators adjust conditions accordingly.
