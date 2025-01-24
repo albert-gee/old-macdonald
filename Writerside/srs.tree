@@ -12,7 +12,8 @@
         <toc-element topic="Grow-Chambers.md"/>
         <toc-element topic="Sensors.md"/>
         <toc-element topic="Actuators.md"/>
-        <toc-element topic="Orchestrators.md"/>
+        <toc-element topic="Orchestrators.md">
+        </toc-element>
         <toc-element topic="Controllers.md"/>
     </toc-element>
     <toc-element topic="Development-Plan.md">
@@ -25,16 +26,18 @@
             <toc-element topic="Root-Chamber-Assembly.md"/>
             <toc-element topic="Seed-Planting.md"/>
         </toc-element>
-        <toc-element topic="Software-Development.md">
-            <toc-element topic="Accessory-Devices-Firmware.md">
+        <toc-element topic="Automation.md">
+            <toc-element topic="Accessory-Devices.md">
                 <toc-element topic="Development-Environment-Setup.md"/>
                 <toc-element topic="Pressure-and-Temperature-Sensor.md"/>
                 <toc-element topic="Relay-Switch.md"/>
                 <toc-element topic="Ventilation.md"/>
                 <toc-element topic="Testing-Accessory-Devices.md"/>
             </toc-element>
-            <toc-element topic="Orchestrator.md">
+            <toc-element topic="Orchestrator-Devices.md">
                 <toc-element topic="Matter-Controller-on-Raspberry-Pi.md"/>
+                <toc-element topic="Matter-Controller.md"/>
+                <toc-element topic="OpenThread-Border-Router.md"/>
             </toc-element>
             <toc-element topic="Controller-Software.md">
             </toc-element>

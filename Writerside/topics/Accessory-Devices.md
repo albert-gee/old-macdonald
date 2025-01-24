@@ -1,4 +1,4 @@
-# Accessory Devices Firmware
+# Accessory Devices
 
 Firmware development for the ESP32 microcontrollers was conducted using the ESP-IDF (Espressif IoT Development
 Framework) version 5.2.1. This open-source framework provides essential libraries and tools to create efficient,
