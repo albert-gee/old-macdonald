@@ -1,0 +1,75 @@
+# ESP32 Project Workflow
+
+To create, build, and deploy a new project for ESP32, the steps below are required.
+
+**Step 1: Set Up ESP-IDF Environment**
+
+Run the alias, created during the development setup, to initialise the ESP-IDF environment in the current terminal
+session:
+
+```bash
+get_idf
+```
+
+**Step 2: Create a New Project**
+
+ESP-IDF provides the [idf.py](https://docs.espressif.com/projects/esp-idf/en/v5.2.3/esp32/api-guides/tools/idf-py.html)
+command-line tool as a front-end for managing project builds, deployment, debugging, and other tasks, simplifying the
+workflow significantly. It integrates several essential tools, including CMake for project configuration, Ninja for
+building, and esptool.py for flashing the target device.
+
+```bash
+idf.py create-project <project name>
+```
+
+**Step 3: Set ESP32 as the target device**
+
+This command creates a new `sdkconfig` file in the root directory of the project. This configuration file is modified
+via idf.py menuconfig to customise the configuration of the project:
+
+```bash
+idf.py set-target esp32
+```
+
+**Step 4: Open the Project in CLion IDE**
+
+Create a toolchain named **ESP-IDF** with the environment file set to `esp-idf/script.sh`:
+
+![Toolchain setup](image10.png){ thumbnail="true" width="300" }
+
+Set up a CMake profile with the following Matter environmental variables:
+
+```bash
+ESP_MATTER_PATH=/home/albert/esp/esp-matter;ZAP_INSTALL_PATH=/home/albert/esp/esp-matter/connectedhomeip/connectedhomeip/.environment/cipd/packages/zap;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/albert/.local/share/JetBrains/Toolbox/scripts:/home/albert/esp/esp-matter/connectedhomeip/connectedhomeip/.environment/cipd/packages/pigweed
+```
+
+![CMake profile configuration](image26.png){ thumbnail="true" width="300" }
+
+Structure of a new ESP-IDF project:
+
+![Structure of a new ESP-IDF project](image12.png){ thumbnail="true" width="300" }
+
+**Step 5: Build the Project**
+
+```bash
+idf.py build
+```
+
+**Step 6: Determine Serial Port**
+
+Connect the ESP32 board to the computer and check under which serial port the board is visible. Serial ports have the
+following naming patterns: `/dev/tty`.
+
+**Step 7: Flash Project to Target**
+
+```bash
+idf.py -p <PORT> flash
+```
+
+**Step 8: Launch IDF Monitor**
+
+Use the monitor application and exit using `CTRL+]`:
+
+```bash
+idf.py -p <PORT> monitor
+```
