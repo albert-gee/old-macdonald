@@ -16,7 +16,7 @@ The system prioritises interoperability to ensure easy integration of new device
 replacement of existing ones without major updates. It also implements strong security measures to guarantee safe data
 transmission and access control, enhancing the system's resilience and scalability.
 
-## Background
+## Motivation
 
 Advancements in IoT-based monitoring and control systems have improved automation in agriculture, increasing efficiency
 and productivity.

@@ -35,4 +35,10 @@
         </description>
         <accepts>Microservices.html</accepts>
     </rule>
+    <rule id="66982785">
+        <description>Created after removal of "OpenThread Border Router" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>OpenThread-Border-Router.html</accepts>
+    </rule>
 </rules>

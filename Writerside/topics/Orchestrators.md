@@ -23,7 +23,3 @@ Orchestrators also manage the accessory devices (sensors and actuators) within e
     - Lighting Fabric, controlling artificial lighting with grow lights and timers.
     - Environmental Monitoring Fabric, tracking temperature, humidity, and CO₂ levels to regulate ventilation and
       heating.
-
-ESP THREAD BR-ZIGBEE GW is well-suited for the role of Orchestrator. It enables seamless communication and
-interoperability between Thread, Wi-Fi, and Matter ecosystems, leveraging ESP32’s dual-protocol capabilities for
-efficient IoT integration.
