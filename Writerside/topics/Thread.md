@@ -50,32 +50,11 @@ simultaneously.
 
 OpenThread's implementation of a Border Router is called **OpenThread Border Router (OTBR)**.
 
-Espressif Thread Border Router solution is built on the ESP-IDF and OpenThread stack. It supports both Wi-Fi and
-Ethernet interfaces as the backbone link, combined with 802.15.4 SoCs for Thread communication. The Wi-Fi based ESP
-Thread Border Router consists of two SoCs:
-
-- The host Wi-Fi SoC, which can be ESP32, ESP32-S and ESP32-C series SoC.
-- The radio co-processor (RCP), which is an ESP32-H series SoC.
-
-The **ESP THREAD BR-ZIGBEE GW board** integrates both the host SoC and the Radio Co-Processor (RCP) into a single
-module.
-
-- [OpenThread - ESP Thread Border Router](https://mattercoder.com/codelabs/how-to-install-border-router-on-esp32/?index=..%2F..index#0)
-- [Espressif - Build and Run ESP Thread Border Router](https://docs.espressif.com/projects/esp-thread-br/en/latest/dev-guide/build_and_run.html)
-- [OpenThread - Build a Thread Network with the ESP32H2 and ESP Thread Border Router Board](https://openthread.io/codelabs/esp-openthread-hardware)
-- [How to Install Border Router on ESP32-DevKit and ESP32-H2](https://mattercoder.com/codelabs/how-to-install-border-router-on-esp32/?index=..%2F..index#0)
-
-<br />
-<br />
-<br />
-
-- [ESP Basic Thread Border Router](https://github.com/espressif/esp-thread-br/tree/main/examples/basic_thread_border_router)
-- [ESP Thread Border Router SDK](https://github.com/espressif/esp-thread-br)
-- [OpenThread Border Router Web GUI](https://openthread.io/guides/border-router/web-gui)
-
 ### OpenThread CLI on ESP32-C6
 
-https://mattercoder.com/codelabs/how-to-install-border-router-on-esp32/?index=..%2F..index#5
+[How to set up a Command Line Interface on a thread device](https://mattercoder.com/codelabs/how-to-install-border-router-on-esp32/?index=..%2F..index#5)
+
+[Build and Run CLI device](https://docs.espressif.com/projects/esp-thread-br/en/latest/dev-guide/build_and_run.html#build-and-run-the-thread-cli-device)
 
 ### OpenThread Commissioner
 

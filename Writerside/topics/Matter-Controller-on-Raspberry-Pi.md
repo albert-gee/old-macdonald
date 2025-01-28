@@ -32,7 +32,7 @@ open.
 The controller initiates a pairing process using the chip-tool utility. It uses Bluetooth Low Energy (BLE) for the
 initial connection and sets the device's Wi-Fi credentials. The following command initiates the pairing process:
 
-```bash
+```Bash
 ~/esp/esp-matter/connectedhomeip/connectedhomeip$ ./out/host/chip-tool pairing ble-wifi ${NODE_ID_TO_ASSIGN} ${SSID} ${PASSWORD} 20202021 3840
 ```
 
@@ -52,7 +52,7 @@ Wi-Fi. Finally, the fabric is committed, and the commissioning process is comple
 
 The subsequent command is used to read the current state of the "on/off" attribute from the target device:
 
-```bash
+```Bash
 ~/esp/esp-matter/connectedhomeip$ ./out/host/chip-tool onoff read on-off 0x1122 1
 ```
 
@@ -66,7 +66,7 @@ In this command:
 
 Matter Controller has been built and installed on a Raspberry Pi.
 
-```bash
+```Bash
 ssh ggc_user@mattercontroller.local
 ```
 
@@ -76,13 +76,13 @@ This command initiates a pairing process using the chip-tool over BLE (Bluetooth
 pair a device with the identifier 0x1122 to a Wi-Fi network named SSID, using the password. The setup PIN code is
 20202021, and the connection timeout is set to 3840 seconds.
 
-```bash
+```Bash
 ./out/chip-tool pairing ble-wifi 0x1122 SSID "" 20202021 3840
 ```
 
 This command reads the temperature measurement value from a device. It queries the measured-value attribute within the
 temperaturemeasurement cluster. The target device has the identifier 0x1122, and the endpoint being accessed is 1.
 
-```bash
+```Bash
 ./out/chip-tool temperaturemeasurement read measured-value 0x1122 1
 ```

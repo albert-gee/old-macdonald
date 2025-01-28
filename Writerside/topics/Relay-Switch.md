@@ -62,7 +62,7 @@ PRIV_REQUIRES esp_driver_gpio
 
 Refer to [Telink Matter Developers Guide](https://wiki.telink-semi.cn/doc/an/TelinkMatterDevelopersGuide_en.pdf)
 
-```bash
+```Bash
 matter onboardingcodes ble
 
 matter esp attribute set 0x1 0x6 0x0 1

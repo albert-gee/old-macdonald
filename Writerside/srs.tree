@@ -32,7 +32,7 @@
         </toc-element>
         <toc-element topic="Automation.md">
             <toc-element topic="Development-Environment-Setup.md">
-                <toc-element topic="ESP-IDF-Setup﻿.md"/>
+                <toc-element topic="ESP-IDF-Setup.md"/>
                 <toc-element topic="ESP-Matter-Setup.md"/>
                 <toc-element topic="ESP32-Project-Workflow.md"/>
             </toc-element>

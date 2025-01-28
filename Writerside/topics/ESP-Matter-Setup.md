@@ -5,7 +5,7 @@ steps below are required.
 
 ## Step 1: Install Prerequisites
 
-```bash
+```Bash
 sudo apt-get install git gcc g++ pkg-config libssl-dev libdbus-1-dev \
  	libglib2.0-dev libavahi-client-dev ninja-build python3-venv python3-dev \
  	python3-pip unzip libgirepository1.0-dev libcairo2-dev libreadline-dev
@@ -18,14 +18,14 @@ for more details.
 
 It includes esp-matter SDK and tools (e.g., CHIP-tool, CHIP-cert, ZAP).
 
-```bash
+```Bash
 cd ~/esp/
 git clone -b release/v1.3 --recursive https://github.com/espressif/esp-matter.git
 ```
 
 ## Step 3: Bootstrap ESP-Matter
 
-```bash
+```Bash
 cd esp-matter
 ./install.sh
 ```
@@ -37,7 +37,7 @@ cd esp-matter
 The script `~/esp/esp-matter/export.sh` configures the environment. Create an alias for executing it by adding the
 following line to `~/.bashrc` file:
 
-```bash
+```Bash
 alias get_matter='. $HOME/esp/esp-matter/export.sh'
 ```
 
@@ -45,7 +45,7 @@ alias get_matter='. $HOME/esp/esp-matter/export.sh'
 
 Restart your terminal session or run:
 
-```bash
+```Bash
 source ~/.bashrc
 ```
 

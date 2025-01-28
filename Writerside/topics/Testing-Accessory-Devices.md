@@ -2,6 +2,6 @@
 
 Matter onboarding codes on network:
 
-```bash
+```Bash
 matter onboardingcodes onnetwork
 ```

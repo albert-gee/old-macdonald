@@ -7,7 +7,7 @@ To create, build, and deploy a new project for ESP32, the steps below are requir
 Run the alias, created during the development setup, to initialise the ESP-IDF environment in the current terminal
 session:
 
-```bash
+```Bash
 get_idf
 ```
 
@@ -18,7 +18,7 @@ command-line tool as a front-end for managing project builds, deployment, debugg
 workflow significantly. It integrates several essential tools, including CMake for project configuration, Ninja for
 building, and esptool.py for flashing the target device.
 
-```bash
+```Bash
 idf.py create-project <project name>
 ```
 
@@ -27,7 +27,7 @@ idf.py create-project <project name>
 This command creates a new `sdkconfig` file in the root directory of the project. This configuration file is modified
 via idf.py menuconfig to customise the configuration of the project:
 
-```bash
+```Bash
 idf.py set-target esp32
 ```
 
@@ -39,7 +39,7 @@ Create a toolchain named **ESP-IDF** with the environment file set to `esp-idf/s
 
 Set up a CMake profile with the following Matter environmental variables:
 
-```bash
+```Bash
 ESP_MATTER_PATH=/home/albert/esp/esp-matter;ZAP_INSTALL_PATH=/home/albert/esp/esp-matter/connectedhomeip/connectedhomeip/.environment/cipd/packages/zap;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/albert/.local/share/JetBrains/Toolbox/scripts:/home/albert/esp/esp-matter/connectedhomeip/connectedhomeip/.environment/cipd/packages/pigweed
 ```
 
@@ -51,7 +51,7 @@ Structure of a new ESP-IDF project:
 
 **Step 5: Build the Project**
 
-```bash
+```Bash
 idf.py build
 ```
 
@@ -62,7 +62,7 @@ following naming patterns: `/dev/tty`.
 
 **Step 7: Flash Project to Target**
 
-```bash
+```Bash
 idf.py -p <PORT> flash
 ```
 
@@ -70,6 +70,6 @@ idf.py -p <PORT> flash
 
 Use the monitor application and exit using `CTRL+]`:
 
-```bash
+```Bash
 idf.py -p <PORT> monitor
 ```

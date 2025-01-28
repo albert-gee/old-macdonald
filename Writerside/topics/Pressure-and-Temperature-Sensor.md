@@ -43,7 +43,7 @@ The pictures below show the connections for the BMP280 sensor to the ESP32-DevKi
 
 The command below creates a new component named bmp280_driver inside the `components` directory.
 
-```bash
+```Bash
 idf.py create-component bmp280_driver -C components
 ```
 
@@ -52,7 +52,7 @@ idf.py create-component bmp280_driver -C components
 The ESP-IDF framework includes a driver for working with I2C devices. To ensure that this component can use the driver,
 the `REQUIRES` directive must be added to `components/bmp280_driver/CMakeLists.txt` as follows:
 
-```bash
+```Bash
 REQUIRES "driver"
 ```
 
@@ -93,13 +93,13 @@ examples were used to test communication with the sensor device.
 
 The following command configures the I2C bus with specific GPIO number, port number and frequency:
 
-```bash
+```Bash
 i2cconfig --port=0 --sda=21 --scl=22 --freq=100000
 ```
 
 The following command scans an I2C bus for devices and output a table with the list of detected devices on the bus:
 
-```bash
+```Bash
 i2cdetect
 ```
 
@@ -110,7 +110,7 @@ It displays the address 0x76 since the SDO pin is connected to GND.
 The following command get the value of the “ID” register which contains the chip identification number chip_id, which is
 0x58:
 
-```bash
+```Bash
 i2cget -c 0x76 -r 0xD0 -l 1
 ```
 
@@ -122,7 +122,7 @@ i2cget -c 0x76 -r 0xD0 -l 1
 
 The command below creates a new component named bmp280_driver inside the components directory.
 
-```bash
+```Bash
 idf.py create-component matter_interface -C components
 ```
 
@@ -183,11 +183,11 @@ chosen for its simplicity and faster response times.
 
 ## Testing Matter Device
 
-```bash
+```Bash
 matter onboardingcodes ble
 ```
 
-```bash
+```Bash
 matter esp attribute get 0x0001 0x00000402 0x00000000
 matter esp attribute get 0x0002 0x00000403 0x00000000
 ```
