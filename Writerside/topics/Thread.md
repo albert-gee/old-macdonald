@@ -28,35 +28,54 @@ portable C/C++ design. It supports the following designs:
   Thread-enabled chip stays active to maintain network connectivity. This design is beneficial for power-saving devices
   that require a constant network connection but do not need the host processor to remain active at all times.
 
-## Device Types
-
-Device types and roles used within a Thread Network include:
-
-- **End Device** – A device that communicates only with a **Router** or **Leader** and does not route traffic for other
-  devices. It can be battery-powered and may use low-power modes.
-- **Router** – A device that forwards packets, provides network routing, and helps new devices join the network.
-- **Leader** – A special **Router** responsible for managing network configurations, such as assigning addresses and
-  maintaining routing tables. If the Leader fails, another Router takes over.
-- **Border Router** – A device that connects a Thread Network to external IP networks, such as Wi-Fi or Ethernet. It
-  allows Thread devices to communicate with the internet or other smart home ecosystems.
-- **Commissioner** – A device that manages and authorizes new devices joining the Thread network. This role can be taken
-  by an external device (e.g., a smartphone app) or an On-Mesh Commissioner.
-- **Joiner** – A new device that is not yet part of the Thread network and is requesting to join.
+## Thread Device Types
 
 Thread devices can have multiple roles. A single device can act as a Router, Border Router, and Commissioner
 simultaneously.
 
-### OpenThread Border Router
+### End Device
+
+A device that communicates only with a **Router** or **Leader** and does not route traffic for other devices. It can be
+battery-powered and may use low-power modes.
+
+### Router
+
+A device that forwards packets, provides network routing, and helps new devices join the network.
+
+### Leader
+
+A special **Router** responsible for managing network configurations, such as assigning addresses and maintaining
+routing tables. If the Leader fails, another Router takes over.
+
+### Border Router
+
+Thread Border Router is a device that connects a Thread Network to external IP networks, such as Wi-Fi or Ethernet. It
+allows Thread devices to
+communicate with the internet or other smart home ecosystems.
 
 OpenThread's implementation of a Border Router is called **OpenThread Border Router (OTBR)**.
 
-### OpenThread CLI on ESP32-C6
+Espressif provides Espressif Thread Border Router SDK, which is a FreeRTOS-based solution built on top of ESP-IDF and
+OpenThread.
 
-[How to set up a Command Line Interface on a thread device](https://mattercoder.com/codelabs/how-to-install-border-router-on-esp32/?index=..%2F..index#5)
+The Wi-Fi-based Espressif Thread Border runs on two SoCs:
 
-[Build and Run CLI device](https://docs.espressif.com/projects/esp-thread-br/en/latest/dev-guide/build_and_run.html#build-and-run-the-thread-cli-device)
+- The host Wi-Fi SoC, which runs OpenThread Border Router (ESP32, ESP32-S, or ESP32-C series SoC).
+- The Radio Co-Processor (RCP), which enables the Border Router to access the 802.15.4 physical and MAC layers (ESP32-H
+  series SoC).
 
-### OpenThread Commissioner
+Espressif also provides a single **ESP THREAD BR-ZIGBEE GW** board that integrates both the host SoC and the RCP into a
+single board.
+
+Espressif also provides a **ESP Thread BR-Zigbee GW_SUB** daughter board for building an Ethernet-enabled Thread Border
+Router. It must be connected to a Wi-Fi-based ESP Thread Border Router.
+
+### Commissioner and Joiner
+
+Commissioner is a device that manages and authorizes new devices joining the Thread network. This role can be taken by
+an external device (e.g., a smartphone app) or an On-Mesh Commissioner.
+
+Joiner is a new device that is not yet part of the Thread network and is requesting to join.
 
 A **Border Router** enables device onboarding by relaying messages between an **external Commissioner** (e.g., a
 smartphone) and devices inside the **Thread Network** via its **Commissioning Border Agent**. It facilitates
@@ -64,6 +83,12 @@ communication with the **Leader**, which manages multiple Commissioner requests,
 new devices join the network.
 
 - [OpenThread Commissioner](https://openthread.io/guides/commissioner)
+
+OpenThread CLI on ESP32-C6:
+
+[How to set up a Command Line Interface on a thread device](https://mattercoder.com/codelabs/how-to-install-border-router-on-esp32/?index=..%2F..index#5)
+
+[Build and Run CLI device](https://docs.espressif.com/projects/esp-thread-br/en/latest/dev-guide/build_and_run.html#build-and-run-the-thread-cli-device)
 
 ## Network Resilience
 

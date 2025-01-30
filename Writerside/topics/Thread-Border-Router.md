@@ -75,16 +75,21 @@ For any other customized settings, you can configure the project in menuconfig:
 idf.py menuconfig
 ```
 
-The auto start mode is disabled by default, if you want the device connects to the configured Wi-Fi and form Thread
-network automatically, and then act as the border router, you need to enable the menuconfig ESP Thread Border Router
-Example -> Enable the automatic start mode in Thread Border.
+> The auto start mode is disabled by default, if you want the device connects to the configured Wi-Fi and form Thread
+> network automatically, and then act as the border router, you need to enable the menuconfig ESP Thread Border Router
+> Example -> Enable the automatic start mode in Thread Border.
+> <br/>
+> When automatic start mode is enabled, the Thread dataset, Wi-Fi SSID and password must be set in menuconfig. The
+> corresponding options are Component config -> OpenThread -> Thread Operational Dataset, Example Connection
+> Configuration -> WiFi SSID and Example Connection Configuration -> WiFi Password.
+> <br/>
+> Note that in this mode, the device will first attempt to use the Wi-Fi SSID and password stored in NVS. If no Wi-Fi
+> information is stored, it will then use the EXAMPLE_WIFI_SSID and EXAMPLE_WIFI_PASSWORD from menuconfig.
+{style="info"}
 
-When automatic start mode is enabled, the Thread dataset, Wi-Fi SSID and password must be set in menuconfig. The
-corresponding options are Component config -> OpenThread -> Thread Operational Dataset, Example Connection
-Configuration -> WiFi SSID and Example Connection Configuration -> WiFi Password.
-
-Note that in this mode, the device will first attempt to use the Wi-Fi SSID and password stored in NVS. If no Wi-Fi
-information is stored, it will then use the EXAMPLE_WIFI_SSID and EXAMPLE_WIFI_PASSWORD from menuconfig.
+> In order to enable Web GUI, you need to enable the menuconfig ESP Thread Border Router Example -> Enable the web 
+> server in Thread Border Router
+{style="info"}
 
 ### Step 4: Connect the ESP Thread Border Router Board
 
@@ -97,6 +102,8 @@ idf.py build flash monitor
 ```
 
 ## Web GUI
+
+http://<DEVICE_IP>/index.html
 
 - [OpenThread Border Router Web GUI](https://openthread.io/guides/border-router/web-gui)
 
