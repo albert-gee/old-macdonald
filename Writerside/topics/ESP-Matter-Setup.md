@@ -1,6 +1,6 @@
 # ESP-Matter Setup
 
-To set up the [ESP-Matter v1.3](https://github.com/espressif/esp-matter/tree/release/v1.3) development environment, the
+To set up the [ESP-Matter v1.4](https://github.com/espressif/esp-matter/tree/release/v1.4) development environment, the
 steps below are required.
 
 ## Step 1: Install Prerequisites
@@ -20,13 +20,14 @@ It includes esp-matter SDK and tools (e.g., CHIP-tool, CHIP-cert, ZAP).
 
 ```Bash
 cd ~/esp/
-git clone -b release/v1.3 --recursive https://github.com/espressif/esp-matter.git
+git clone -b release/v1.4 --recursive https://github.com/espressif/esp-matter.git esp-matter-1.4
+cd esp-matter-1.4
+git checkout 30af618a6e962623a0098ad6a33b468f33dc49c7
 ```
 
 ## Step 3: Bootstrap ESP-Matter
 
 ```Bash
-cd esp-matter
 ./install.sh
 ```
 

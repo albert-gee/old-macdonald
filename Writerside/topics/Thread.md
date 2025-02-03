@@ -1,3 +1,5 @@
+<show-structure/>
+
 # Thread
 
 ## Overview
@@ -55,8 +57,9 @@ communicate with the internet or other smart home ecosystems.
 
 OpenThread's implementation of a Border Router is called **OpenThread Border Router (OTBR)**.
 
-Espressif provides Espressif Thread Border Router SDK, which is a FreeRTOS-based solution built on top of ESP-IDF and
-OpenThread.
+Espressif provides **Espressif Thread Border Router SDK**, which is a FreeRTOS-based solution built on the ESP-IDF and
+OpenThread stack. It supports both Wi-Fi and Ethernet interfaces as the backbone link, combined with 802.15.4 SoCs for
+Thread communication.
 
 The Wi-Fi-based Espressif Thread Border runs on two SoCs:
 
@@ -66,6 +69,8 @@ The Wi-Fi-based Espressif Thread Border runs on two SoCs:
 
 Espressif also provides a single **ESP THREAD BR-ZIGBEE GW** board that integrates both the host SoC and the RCP into a
 single board.
+
+![ESP Thread Border Router/Zigbee Gateway](esp-thread-border-router.jpg){ thumbnail="true" width="200" }
 
 Espressif also provides a **ESP Thread BR-Zigbee GW_SUB** daughter board for building an Ethernet-enabled Thread Border
 Router. It must be connected to a Wi-Fi-based ESP Thread Border Router.

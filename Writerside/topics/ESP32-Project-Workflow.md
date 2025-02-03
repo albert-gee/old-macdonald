@@ -28,7 +28,7 @@ This command creates a new `sdkconfig` file in the root directory of the project
 via idf.py menuconfig to customise the configuration of the project:
 
 ```Bash
-idf.py set-target esp32
+idf.py set-target esp32h2
 ```
 
 **Step 4: Open the Project in CLion IDE**
@@ -40,7 +40,7 @@ Create a toolchain named **ESP-IDF** with the environment file set to `esp-idf/s
 Set up a CMake profile with the following Matter environmental variables:
 
 ```Bash
-ESP_MATTER_PATH=/home/albert/esp/esp-matter;ZAP_INSTALL_PATH=/home/albert/esp/esp-matter/connectedhomeip/connectedhomeip/.environment/cipd/packages/zap;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/albert/.local/share/JetBrains/Toolbox/scripts:/home/albert/esp/esp-matter/connectedhomeip/connectedhomeip/.environment/cipd/packages/pigweed
+ESP_MATTER_PATH=/home/albert/esp/esp-matter-1.4;ZAP_INSTALL_PATH=/home/albert/esp/esp-matter-1.4/connectedhomeip/connectedhomeip/.environment/cipd/packages/zap;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/albert/.local/share/JetBrains/Toolbox/scripts:/home/albert/esp/esp-matter-1.4/connectedhomeip/connectedhomeip/.environment/cipd/packages/pigweed
 ```
 
 ![CMake profile configuration](image26.png){ thumbnail="true" width="300" }

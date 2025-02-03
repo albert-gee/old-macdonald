@@ -1,26 +1,19 @@
+<show-structure/>
+
 # Thread Border Router
 
 ## Overview
 
-Espressif provides an ESP Border Router Board which integrates the host SoC (ESP32-S3) and the RCP (ESP32-H2) into one
-module.
+This section demonstrates how to build and run the ESP Thread Border Router example on the ESP Thread Border Router
+board.
 
-You only need to connect the board to the ESP32-S3 (main SoC) port. The main SoC automatically programs the Thread
-co-processor.
+This project uses [Espressif Thread Border Router SDK](https://github.com/espressif/esp-thread-br) locked to
+commit [cf3a09f](https://github.com/espressif/esp-thread-br/commit/cf3a09f5f44991a4e65b2d1c5113637e1d086b68).
 
-[ESP-IDF development environment](ESP-IDF-Setup.md) is required.
+## Prerequisites
 
-Espressif Thread Border Router solution is built on the ESP-IDF and OpenThread stack. It supports both Wi-Fi and
-Ethernet interfaces as the backbone link, combined with 802.15.4 SoCs for Thread communication. The Wi-Fi based ESP
-Thread Border Router consists of two SoCs:
-
-- The host Wi-Fi SoC, which can be ESP32, ESP32-S and ESP32-C series SoC.
-- The radio co-processor (RCP), which is an ESP32-H series SoC.
-
-The **ESP THREAD BR-ZIGBEE GW board** integrates both the host SoC and the Radio Co-Processor (RCP) into a single
-module.
-
-![ESP Thread Border Router/Zigbee Gateway](esp-thread-border-router.jpg)
+- [ESP-IDF development environment](ESP-IDF-Setup.md) is set up.
+- [ESP THREAD BR-ZIGBEE GW](Thread.md#border-router) board
 
 ## Build and Run
 
@@ -43,11 +36,13 @@ idf.py menuconfig
 
 ### Step 2: Clone Espressif Thread Border Router SDK
 
+Note: https://github.com/espressif/esp-thread-br/releases/tag/v1.1
+
 ```Bash
 cd ~/esp
 git clone --recursive https://github.com/espressif/esp-thread-br.git
 cd ~/esp/esp-thread-br/
-git checkout 255cb2379740625933c26616e1eac34981558bac^
+git checkout cf3a09f5f44991a4e65b2d1c5113637e1d086b68
 cd ~/esp/esp-thread-br/examples/basic_thread_border_router
 ```
 
@@ -87,29 +82,22 @@ idf.py menuconfig
 > information is stored, it will then use the EXAMPLE_WIFI_SSID and EXAMPLE_WIFI_PASSWORD from menuconfig.
 {style="info"}
 
-> In order to enable Web GUI, you need to enable the menuconfig ESP Thread Border Router Example -> Enable the web 
+> In order to enable Web GUI, you need to enable the menuconfig ESP Thread Border Router Example -> Enable the web
 > server in Thread Border Router
-{style="info"}
+> {style="info"}
 
 ### Step 4: Connect the ESP Thread Border Router Board
 
 Use USB2 (ESP32-S3) on the ESP Thread Border Router Board to connect the board to the computer.
+
+You only need to connect the board to the ESP32-S3 (main SoC) port. The main SoC automatically programs the Thread
+co-processor.
 
 ### Step 5: Build and Flash
 
 ```Bash
 idf.py build flash monitor
 ```
-
-## Web GUI
-
-http://<DEVICE_IP>/index.html
-
-- [OpenThread Border Router Web GUI](https://openthread.io/guides/border-router/web-gui)
-
-## CLI
-
-https://github.com/espressif/esp-idf/tree/master/examples/openthread/ot_cli
 
 ## References
 
