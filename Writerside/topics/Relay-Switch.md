@@ -40,7 +40,7 @@ opening only when the relay is activated.
 
 The firmware initializes the Matter framework, sets up an On/Off endpoint, and configures callbacks to handle attribute updates, device identification, and system events such as network connectivity changes.
 
-The header file `~/esp/esp-idf/components/esp_driver_gpio/include/driver/gpio.h` can be included with:
+The header file `$IDF_PATH/components/esp_driver_gpio/include/driver/gpio.h` can be included with:
 
 ```c
 #include "driver/gpio.h"

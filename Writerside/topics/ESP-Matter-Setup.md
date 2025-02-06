@@ -28,7 +28,7 @@ git checkout 30af618a6e962623a0098ad6a33b468f33dc49c7
 ## Step 3: Bootstrap ESP-Matter
 
 ```Bash
-./install.sh
+~/esp/esp-matter-1.4/install.sh
 ```
 
 ![Bootstrapping ESP-Matter](image14.png){ thumbnail="true" width="300" }

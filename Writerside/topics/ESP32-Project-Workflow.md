@@ -73,3 +73,7 @@ Use the monitor application and exit using `CTRL+]`:
 ```Bash
 idf.py -p <PORT> monitor
 ```
+
+## References
+
+[IDF Frontend - idf.py](https://docs.espressif.com/projects/esp-idf/en/stable/esp32h2/api-guides/tools/idf-py.html)

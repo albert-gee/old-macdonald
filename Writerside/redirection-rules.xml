@@ -41,4 +41,16 @@
         </description>
         <accepts>OpenThread-Border-Router.html</accepts>
     </rule>
+    <rule id="44aa2b6">
+        <description>Created after removal of "Client for ESP-TBR" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>Client-for-ESP-TBR.html</accepts>
+    </rule>
+    <rule id="79c7c767">
+        <description>Created after removal of "Build Thread Network" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>Build-Thread-Network.html</accepts>
+    </rule>
 </rules>

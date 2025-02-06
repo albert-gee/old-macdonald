@@ -64,8 +64,8 @@ process.
 The `i2c_utils.h` header file declares utility functions for initializing, managing, and performing operations on an I2C
 master bus and its connected devices.
 
-The `i2c_utils.c` file implements these functions and includes `driver/i2c_master.h` (~
-/esp/esp-idf/components/driver/i2c/include/driver/i2c_master.h) to access the driver’s API in controller mode.
+The `i2c_utils.c` file implements these functions and includes `driver/i2c_master.h` 
+($IDF_PATH/components/driver/i2c/include/driver/i2c_master.h) to access the driver’s API in controller mode.
 
 The BMP280 code is designed according to the specifications outlined in the BST-BMP280-DS001-26 datasheet. Communication
 with the sensor is performed through read and write operations on its 8-bit registers.

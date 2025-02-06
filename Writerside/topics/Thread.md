@@ -7,11 +7,11 @@
 **Thread** is an IPv6-based networking protocol designed for low-power Internet of Things devices in an
 IEEE 802.15.4-2006 wireless mesh network.
 
-[](Matter.md) devices can communicate with each other using Thread as a transport protocol.
+**[](Matter.md)** devices can communicate with each other using Thread as a transport protocol.
 
 **OpenThread (OT)** is an open-source implementation of the **Thread** networking protocol.
 
-## OpenThread Architecture
+## Architecture
 
 OpenThread runs on various OS or bare-metal systems, including Linux and ESP32, due to its narrow abstraction layer and
 portable C/C++ design. It supports the following designs:
@@ -30,24 +30,10 @@ portable C/C++ design. It supports the following designs:
   Thread-enabled chip stays active to maintain network connectivity. This design is beneficial for power-saving devices
   that require a constant network connection but do not need the host processor to remain active at all times.
 
-## Thread Device Types
+## Device Roles
 
 Thread devices can have multiple roles. A single device can act as a Router, Border Router, and Commissioner
 simultaneously.
-
-### End Device
-
-A device that communicates only with a **Router** or **Leader** and does not route traffic for other devices. It can be
-battery-powered and may use low-power modes.
-
-### Router
-
-A device that forwards packets, provides network routing, and helps new devices join the network.
-
-### Leader
-
-A special **Router** responsible for managing network configurations, such as assigning addresses and maintaining
-routing tables. If the Leader fails, another Router takes over.
 
 ### Border Router
 
@@ -70,32 +56,62 @@ The Wi-Fi-based Espressif Thread Border runs on two SoCs:
 Espressif also provides a single **ESP THREAD BR-ZIGBEE GW** board that integrates both the host SoC and the RCP into a
 single board.
 
-![ESP Thread Border Router/Zigbee Gateway](esp-thread-border-router.jpg){ thumbnail="true" width="200" }
+![ESP Thread Border Router/Zigbee Gateway](esp-thread-border-router.jpg){ thumbnail="true" width="400" }
 
 Espressif also provides a **ESP Thread BR-Zigbee GW_SUB** daughter board for building an Ethernet-enabled Thread Border
 Router. It must be connected to a Wi-Fi-based ESP Thread Border Router.
 
 ### Commissioner and Joiner
 
-Commissioner is a device that manages and authorizes new devices joining the Thread network. This role can be taken by
-an external device (e.g., a smartphone app) or an On-Mesh Commissioner.
+The **Commissioner** securely adds new devices to a Thread network and manages its configuration by updating Operational
+Datasets and sending management or diagnostic commands. This role can be taken by an **External Commissioner** (e.g., a
+smartphone app) or an **On-Mesh Commissioner**.
 
-Joiner is a new device that is not yet part of the Thread network and is requesting to join.
+**Joiner** is a new device that is not yet part of the Thread network and is requesting to join.
 
-A **Border Router** enables device onboarding by relaying messages between an **external Commissioner** (e.g., a
-smartphone) and devices inside the **Thread Network** via its **Commissioning Border Agent**. It facilitates
-communication with the **Leader**, which manages multiple Commissioner requests, and the **Joiner Router**, which helps
-new devices join the network.
+A **Border Router** enables device onboarding by relaying messages between an **external Commissioner** and devices
+inside the **Thread Network** via its **Commissioning Border Agent**. It facilitates communication with the **Leader**,
+which manages multiple Commissioner requests, and the **Joiner Router**, which helps new devices join the network.
 
-- [OpenThread Commissioner](https://openthread.io/guides/commissioner)
+### Router
 
-OpenThread CLI on ESP32-C6:
+A device that forwards packets, provides network routing, and helps new devices join the network.
 
-[How to set up a Command Line Interface on a thread device](https://mattercoder.com/codelabs/how-to-install-border-router-on-esp32/?index=..%2F..index#5)
+### Leader
 
-[Build and Run CLI device](https://docs.espressif.com/projects/esp-thread-br/en/latest/dev-guide/build_and_run.html#build-and-run-the-thread-cli-device)
+A special **Router** responsible for managing network configurations, such as assigning addresses and maintaining
+routing tables. If the Leader fails, another Router takes over.
 
-## Network Resilience
+### Child
+
+A device that communicates only with a **Router** or **Leader** and does not route traffic for other devices. It can be
+battery-powered and may use low-power modes.
+
+## Thread Network
+
+The **Network Key** is a 128-bit key used to secure communication within the Thread network.
+
+The **Joiner ID** is derived from the Joiner Discerner if one is set; otherwise, it is derived from the device's
+factory-assigned EUI-64 using SHA-256. This ID also serves as the device's IEEE 802.15.4 Extended Address during
+commissioning. When the device joins a Thread network, it automatically receives the Network Key.
+
+### Active Operational Dataset
+
+The **Active Operational Dataset** contains the configuration settings that Thread devices use to connect and operate
+within a specific Thread network:
+
+- **Active Timestamp** – Determines dataset priority.
+- **Channel** – PHY-layer channel for network communication.
+- **Channel Mask** – Defines channels for network discovery and scanning.
+- **Extended PAN ID** – Unique identifier for the Thread network.
+- **Mesh-Local Prefix** – IPv6 prefix for local device communication.
+- **Network Key** – Encryption key for MAC and MLE message protection.
+- **Network Name** – Human-readable network identifier.
+- **PAN ID** – MAC-layer identifier for data transmissions.
+- **PSKc** – Security key for network authentication.
+- **Security Policy** – Specifies allowed and restricted security operations.
+
+### Resilience
 
 The Thread Network prevents **single points of failure** through device redundancy and autonomous role transitions, but
 in topologies like a Thread Network Partition with only one Border Router, failure of that Border Router can disrupt
