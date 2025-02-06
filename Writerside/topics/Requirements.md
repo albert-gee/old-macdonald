@@ -2,12 +2,10 @@
 
 ## Functional Requirements
 
-### FR1. Orchestrator Device Management
-- The system must support the **ESP32-C6** as the Orchestrator hardware.
-- The Orchestrator must be able to **continuously monitor device connectivity** across Matter, Thread, and Wi-Fi networks.
-- The Orchestrator must **automatically reconnect devices** if they lose connection.
+### FR1. Device Management
+- The system must support the **ESP32-C6** as Controller hardware.
+- The Controller must be able to **continuously monitor device connectivity** across Matter, Thread, and Wi-Fi networks.
 - The system must provide **fallback communication modes** (e.g., switching from Thread to Wi-Fi) in case of network failure.
-- The Orchestrator must store **sensor readings and actuator logs locally for at least 30 days**.
 
 ### FR2. Sensor Monitoring & Alerts
 - The system must **collect real-time sensor data** from temperature, humidity, and CO₂ sensors.
@@ -21,7 +19,7 @@
 - The system must support **custom automation rules** based on environmental conditions.
 
 ### FR4. Device Discovery & Integration
-- The Orchestrator must **detect and integrate new sensors and actuators** upon activation.
+- The Controller must **detect and integrate new sensors and actuators** upon activation.
 - The system must support **Matter, Thread, and Wi-Fi** for seamless device integration.
 - Users must be able to **manually configure devices** if they are not automatically recognized.
 
@@ -45,7 +43,7 @@
 ### NFR1. Performance
 
 - The system must process sensor data and actuator responses **within 1 second**
-- Orchestrator must be capable of handling **simultaneous data streams** from multiple sensors and actuators without performance degradation
+- Controller must be capable of handling **simultaneous data streams** from multiple sensors and actuators without performance degradation
 
 ### NFR2. Reliability
 
@@ -63,7 +61,7 @@
 
 ### NFR5. Interoperability
 - The architecture must be designed to support **third-party sensors and actuators**
-- The Orchestrator must be able to **automatically detect and configure new devices**
+- The Controller must be able to **automatically detect and configure new devices**
 
 ### NFR6. Usability & User Experience
 - Controller must provide an **intuitive interface** that can be used with minimal training

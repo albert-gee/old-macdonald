@@ -1,64 +1,53 @@
 # Backlog
 
-## US1: Orchestrator Device Assembly & Configuration
+## US1: Border Router
 
-*As a developer, I want to assemble and configure the Orchestrator device so that it can manage grow chamber operations efficiently.*
+*As a developer, I want to set up a Border Router so that Thread devices can communicate with external IP networks.*
 
 **Acceptance Criteria:**
-- The system must support ESP32-C6 as the orchestrator hardware.
-- The device must be flashed with firmware supporting Matter, Thread, and Wi-Fi.
-- The technician must be able to configure device parameters (network credentials, etc.).
+- The Border Router must connect the Thread Network to external IP networks (Wi-Fi or Ethernet).
+- The Border Router must run on ESP Thread Border Router board.
+- The system must provide a Web GUI for configuring and monitoring Thread networks.
+- The system must allow devices to communicate with the internet.
 
 ## US2: Communication Reliability Across Protocols
 
-*As an orchestrator, I want to ensure smooth communication between Matter, Thread, and Wi-Fi devices so that all system components remain connected.*
+*As a Border Router, I want to ensure smooth communication between Matter, Thread, and Wi-Fi devices so that all system components remain connected.*
 
 **Acceptance Criteria:**
-- The orchestrator must **continuously monitor device connectivity** across Matter, Thread, and Wi-Fi networks.
+- The Border Router must **continuously monitor device connectivity** across Matter, Thread, and Wi-Fi networks.
 - The system must **automatically reconnect devices** if they temporarily lose connection.
 - The system must trigger an **alert** if a device remains disconnected beyond a defined threshold.
-- The orchestrator must provide **fallback communication modes** (e.g., switching from Thread to Wi-Fi) if a primary network fails.
+- The Border Router must provide **fallback communication modes** (e.g., switching from Thread to Wi-Fi) if a primary network fails.
 
 ## US3: Real-Time Sensor Monitoring
 
-*As an orchestrator, I want to monitor all connected sensors in real-time so that I can adjust environmental conditions dynamically.*
+*As a Controller, I want to monitor all connected sensors in real-time so that I can adjust environmental conditions dynamically.*
 
 **Acceptance Criteria:**
-- The orchestrator must collect **real-time sensor data** (humidity, temperature, CO₂, etc.).
+- The Controller must collect **real-time sensor data** (humidity, temperature, CO₂, etc.).
 - The system must alert when a sensor value goes outside the defined Environmental Profile range.
 - The technician must be able to view **historical sensor data trends** for diagnosing system performance.
 - The system must **automatically trigger corrective actions** based on sensor readings (e.g., activate mist maker if humidity drops).
 
 ## US4: Actuator Control Based on Sensor Inputs
 
-*As an orchestrator, I want to trigger actuators (mist maker, exhaust fan, LED grow lights) based on sensor inputs so that plants receive optimal care.*
+*As a Controller, I want to trigger actuators (mist maker, exhaust fan, LED grow lights) based on sensor inputs so that plants receive optimal care.*
 
 **Acceptance Criteria:**
 - The system must trigger the **mist maker** if humidity drops below the target range.
 - The system must activate the **exhaust fan** if CO₂ levels exceed the defined threshold.
 - The technician must be able to **manually override actuator actions** if needed.
 
-## US5: Orchestrator Local Data Storage
+## US5: Controller Local Data Storage
 
-*As an orchestrator, I want to store sensor data locally so that I can continue operations even during network failures.*
+*As a Controller, I want to store sensor data locally so that I can continue operations even during network failures.*
 
 **Acceptance Criteria:**
-- The orchestrator must **store all sensor readings and actuator logs locally** in case of network disruptions.
+- The Controller must **store all sensor readings and actuator logs locally** in case of network disruptions.
 - The technician must be able to access locally stored data through a **diagnostic interface**.
 
-## US6: Device Discovery & Integration
-
-*As an orchestrator, I want to detect new accessory devices (sensors, actuators) and add them to the network so that they can be controlled efficiently.*
-
-**Acceptance Criteria:**
-- The orchestrator must automatically **detect new sensors and actuators** when they are powered on and within the network range.
-- The system must support **Matter, Thread, and Wi-Fi** communication protocols for seamless integration.
-- The orchestrator must be able to **assign each new device** to a specific Grow Chamber.
-- The technician can **manually configure detected devices** if they are not automatically recognized.
-- The system must ensure that newly added devices **sync with predefined Environmental Profiles** for optimal operation.
-- The system must notify the technician if a device **fails to connect or has a communication issue**.
-
-## US7: Controller Device Assembly & Configuration
+## US6: Controller Device
 
 *As a technician, I want to assemble and configure the Controller device so that growers can remotely monitor and control the system.*
 
@@ -67,9 +56,21 @@
 - The mobile/web application must be deployed to connect with the Orchestrator.
 - The controller must display real-time sensor data and allow actuator control.
 
-## US8: Environment Profiles in Orchestrator
+## US7: Device Discovery & Integration
 
-*As an orchestrator, I want to define preset environmental configurations for different plant types so that growers can easily set up new crops.*
+*As n Controller, I want to detect new accessory devices (sensors, actuators) and add them to the network so that they can be controlled efficiently.*
+
+**Acceptance Criteria:**
+- The Controller must automatically **detect new sensors and actuators** when they are powered on and within the network range.
+- The system must support **Matter, Thread, and Wi-Fi** communication protocols for seamless integration.
+- The Controller must be able to **assign each new device** to a specific Grow Chamber.
+- The technician can **manually configure detected devices** if they are not automatically recognized.
+- The system must ensure that newly added devices **sync with predefined Environmental Profiles** for optimal operation.
+- The system must notify the technician if a device **fails to connect or has a communication issue**.
+
+## US8: Environment Profiles in Controller
+
+*As a Controller, I want to define preset environmental configurations for different plant types so that growers can easily set up new crops.*
 
 **Acceptance Criteria:**
 - The system must include **predefined Environmental Profiles** for various plant types (e.g., leafy greens, fruiting plants, herbs).
