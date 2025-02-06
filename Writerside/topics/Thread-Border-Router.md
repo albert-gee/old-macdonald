@@ -126,4 +126,3 @@ http://<DEVICE_IP>/index.html
 - [OpenThread - Build a Thread Network with the ESP32H2 and ESP Thread Border Router Board](https://openthread.io/codelabs/esp-openthread-hardware)
 - [How to Install Border Router on ESP32-DevKit and ESP32-H2](https://mattercoder.com/codelabs/how-to-install-border-router-on-esp32/?index=..%2F..index#0)
 - [Web GUI](https://docs.espressif.com/projects/esp-thread-br/en/latest/codelab/web-gui.html)
-1_
