@@ -118,6 +118,10 @@ accessed using the IP address of the Thread Border Router:
 http://<DEVICE_IP>/index.html
 ```
 
+## Matter Thread Border Router
+
+[ESP-Matter Thread Border Router](https://github.com/espressif/esp-matter/tree/main/examples/thread_border_router)
+
 ## References
 
 - [Espressif Thread Border Router SDK](https://github.com/espressif/esp-thread-br)
