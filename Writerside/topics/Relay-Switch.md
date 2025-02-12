@@ -67,8 +67,5 @@ matter onboardingcodes ble
 
 matter esp attribute set 0x1 0x6 0x0 1
 matter esp attribute get 0x1 0x6 0x0
-
-matter esp attribute get 0x0001 0x000006 0x00000000
-matter esp attribute set 0x0001 0x000003 0x00000000 1
 ```
 
