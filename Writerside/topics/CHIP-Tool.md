@@ -4,12 +4,12 @@
 
 ## Overview
 
-CHIP Tool (chip-tool) is a Matter controller implementation that allows to commission a Matter device into the network
+CHIP Tool (chip-tool) is a Matter controller implementation that allows to commission a Matter device into a network
 and to communicate with it. It was used for testing accessory devices.
 
 CHIP Tool was initially built and installed on a **Raspberry Pi 4 Model B** (4GB RAM and 32GB SD card) running _Ubuntu
 Server for Raspberry Pi 24.04.1 LTS_. _Raspberry Pi Imager v1.8.5_ was used to flash the Ubuntu image onto the SD card.
-This setup is <u>**not recommended**</u> because of the slow performance and high cost of the Raspberry Pi.
+This setup is <u>**not recommended**</u> because of the slow performance of the Raspberry Pi.
 
 [Matter v1.4.0.0](https://github.com/project-chip/connectedhomeip/releases/tag/v1.4.0.0) SDK was used to build the
 CHIP-Tool application.
@@ -78,16 +78,15 @@ ssh ggc_user@mattercontroller.local
 
    Add the following content:
 
-    ```Bash
-    [Service]
-    ExecStart=
-    ExecStart=/usr/sbin/bluetoothd -E -P battery
-    ```
+   ```Bash
+   [Service]
+   ExecStart=
+   ExecStart=/usr/sbin/bluetoothd -E -P battery
+   ```
 
 3. Enable and Start the Bluetooth service:
 
     ```Bash
-    sudo systemctl enable bluetooth.service
     sudo systemctl start bluetooth.service
     ```
 
@@ -148,13 +147,11 @@ The application will require installation of Matter SDK on Raspberry Pi:
 
 3. Build CHIP Tool using build_examples.py:
 
-   The `targets` command was used to retrieve the list of supported build targets:
+   The `targets` command retrieves supported build targets listed below:
 
    ```Bash
    ./scripts/build/build_examples.py targets
     ```
-
-   The output included a list of supported platforms and configurations, organized by vendor and device type:
 
     - **Ameba:**
         - `amebad-{all-clusters, all-clusters-minimal, light, light-switch, pigweed}`
@@ -235,39 +232,96 @@ cd ~/matter
 
 ## Commissioning
 
-An accessory device begins by advertising via Bluetooth Low Energy (BLE), prompting the Matter commissioning window to
-open. The following command prints the device static configuration:
+The following command should be run on the Commissionee to print the static configuration that includes the **PIN code**
+and **Discriminator** (_0xf00_ is _3840_ in decimal):
 
 ```Bash
 matter config
 ```
 
-Matter uses the following values:
+### Commissioning over BLE
 
-- Discriminator - A 12-bit value used to discern between multiple commissionable device advertisements.
-- Setup PIN code - A 27-bit value used to authenticate the device.
+A Commissionee can join an existing IP network over Bluetooth LE and then be commissioned into a Matter network.
 
-The controller initiates a pairing process using Bluetooth Low Energy (BLE) for the initial connection and sets the
-device's Wi-Fi credentials. The following command initiates the pairing process:
+The following CHIP-Tool command initiates commissioning onto a **Wi-Fi** network over BLE:
 
 ```Bash
 ./chip-tool pairing ble-wifi 0x1122 SSID "" 20202021 3840
-./chip-tool pairing ble-wifi ${NODE_ID_TO_ASSIGN} ${SSID} ${PASSWORD} 20202021 3840
+./chip-tool pairing ble-wifi <NODE_ID_TO_ASSIGN> <SSID> <PASSWORD> <PIN> <DISCRIMINATOR>
 ```
 
-The parameters are defined as follows (refer to
-chip-tool [guide](https://github.com/project-chip/connectedhomeip/blob/master/examples/chip-tool/README.md#commission-a-device-over-ble)):
+The parameters are defined as follows:
 
-- `${NODE_ID_TO_ASSIGN}` is the node ID assigned to the device being commissioned, which can be a decimal number or a
+- `<NODE_ID_TO_ASSIGN>` is the node ID assigned to the device being commissioned, which can be a decimal number or a
   hexadecimal number prefixed with ‘0x’.
-- `${SSID}` represents the Wi-Fi SSID, which can be provided as a plain string or in hexadecimal format as ‘hex:
+- `<SSID>` represents the Wi-Fi SSID, which can be provided as a plain string or in hexadecimal format as ‘hex:
   XXXXXXXX’, where each byte of the SSID is represented as two-digit hexadecimal numbers.
-- `${PASSWORD}` is the Wi-Fi password, which can also be given as a plain string or as hex data.
-- `20202021` is the PIN code for authentication
-- `3840` is the connection timeout.
+- `<PASSWORD>` is the Wi-Fi password, which can also be given as a plain string or as hex data.
+- `<PIN>` is the PIN code for authentication
+- `<DISCRIMINATOR>` is the discriminator value.
 
-Once the BLE connection is established, the commissioning process initiates. Following this, the device connects to
-Wi-Fi. Finally, the fabric is committed, and the commissioning process is completed.
+The following CHIP-Tool command initiates commissioning onto a **Thread** network over BLE:
+
+```Bash
+./chip-tool pairing ble-thread 0x1122 20202021 3840
+./chip-tool pairing ble-thread <NODE_ID_TO_ASSIGN> hex:<OPERATIONAL_DATASET> <PIN> <DISCRIMINATOR>
+```
+
+The parameters are defined as follows:
+
+- `<NODE_ID_TO_ASSIGN>` is the node ID assigned to the device being commissioned, which can be a decimal number or a
+  hexadecimal number prefixed with ‘0x’.
+- `<OPERATIONAL_DATASET>` is the [Thread Operational Dataset](Thread.md), which contains the network credentials needed
+  to join a Thread network. It is provided in hexadecimal format (`hex:XXXXXXXX`), where each byte of the dataset is
+  represented as two-digit hexadecimal numbers.
+- `<PIN>` is the PIN code for authentication.
+- `<DISCRIMINATOR>` is the discriminator value.
+
+### Commissioning over Existing IP Network
+
+A Commissionee already connected to a Wi-Fi, Ethernet, or Thread network can be commissioned without BLE discovery,
+using **mDNS service discovery** instead.
+
+The following CHIP-Tool command commissions a device that is already connected to a **Wi-Fi**
+or **Ethernet** network:
+
+```Bash
+./chip-tool pairing onnetwork 0x1122 20202021
+./chip-tool pairing onnetwork <NODE_ID_TO_ASSIGN> <PIN>
+```
+
+The parameters are defined as follows:
+
+- `<NODE_ID_TO_ASSIGN>` is the **node ID** assigned to the device being commissioned.
+- `<PIN>` is the PIN code for authentication.
+
+The following CHIP-Tool command commissions a device that is already connected to a **Thread**
+network:
+
+```Bash
+./chip-tool pairing onnetwork-thread 0x1122 hex:<OPERATIONAL_DATASET> 20202021
+./chip-tool pairing onnetwork-thread <NODE_ID_TO_ASSIGN> hex:<OPERATIONAL_DATASET> <PIN>
+```
+
+The parameters are defined as follows:
+
+- `<NODE_ID_TO_ASSIGN>` is the **node ID** assigned to the device being commissioned.
+- `<OPERATIONAL_DATASET>` is the **Thread Operational Dataset**, which contains the network credentials for joining a
+  Thread network.
+- `<PIN>` is the **PIN code** for authentication.
+
+### Removing a Device from Fabric
+
+The following CHIP-Tool command removes a device from the Matter Fabric:
+
+```Bash
+./chip-tool pairing unpair 0x1122
+./chip-tool pairing unpair <NODE_ID_TO_ASSIGN>
+```
+
+The parameters are defined as follows:
+
+- `<NODE_ID_TO_ASSIGN>` is the **node ID** assigned to the device being removed.
 
 ## Reading Device Attributes
 
@@ -291,7 +345,7 @@ Similarly, the command below reads the measurement value from the temperature se
 ./chip-tool temperaturemeasurement read measured-value 0x1122 1
 ```
 
-## Sending Commands to Devices
+## Sending Commands to Device
 
 The following command is used to turn on and toggle the device:
 
@@ -303,5 +357,6 @@ The following command is used to turn on and toggle the device:
 ## References
 
 - [How to Install Matter on RPi](https://mattercoder.com/codelabs/how-to-install-matter-on-rpi/)
+- [CHIP-Tool - Commissioning Device over BLE](https://github.com/project-chip/connectedhomeip/blob/master/examples/chip-tool/README.md#commission-a-device-over-ble)
 - [CHIP-tool Source Code](https://github.com/project-chip/connectedhomeip/tree/master/examples/chip-tool)
 - [Silicone Labs' Matter Commissioning Guide](https://docs.silabs.com/matter/2.2.1/matter-overview-guides/matter-commissioning)
