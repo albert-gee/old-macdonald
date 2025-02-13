@@ -7,12 +7,13 @@
 CHIP Tool (chip-tool) is a Matter controller implementation that allows to commission a Matter device into a network
 and to communicate with it. It was used for testing accessory devices.
 
-CHIP Tool was initially built and installed on a **Raspberry Pi 4 Model B** (4GB RAM and 32GB SD card) running _Ubuntu
-Server for Raspberry Pi 24.04.1 LTS_. _Raspberry Pi Imager v1.8.5_ was used to flash the Ubuntu image onto the SD card.
-This setup is <u>**not recommended**</u> because of the slow performance of the Raspberry Pi.
+CHIP Tool was built and installed on a **Raspberry Pi 4 Model B** (4GB RAM and 32GB SD card) running _Ubuntu Server for
+Raspberry Pi 24.04.1 LTS_. _Raspberry Pi Imager v1.8.5_ was used to flash the Ubuntu image onto the SD card.
 
 [Matter v1.4.0.0](https://github.com/project-chip/connectedhomeip/releases/tag/v1.4.0.0) SDK was used to build the
 CHIP-Tool application.
+
+<video src="https://www.youtube.com/watch?v=DSdLc6ZLxnQ"/>
 
 ## Raspberry Pi Setup (Not recommended)
 
@@ -73,7 +74,7 @@ ssh ggc_user@mattercontroller.local
 2. Edit the `bluetooth.service` unit:
 
     ```Bash
-    sudo systemctl edit --force --full bluetooth.service
+    sudo systemctl edit bluetooth.service
     ```
 
    Add the following content:
@@ -82,6 +83,8 @@ ssh ggc_user@mattercontroller.local
    [Service]
    ExecStart=
    ExecStart=/usr/sbin/bluetoothd -E -P battery
+   Restart=always
+   RestartSec=3
    ```
 
 3. Enable and Start the Bluetooth service:
@@ -194,10 +197,8 @@ The application will require installation of Matter SDK on Raspberry Pi:
    `-ipv6only` and `-platform-mdns` flags:
 
       ```Bash
-      ./scripts/build/build_examples.py --target linux-arm64-chip-tool-ipv6only-platform-mdns --target linux-arm64-all-clusters-ipv6only gen
+      ./scripts/build/build_examples.py --target linux-arm64-chip-tool-ipv6only-platform-mdns gen
       cd ~/matter/connectedhomeip/out/linux-arm64-chip-tool-ipv6only-platform-mdns
-      ninja -j 1 & disown
-      cd ../linux-arm64-all-clusters-ipv6only
       ninja -j 1 & disown
       ```
 
@@ -210,8 +211,6 @@ The application will require installation of Matter SDK on Raspberry Pi:
    ```Bash
    mv ~/matter/connectedhomeip/out/linux-arm64-chip-tool-ipv6only-platform-mdns/chip-tool ~/matter/chip-tool
    rm -rf ~/matter/connectedhomeip/out/linux-arm64-chip-tool-ipv6only-platform-mdns
-   mv ~/matter/connectedhomeip/out/linux-arm64-all-clusters-ipv6only/chip-all-clusters-app ~/matter/chip-all-clusters-app
-   rm -rf out/linux-arm64-all-clusters-ipv6only
    ```
 
 ### Step 5. Testing {collapsible="true"}
@@ -221,13 +220,6 @@ Running CHIP Tool:
 ```Bash
 cd ~/matter
 ./chip-tool
-```
-
-Running CHIP All Clusters App:
-
-```Bash
-cd ~/matter
-./chip-all-clusters-app
 ```
 
 ## Commissioning
