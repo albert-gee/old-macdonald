@@ -13,8 +13,6 @@ Raspberry Pi 24.04.1 LTS_. _Raspberry Pi Imager v1.8.5_ was used to flash the Ub
 [Matter v1.4.0.0](https://github.com/project-chip/connectedhomeip/releases/tag/v1.4.0.0) SDK was used to build the
 CHIP-Tool application.
 
-<video src="https://www.youtube.com/watch?v=DSdLc6ZLxnQ"/>
-
 ## Raspberry Pi Setup (Not recommended)
 
 ### Step 1. Ubuntu installation {collapsible="true"}
@@ -345,6 +343,203 @@ The following command is used to turn on and toggle the device:
 ./chip-tool onoff on 0x1122 1
 ./chip-tool onoff toggle 0x1122 1
 ```
+
+
+## Subscribing to events or attributes
+
+Subscribing to an event or an attribute lets you mirror the state of the event or the attribute as it changes in the Matter network. The list of events or attributes you can subscribe to depends on the chosen cluster.
+
+You can have more than one subscription at any given time and subscribe to more than one attribute or event within one subscription (those attributes or events can come from different clusters). However, you cannot subscribe to both attributes and events as part of a single subscription. In other words, each subscription must be dedicated exclusively to either attributes or events.
+
+For more information about subscriptions, see the Matter specification at chapter 8, section 5 (Subscribe Interaction).
+
+Note: The subscription behavior will be different if you set the subscription to be sent with the parameter isUrgent set to True. See the Matter specification for more information.
+
+Subscribing to an attribute
+
+The following procedure will use the doorlock cluster as an example. Complete the following steps:
+
+Start the CHIP Tool in interactive mode by running the following command:
+
+```Bash
+./chiptool interactive start
+```
+
+All the commands that follow will be executed in the interactive mode (>>>).
+
+Run the following command to display all the available attributes you can subscribe to for the given cluster-name:
+
+```Bash
+<cluster-name> subscribe
+```
+
+The list of all available attributes for the cluster will appears.
+
+Note: Your accessory might not support all of these attributes. You will get an error if the controller sends an unsupported attribute.
+
+For example, for the door lock cluster:
+
+```Bash
+doorlock subscribe
+```
+
+The following list will appear:
+
+| Attributes:                                                                         |
+|-------------------------------------------------------------------------------------|
+| * lock-state                                                                        |
+| * lock-type                                                                         |
+| * actuator-enabled                                                                  |
+| * door-state                                                                        |
+| * door-open-events                                                                  |
+| * door-closed-events                                                                |
+| * open-period                                                                       |
+| * number-of-total-users-supported                                                   |
+| * number-of-pinusers-supported                                                      |
+| * number-of-rfidusers-supported                                                     |
+| * number-of-week-day-schedules-supported-per-user                                   |
+| * number-of-year-day-schedules-supported-per-user                                   |
+| * number-of-holiday-schedules-supported                                             |
+| * max-pincode-length                                                                |
+| * min-pincode-length                                                                |
+| * max-rfidcode-length                                                               |
+| * min-rfidcode-length                                                               |
+| * credential-rules-support                                                          |
+| * number-of-credentials-supported-per-user                                          |
+| * language                                                                          |
+| * ledsettings                                                                       |
+| * auto-relock-time                                                                  |
+| * sound-volume                                                                      |
+| * operating-mode                                                                    |
+| * supported-operating-modes                                                         |
+| * default-configuration-register                                                    |
+| * enable-local-programming                                                          |
+| * enable-one-touch-locking                                                          |
+| * enable-inside-status-led                                                          |
+| * enable-privacy-mode-button                                                        |
+| * local-programming-features                                                        |
+| * wrong-code-entry-limit                                                            |
+| * user-code-temporary-disable-time                                                  |
+| * send-pinover-the-air                                                              |
+| * require-pinfor-remote-operation                                                   |
+| * expiring-user-timeout                                                             |
+| * generated-command-list                                                            |
+| * accepted-command-list                                                             |
+| * event-list                                                                        |
+| * attribute-list                                                                    |
+| * feature-map                                                                       |
+| * cluster-revision                                                                  |
+
+
+
+Add the argument of your choice to the subscription command, using the following pattern:
+
+```Bash
+<cluster-name> subscribe <argument> <min-interval> <max-interval> <node_id> <endpoint_id>
+```
+
+In this command:
+
+    <cluster-name> is the name of the cluster.
+
+    <argument> is the name of the chosen argument.
+
+    <min-interval> specifies the minimum number of seconds that must elapse since the last report for the server to send a new report.
+
+    <max-interval> specifies the number of seconds that must elapse since the last report for the server to send a new report.
+
+    <node-id> is the user-defined ID of the commissioned node.
+
+    <endpoint_id> is the ID of the endpoint where the chosen cluster is implemented.
+
+For example:
+
+    >>> doorlock subscribe lock-state 5 10 1 1
+
+After this command is run, the CHIP Tool will check the state of the door lock every time it changes (for example, as a result of a button press or an external ecosystem action) and update it in its own records.
+Subscribing to an event
+
+The procedure for subscribing to an event is similar to subscribing to an attribute.
+
+The following procedure will use the doorlock cluster as an example. Complete the following steps:
+
+Start the CHIP Tool in interactive mode by running the following command:
+
+```Bash
+./chiptool interactive start
+```
+
+All the commands that follow will be executed in the interactive mode (>>>).
+
+Run the following command to display all the available events you can subscribe to for the given cluster-name:
+
+```Bash
+<cluster-name> subscribe-event
+```
+
+The list of all available events for the cluster will appears.
+
+Note: Your accessory might not support all of these events. You will get an error if the controller sends an unsupported event.
+
+For example, for the door lock cluster:
+
+```Bash
+doorlock subscribe-event
+```
+
+The following list will appear:
+
++-------------------------------------------------------------------------------------+
+| Events:                                                                             |
++-------------------------------------------------------------------------------------+
+| * door-lock-alarm                                                                   |
+| * door-state-change                                                                 |
+| * lock-operation                                                                    |
+| * lock-operation-error                                                              |
+| * lock-user-change                                                                  |
++-------------------------------------------------------------------------------------+
+
+Add the event of your choice to the subscription command, using the following pattern:
+
+```Bash
+<cluster-name> subscribe-event <event-name> <min-interval> <max-interval> <node_id> <endpoint_id>
+```
+
+In this command:
+
+```Bash
+<cluster-name> is the name of the cluster.
+
+<event-name> is the name of the chosen event.
+
+<min-interval> specifies the minimum number of seconds that must elapse since the last report for the server to send a new report.
+
+<max-interval> specifies the number of seconds that must elapse since the last report for the server to send a new report.
+
+<node_id> is the user-defined ID of the commissioned node.
+
+<endpoint_id> is the ID of the endpoint where the chosen cluster is implemented.
+```
+
+
+For example:
+
+```Bash
+doorlock subscribe-event door-lock-alarm 5 10 1 1
+```
+
+After this command is run, the CHIP Tool will check the state of the door lock every time it changes (for example, as a result of a button press or an external ecosystem action) and update it in its own records.
+Subscribing using attribute ID or event ID
+
+You can also use the following commands instead of subscribe to subscribe using the attribute ID or the event ID:
+
+```Bash
+subscribe-by-id
+subscribe-event-by-id
+```
+
+The steps are the same as for the subscribe or subscribe-event commands.
+
 
 ## References
 

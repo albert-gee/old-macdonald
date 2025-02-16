@@ -53,4 +53,16 @@
         </description>
         <accepts>Build-Thread-Network.html</accepts>
     </rule>
+    <rule id="4febce03">
+        <description>Created after removal of "Thread Commissioner" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>Thread-Commissioner.html</accepts>
+    </rule>
+    <rule id="5601fc01">
+        <description>Created after removal of "Thread CLI" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Thread-CLI.html</accepts>
+    </rule>
 </rules>

@@ -87,6 +87,13 @@ routing tables. If the Leader fails, another Router takes over.
 A device that communicates only with a **Router** or **Leader** and does not route traffic for other devices. It can be
 battery-powered and may use low-power modes.
 
+## OpenThread CLI
+
+The **OpenThread CLI** is a command-line interface that provides configuration and management APIs for OpenThread.
+
+It is used on OpenThread Border Routers (OTBR), Commissioners, and other Thread devices. The available commands depend
+on the device type. The `help` command prints all the supported commands.
+
 ## Thread Network
 
 The **Network Key** is a 128-bit key used to secure communication within the Thread network.

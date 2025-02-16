@@ -40,24 +40,28 @@ git checkout cf3a09f5f44991a4e65b2d1c5113637e1d086b68
 cd ~/esp/esp-thread-br/examples/basic_thread_border_router
 ```
 
-### Step 3: Configure the Project (Optional)
+### Step 3: Configure the Device (Optional)
 
-The default configuration is designed to work out of the box on the ESP Thread Border Router board with ESP32-S3 as the
+This section describes how to configure the device using `idf.py menuconfig`. This step is _optional_ because the device
+can be configured using the [OpenThread CLI](#command-line-interface) after flashing the firmware.
+
+The default configuration in `sdkconfig.default` file is designed to work out of the box on the ESP Thread Border Router
+board with ESP32-S3 as the
 default SoC target. For other SoCs, the target must be configured using `idf.py set-target <chip_name>`.
 
-For any other customized settings, the project can be configured in **menuconfig**:
+The command below opens the configuration menu:
 
 ```Bash
 idf.py menuconfig
 ```
 
-By default, **automatic start mode** and the **Web GUI** are disabled. These options can be enabled in **menuconfig**:
+Enable **automatic start mode** and the **Web GUI**:
 
 - `ESP Thread Border Router Example → Enable the automatic start mode in Thread Border`
 
 In **automatic start mode**, the device first attempts to use the Wi-Fi SSID and password stored in **NVS** (
 Non-Volatile Storage). If no Wi-Fi credentials are found in NVS, it uses **EXAMPLE_WIFI_SSID** and
-**EXAMPLE_WIFI_PASSWORD** set in **menuconfig**:
+**EXAMPLE_WIFI_PASSWORD**, retrieved from the following configuration options:
 
 - `Example Connection Configuration → WiFi SSID`
 - `Example Connection Configuration → WiFi Password`
@@ -76,14 +80,25 @@ main SoC) port needs to be connected. The main SoC automatically programs the Th
 ### Step 5: Build and Flash
 
 ```Bash
-idf.py build flash monitor
+idf.py build 
+idf.py -p <PORT> flash monitor
 ```
 
-## Testing
+## Command-Line Interface
 
-OT-CLI must be enabled in **idf.py menuconfig**.
+This section demonstrates how to use the [](Thread.md#openthread-cli) on the ESP Thread Border Router.
+
+OpenThread CLI is enabled in
+the [ESP OpenThread component](https://github.com/espressif/esp-idf/blob/master/components/openthread/Kconfig) by
+default. It can also be enabled/disabled using the `idf.py menuconfig` command.
+
+### State
 
 The `br state` command prints the current state of Border Routing Manager.
+
+The `br init <infrastructure-network-index> <is-running>` command initializes the Border Routing Manager with the
+specified
+infrastructure network index and running state.
 
 The `platform` command prints the current platform. The `version` and `rcp version` print the OpenThread version and the
 radio version respectively.
@@ -91,31 +106,85 @@ radio version respectively.
 The `scan` command performs IEEE 802.15.4 scan to find nearby devices. The `discover` command performs an MLE Discovery
 operation to find Thread networks nearby.
 
-## ESP-Thread Border Router Server
+Joining a Wi-Fi network:
 
-[OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) can be used to generate a client library for the
-ESP-Thread Border Router server using
+### Extension Commands
+
+The `ESP Thread Border Router` project extends the standard `OpenThread CLI` by including
+the [OpenThread Extension Commands](https://github.com/espressif/esp-thread-br/tree/main/components/esp_ot_cli_extension#wifi)
+component with additional commands.
+
+The following commands manage Wi-Fi connections:
+
+```Bash
+wifi connect -s <SSID> -p <PASSWORD>
+wifi state
+wifi disconnect
+```
+
+The following command prints all the IP address on each interface of lwIP of the Thread Border Router:
+
+```Bash
+ip print
+```
+
+![Print IPs](tbr_1.png){ thumbnail="true" width=400 }
+
+The output lists network interfaces (netif):
+
+- nt
+- ot ([OpenThread Network Interface](https://github.com/espressif/esp-idf/blob/release/v5.3/components/openthread/src/esp_openthread_lwip_netif.c#L136)),
+- st ([Wi-Fi Station (STA) interface](https://github.com/espressif/esp-idf/blob/release/v5.3/components/esp_netif/lwip/netif/wlanif.c#L223)),
+this includes the **Global Unique Address** (**GUA**), which falls within the 2000::/3 range (starts with 2xxx, 3xxx). 
+This address is globally routable and can be used for external access if the Wi-Fi router’s firewall allows incoming
+connections to this address.
+- lo ([Loopback interface](https://github.com/espressif/esp-lwip/blob/2.1.3-esp/src/core/netif.c#L151)).
+
+If the Thread Border Router is connected to a Wi-Fi network, we can ping it from another device. The following commands
+should be run on a Linux machine to find the name of the Wi-Fi network interfaces and then use it to ping the Thread
+Border Router:
+
+```Bash
+ip addr
+ping6 -I <INTERFACE> <DEVICE_IP>
+ping6 -I wlo1 fe80::aaaa:0000:0000:0000
+```
+
+![Ping](tbr_2.png){ thumbnail="true" width=400 }
+
+## RESTful API and Web GUI
+
+The ESP Thread Border Router provides a RESTful API and Web GUI for managing the Thread Border Router. It is disabled by
+default and can be enabled using `idf.py menuconfig`:
+
+- `ESP Thread Border Router Example → Enable the web server in Thread Border Router`
+
+### Web GUI Access
+
+The Web GUI can be accessed using the IP address of the Thread Border Router:
+
+```Bash
+http://<DEVICE_IP>/index.html
+```
+
+The Web GUI can be accessed using the IPv4 address assigned by the Wi-Fi router or the device's IPv6 Global Unique
+Address (see `ip print` in [](#extension-commands)). IPv4 is only accessible within the local network unless port
+forwarding is configured on the router. IPv6 can be accessed externally if a firewall rule is added on the router.
+
+### RESTful API Client Library Generation
+
+The API is documented using the OpenAPI specification in
 the [openapi.yaml](https://github.com/espressif/esp-thread-br/blob/main/components/esp_ot_br_server/src/openapi.yaml)
 file.
+[OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) can be used to generate a client library.
+
+The following commands should be run on a Linux machine with installed Docker and Node.js to generate a TypeScript
+client library for the ESP-Thread Border Router server:
 
 ```Bash
 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g typescript-fetch -o /local/out/typescript-fetch
 sudo chown -R $USER:$USER out/
 npm install --safe-dev typescript
-```
-
-## Web GUI
-
-The **Web GUI** on the ESP Thread Border Router enables users to discover, configure, and monitor Thread networks. It
-is disabled by default and can be enabled using **idf.py menuconfig**:
-
-- `ESP Thread Border Router Example → Enable the web server in Thread Border Router`
-
-The Thread Border Router and the Linux Host machine shall be connected to the same Wi-Fi network. The Web GUI can be
-accessed using the IP address of the Thread Border Router:
-
-```Bash
-http://<DEVICE_IP>/index.html
 ```
 
 ## References

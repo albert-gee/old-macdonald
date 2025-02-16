@@ -44,8 +44,7 @@
             </toc-element>
             <toc-element topic="Orchestrator-Devices.md">
                 <toc-element topic="Thread-Border-Router.md"/>
-                <toc-element topic="Thread-CLI.md"/>
-                <toc-element topic="Thread-Commissioner.md"/>
+                <toc-element topic="Thread-External-Commissioner.md"/>
                 <toc-element topic="Matter-Controller.md">
                     <toc-element topic="CHIP-Tool.md"/>
                 </toc-element>
