@@ -1,9 +1,11 @@
+<show-structure/>
+
 # ESP-IDF Setup
 
 ## Overview
 
-This section demonstrates how to set up the ESP-IDF development environment for building and running applications on
-ESP32 SoCs.
+This section demonstrates how to set up the [ESP-IDF](Espressif.md#esp-idf-framework) development environment for
+building and running applications on ESP32 SoCs.
 
 This project uses [ESP-IDF v5.3.2](https://docs.espressif.com/projects/esp-idf/en/v5.3.2/), locked to
 commit [fb25eb0](https://github.com/espressif/esp-idf/commit/fb25eb02ebcf78a78b4c34a839238a4a56accec7).

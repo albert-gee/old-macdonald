@@ -56,8 +56,6 @@ The Wi-Fi-based Espressif Thread Border runs on two SoCs:
 Espressif also provides a single **ESP THREAD BR-ZIGBEE GW** board that integrates both the host SoC and the RCP into a
 single board.
 
-![ESP Thread Border Router/Zigbee Gateway](esp-thread-border-router.jpg){ thumbnail="true" width="400" }
-
 Espressif also provides a **ESP Thread BR-Zigbee GW_SUB** daughter board for building an Ethernet-enabled Thread Border
 Router. It must be connected to a Wi-Fi-based ESP Thread Border Router.
 

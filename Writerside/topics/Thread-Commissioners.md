@@ -1,10 +1,10 @@
 <show-structure/>
 
-# Thread External Commissioner
+# Thread Commissioners
 
 ## Overview
 
-## Prerequisites
+Prerequisites:
 
 - [ESP-IDF development environment](ESP-IDF-Setup.md) is set up.
 - [ESP32-H2-DevKitM-1](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/index.html)
@@ -168,19 +168,22 @@ udpsockclient close
 
 ## References
 
-- [OpenThread CLI - Commissioning](https://github.com/openthread/ot-commissioner/tree/main/src/app/cli)
-- [OpenThread commissioning](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/thread/overview/commissioning.html)
-- [Android Thread Commissioner](https://github.com/openthread/ot-commissioner/tree/main/android)
-- [Thread Network SDK for Android](https://developers.home.google.com/thread)
+OpenThread CLI:
 
 - [OpenThread CLI Overview](https://openthread.io/reference/cli)
 - [OpenThread CLI Command Reference](https://openthread.io/reference/cli/commands)
-- [ESP OT-CLI Example](https://github.com/espressif/esp-idf/tree/master/examples/openthread/ot_cli)
+- [How to set up a Command Line Interface on a thread device](https://mattercoder.com/codelabs/how-to-install-border-router-on-esp32/?index=..%2F..index#5)
 - [Forming a Thread network on the Thread Border Router](https://openthread.io/codelabs/esp-openthread-hardware#3)
+- [OpenThread CLI - Commissioning](https://github.com/openthread/ot-commissioner/tree/main/src/app/cli)
+- [OpenThread commissioning](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/thread/overview/commissioning.html)
 - [OpenThread CLI - Operational Datasets](https://github.com/openthread/openthread/blob/main/src/cli/README_DATASET.md)
 
-OpenThread CLI on ESP32-C6:
+Android:
 
-[How to set up a Command Line Interface on a thread device](https://mattercoder.com/codelabs/how-to-install-border-router-on-esp32/?index=..%2F..index#5)
+- [Android Thread Commissioner](https://github.com/openthread/ot-commissioner/tree/main/android)
+- [Thread Network SDK for Android](https://developers.home.google.com/thread)
 
-[Build and Run CLI device](https://docs.espressif.com/projects/esp-thread-br/en/latest/dev-guide/build_and_run.html#build-and-run-the-thread-cli-device)
+ESP-IDF:
+
+- [ESP OT-CLI Example](https://github.com/espressif/esp-idf/tree/master/examples/openthread/ot_cli)
+- [Build and Run CLI device](https://docs.espressif.com/projects/esp-thread-br/en/latest/dev-guide/build_and_run.html#build-and-run-the-thread-cli-device)

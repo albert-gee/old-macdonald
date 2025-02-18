@@ -1,21 +1,22 @@
 <show-structure/>
 
-# Thread Border Router
+# Thread Border Routers
 
 ## Overview
 
-This section demonstrates how to build and run the ESP Thread Border Router example on the ESP Thread Border Router
-board.
+**Thread Border Routers** connect Thread-enabled accessory devices to controllers on Wi-Fi or Ethernet networks,
+enabling discovery, commissioning, control, and monitoring.
 
-This project uses Espressif Thread Border Router SDK locked to commit
-[cf3a09f](https://github.com/espressif/esp-thread-br/commit/cf3a09f5f44991a4e65b2d1c5113637e1d086b68).
+## Build and Run
 
-## Prerequisites
+This section demonstrates how to build and run a basic Thread Border Router.
+
+Prerequisites:
 
 - [ESP-IDF development environment](ESP-IDF-Setup.md) is set up.
 - [ESP THREAD BR-ZIGBEE GW](Thread.md#border-router) board
 
-## Build and Run
+![ESP Thread Border Router/Zigbee Gateway](esp-thread-border-router.jpg){ thumbnail="true" width="400" }
 
 ### Step 1: Build the RCP Image
 
@@ -31,6 +32,9 @@ and automatically installed onto the ESP32-H2 chip during the first boot-up. `id
 customized settings.
 
 ### Step 2: Clone Espressif Thread Border Router SDK
+
+This project uses Espressif Thread Border Router SDK locked to commit
+[cf3a09f](https://github.com/espressif/esp-thread-br/commit/cf3a09f5f44991a4e65b2d1c5113637e1d086b68).
 
 ```Bash
 cd ~/esp
@@ -135,7 +139,7 @@ The output lists network interfaces (netif):
 - nt
 - ot ([OpenThread Network Interface](https://github.com/espressif/esp-idf/blob/release/v5.3/components/openthread/src/esp_openthread_lwip_netif.c#L136)),
 - st ([Wi-Fi Station (STA) interface](https://github.com/espressif/esp-idf/blob/release/v5.3/components/esp_netif/lwip/netif/wlanif.c#L223)),
-this includes the **Global Unique Address** (**GUA**), which falls within the 2000::/3 range (starts with 2xxx, 3xxx). 
+this includes the **Global Unique Address** (**GUA**), which falls within the 2000::/3 range (starts with 2xxx, 3xxx).
 This address is globally routable and can be used for external access if the Wi-Fi router’s firewall allows incoming
 connections to this address.
 - lo ([Loopback interface](https://github.com/espressif/esp-lwip/blob/2.1.3-esp/src/core/netif.c#L151)).
@@ -186,6 +190,10 @@ docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -
 sudo chown -R $USER:$USER out/
 npm install --safe-dev typescript
 ```
+
+## ESP Thread BR in Home Assistant
+
+https://www.reddit.com/r/homeassistant/comments/1i8b9ex/esp_thread_border_router_extend_your_thread/
 
 ## References
 

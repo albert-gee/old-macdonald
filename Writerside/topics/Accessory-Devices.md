@@ -1,11 +1,40 @@
 # Accessory Devices
 
-Firmware development for the ESP32 microcontrollers was conducted using the ESP-IDF (Espressif IoT Development
-Framework) version 5.2.1. This open-source framework provides essential libraries and tools to create efficient,
-low-power IoT applications with native Matter protocol support, enabling seamless device interoperability.
+## Overview
 
-[ESP-IDF development environment](ESP-IDF-Setup.md) is required.
+Accessory devices include **sensors** and **actuators** that monitor and control environmental conditions within a Grow
+Chamber.
 
-[ESP-Matter development environment](ESP-Matter-Setup.md) is required.
+## Sensors
 
-ESP32 boards communicate with sensors via the I2C (Inter-Integrated Circuit) protocol. 
+A sensor is any device that generates some sort of output when exposed to a phenomenon.
+
+The table below lists the sensors utilised in this project:
+
+| **Sensor**        | **Purpose**                  |
+|-------------------|------------------------------|
+| BMP280            | Temperature and air pressure |
+| BH1750 or TSL2561 | Light intensity              |
+| DHT22             | Temperature and humidity     |
+| MH-Z19B           | Carbon dioxide (CO₂) levels  |
+
+The sensor devices utilise the ESP32-H2 microcontrollers with Thread connectivity and low power consumption, enabling
+effective operation in various agricultural settings.
+
+## Actuators
+
+Actuators are located on the output side of IoT solutions. They change their state based on an analog or digital signal
+from the microcontroller and produce an output that affects the environment.
+
+The table below lists the actuators that will be utilised in this project:
+
+| **Actuator**           | **Purpose**                            |
+|------------------------|----------------------------------------|
+| Ultrasonic mist maker  | Fog generation                         |
+| Exhaust fan, 120mm DC  | Ventilation                            |
+| LED grow lights        | Plant growth lighting                  |
+| Air pump and air stone | Aeration for water inside Root Chamber |
+
+Actuator devices utilise the ESP32-DevKitM-1 microcontrollers. In contrast to ESP32-H2, the ESP32-DevKitM-1 does not
+support Thread connectivity and has higher power consumption. It is used to control actuators, which inherently consume
+a lot of power.

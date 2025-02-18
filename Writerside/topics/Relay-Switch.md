@@ -2,10 +2,19 @@
 
 ## Overview
 
+This section describes the development of a Matter-compatible relay switch.
+
 Source Code: [GitHub](https://github.com/albert-gee/matter_relay)
 
-This device is a Matter-compatible relay switch built on the ESP32-DevKitM-1 platform. The firmware, developed using the
-ESP-IDF framework, controls a GPIO-based relay that can be switched on or off through Matter attribute updates.
+Prerequisites:
+
+- [ESP-IDF development environment](ESP-IDF-Setup.md) is set up.
+- [Matter development environment](Matter-Controllers.md) is set up.
+- [ESP32-DevKitM-1](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitm-1/index.html) is
+  available.
+
+The firmware, developed using the ESP-IDF framework, controls a GPIO-based relay that can be switched on or off through
+Matter attribute updates.
 
 ## Wiring Relay to ESP32
 
@@ -38,7 +47,8 @@ opening only when the relay is activated.
 
 ## Firmware Development
 
-The firmware initializes the Matter framework, sets up an On/Off endpoint, and configures callbacks to handle attribute updates, device identification, and system events such as network connectivity changes.
+The firmware initializes the Matter framework, sets up an On/Off endpoint, and configures callbacks to handle attribute
+updates, device identification, and system events such as network connectivity changes.
 
 The header file `$IDF_PATH/components/esp_driver_gpio/include/driver/gpio.h` can be included with:
 
@@ -46,7 +56,8 @@ The header file `$IDF_PATH/components/esp_driver_gpio/include/driver/gpio.h` can
 #include "driver/gpio.h"
 ```
 
-This header file is a part of the API provided by the `esp_driver_gpio` component. To declare that your component depends on esp_driver_gpio, the following line has to be added to CMakeLists.txt:
+This header file is a part of the API provided by the `esp_driver_gpio` component. To declare that your component
+depends on esp_driver_gpio, the following line has to be added to CMakeLists.txt:
 
 ```CMake
 REQUIRES esp_driver_gpio

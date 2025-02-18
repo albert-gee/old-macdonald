@@ -65,4 +65,82 @@
         </description>
         <accepts>Thread-CLI.html</accepts>
     </rule>
+    <rule id="69282489">
+        <description>Created after removal of "Grow Chambers" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Grow-Chambers.html</accepts>
+    </rule>
+    <rule id="66816ba8">
+        <description>Created after removal of "Sensors" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Sensors.html</accepts>
+    </rule>
+    <rule id="38083565">
+        <description>Created after removal of "Actuators" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Actuators.html</accepts>
+    </rule>
+    <rule id="6d511abc">
+        <description>Created after removal of "Orchestrators" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Orchestrators.html</accepts>
+    </rule>
+    <rule id="7bfe46f5">
+        <description>Created after removal of "Controllers" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Controllers.html</accepts>
+    </rule>
+    <rule id="5e17ffb2">
+        <description>Created after removal of "System Design" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>System-Design.html</accepts>
+    </rule>
+    <rule id="61a242d2">
+        <description>Created after removal of "Conclusion" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Conclusion.html</accepts>
+    </rule>
+    <rule id="fba21aa">
+        <description>Created after removal of "Methodology" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Methodology.html</accepts>
+    </rule>
+    <rule id="2d983f7e">
+        <description>Created after removal of "Discussion" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Discussion.html</accepts>
+    </rule>
+    <rule id="3d4854d5">
+        <description>Created after removal of "References" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>References.html</accepts>
+    </rule>
+    <rule id="304ef09">
+        <description>Created after removal of "Testing Accessory Devices" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>Testing-Accessory-Devices.html</accepts>
+    </rule>
+    <rule id="141a1ce5">
+        <description>Created after removal of "ESP Thread BR in Home Assistant" from Old Macdonald - Decentralised
+            Controlled Environment Agriculture System
+        </description>
+        <accepts>ESP-Thread-BR-in-Home-Assistant.html</accepts>
+    </rule>
+    <rule id="111f96dc">
+        <description>Created after removal of "Controller Software" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>Controller-Software.html</accepts>
+    </rule>
 </rules>

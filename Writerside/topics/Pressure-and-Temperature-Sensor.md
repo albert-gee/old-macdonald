@@ -2,19 +2,24 @@
 
 ## Overview
 
+This section describes the development of a Matter-compatible temperature and pressure sensor.
+
 Source Code: [GitHub](https://github.com/albert-gee/matter_bmp280)
 
-This device is a Matter-compatible pressure and temperature sensor. The development initially used the ESP32-DevKitM-1
-and will transition to the ESP32-H2 in the future when the Thread Border Router is implemented. The ESP32 collects data
-from the BMP280, a compact, low-power barometric pressure sensor designed for battery-powered devices.
+Prerequisites:
 
-The ESP32 communicates with the BMP280 using the I2C (Inter-Integrated Circuit) protocol. I2C is a serial, synchronous,
-half-duplex communication protocol. The ESP32 has two I2C ports, which handle all communication on the I2C bus. Each
-port can act as a controller or a target. In this project, the ESP32 acts as the controller, while the BMP280 functions
-as the target.
+- [ESP-IDF development environment](ESP-IDF-Setup.md) is set up.
+- [ESP-Matter development environment](ESP-Matter-Setup.md) is set up.
+- [ESP32-H2-DevKitM-1](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/index.html)
+  is available.
 
-The firmware for the ESP32-H2 was developed using the ESP-IDF framework. The BMP280 datasheet (BST-BMP280-DS001-26) is
-used as a reference during development.
+The **ESP32-H2** development board reads data from the **BMP280**, a low-power sensor designed for battery-powered
+devices. They communicate using **I2C (Inter-Integrated Circuit)**, a serial, synchronous, half-duplex protocol. The
+ESP32 has two I2C ports, each capable of operating as a controller or target. In this project, the ESP32-H2 acts as
+the controller, while the BMP280 functions as the target.
+
+The firmware for the ESP32-H2 was developed using the **ESP-IDF framework**. The BMP280 datasheet (
+_BST-BMP280-DS001-26_) is used as a reference during development.
 
 ## Wiring BMP280 to ESP32
 
@@ -35,56 +40,9 @@ The table below shows the connections for the BMP280 sensor to the ESP32-DevKitM
 
 The pictures below show the connections for the BMP280 sensor to the ESP32-DevKitM-1 microcontroller:
 
-![BMP280 connected to ESP32-DevKitM-1 (front)](image7.jpg){ thumbnail="true" width="300" }
+![BMP280 connected to ESP32-DevKitM-1 (front)](image7.jpg){ thumbnail="true" width="400" }
 
-![BMP280 connected to ESP32-DevKitM-1 (back)](image4.jpg){ thumbnail="true" width="300" }
-
-## Driver Component Development
-
-The command below creates a new component named bmp280_driver inside the `components` directory.
-
-```Bash
-idf.py create-component bmp280_driver -C components
-```
-
-![Creating a new component within an ESP-IDF project](image1.png){ thumbnail="true" width="300" }
-
-The ESP-IDF framework includes a driver for working with I2C devices. To ensure that this component can use the driver,
-the `REQUIRES` directive must be added to `components/bmp280_driver/CMakeLists.txt` as follows:
-
-```Bash
-REQUIRES "driver"
-```
-
-![Using the REQUIRES Directive](image25.png){ thumbnail="true" width="300" }
-
-This directive ensures that the build system includes the I2C driver as a dependency for the component during the build
-process.
-
-The `i2c_utils.h` header file declares utility functions for initializing, managing, and performing operations on an I2C
-master bus and its connected devices.
-
-The `i2c_utils.c` file implements these functions and includes `driver/i2c_master.h` 
-($IDF_PATH/components/driver/i2c/include/driver/i2c_master.h) to access the driver’s API in controller mode.
-
-The BMP280 code is designed according to the specifications outlined in the BST-BMP280-DS001-26 datasheet. Communication
-with the sensor is performed through read and write operations on its 8-bit registers.
-
-![BMP280 Memory Map. Source: BST-BMP280-DS001-26 datasheet](image35.png){ thumbnail="true" width="300" }
-
-The `bmp280_driver.h` header file declares the configurations, constants, and functions needed to interface with and
-operate the sensor, based on the datasheet.
-
-The `bmp280_driver.c` file implements these functions, providing support for sensor initialization, configuration, and
-data handling. It adheres to the datasheet to verify the sensor, apply compensation to raw measurements, and configure
-parameters like oversampling, operating modes, and filters.
-
-The BMP280 sensor uses factory-programmed calibration parameters to adjust raw data for accurate measurements. These
-parameters are stored in the sensor's non-volatile memory (NVM) during production, are unique to each device, and cannot
-be modified by the user, as described in Section 3.11.2 of the datasheet. The `bmp280_calibration.h` header declares the
-constants, structures, and functions needed to handle this calibration data. It includes functionality to read the
-parameters and apply them to raw pressure and temperature readings. The `bmp280_calibration.c` file implements these
-functions, following the temperature and pressure compensation formulas specified in Section 3.11 of the datasheet.
+![BMP280 connected to ESP32-DevKitM-1 (back)](image4.jpg){ thumbnail="true" width="400" }
 
 ## Testing I2C Connectivity
 
@@ -103,7 +61,7 @@ The following command scans an I2C bus for devices and output a table with the l
 i2cdetect
 ```
 
-![i2cconfig output](image20.png){ thumbnail="true" width="300" }
+![i2cconfig output](image20.png){ thumbnail="true" width="400" }
 
 It displays the address 0x76 since the SDO pin is connected to GND.
 
@@ -117,6 +75,53 @@ i2cget -c 0x76 -r 0xD0 -l 1
 - -c option to specify the address of I2C device (acquired from i2cdetect command).
 - -r option to specify the register address you want to inspect.
 - -l option to specify the length of the content.
+
+## Driver Component Development
+
+The command below creates a new component named bmp280_driver inside the `components` directory.
+
+```Bash
+idf.py create-component bmp280_driver -C components
+```
+
+![Creating a new component within an ESP-IDF project](image1.png){ thumbnail="true" width="400" }
+
+The ESP-IDF framework includes a driver for working with I2C devices. To ensure that this component can use the driver,
+the `REQUIRES` directive must be added to `components/bmp280_driver/CMakeLists.txt` as follows:
+
+```Bash
+REQUIRES "driver"
+```
+
+![Using the REQUIRES Directive](image25.png){ thumbnail="true" width="400" }
+
+This directive ensures that the build system includes the I2C driver as a dependency for the component during the build
+process.
+
+The `i2c_utils.h` header file declares utility functions for initializing, managing, and performing operations on an I2C
+master bus and its connected devices.
+
+The `i2c_utils.c` file implements these functions and includes `driver/i2c_master.h`
+($IDF_PATH/components/driver/i2c/include/driver/i2c_master.h) to access the driver’s API in controller mode.
+
+The BMP280 code is designed according to the specifications outlined in the BST-BMP280-DS001-26 datasheet. Communication
+with the sensor is performed through read and write operations on its 8-bit registers.
+
+![BMP280 Memory Map. Source: BST-BMP280-DS001-26 datasheet](image35.png){ thumbnail="true" width="400" }
+
+The `bmp280_driver.h` header file declares the configurations, constants, and functions needed to interface with and
+operate the sensor, based on the datasheet.
+
+The `bmp280_driver.c` file implements these functions, providing support for sensor initialization, configuration, and
+data handling. It adheres to the datasheet to verify the sensor, apply compensation to raw measurements, and configure
+parameters like oversampling, operating modes, and filters.
+
+The BMP280 sensor uses factory-programmed calibration parameters to adjust raw data for accurate measurements. These
+parameters are stored in the sensor's non-volatile memory (NVM) during production, are unique to each device, and cannot
+be modified by the user, as described in Section 3.11.2 of the datasheet. The `bmp280_calibration.h` header declares the
+constants, structures, and functions needed to handle this calibration data. It includes functionality to read the
+parameters and apply them to raw pressure and temperature readings. The `bmp280_calibration.c` file implements these
+functions, following the temperature and pressure compensation formulas specified in Section 3.11 of the datasheet.
 
 ## Matter Component Development
 
@@ -211,8 +216,13 @@ ESP-Matter GitHub repository ([Issue #1125](https://github.com/espressif/esp-mat
 using a Google Nest Hub 2nd Generation as a hub and confirmed that it worked correctly in this configuration. She noted
 that a hub device is a required component for proper operation within Google's ecosystem.
 
-![Google Home app detecting a device that is broadcasting its presence using Bluetooth Low Energy (BLE)](image5.jpg){ thumbnail="true" height="300" }
+![Google Home app detecting a device that is broadcasting its presence using Bluetooth Low Energy (BLE)](image5.jpg){
+thumbnail="true" height="200" }
 
-![Google Home app requesting QR code for commissioning](image3.jpg){ thumbnail="true" height="300" }
+![Google Home app requesting QR code for commissioning](image3.jpg){ thumbnail="true" height="200" }
 
-![Google Home app notifies that its hardware doesn’t support Matter](image29.jpg){ thumbnail="true" height="300" }
+![Google Home app notifies that its hardware doesn’t support Matter](image29.jpg){ thumbnail="true" height="200" }
+
+## References
+
+- [BMP280 – Data sheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001-26.pdf)

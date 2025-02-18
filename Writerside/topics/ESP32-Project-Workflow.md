@@ -1,8 +1,10 @@
+<show-structure/>
+
 # ESP32 Project Workflow
 
 To create, build, and deploy a new project for ESP32, the steps below are required.
 
-**Step 1: Set Up ESP-IDF Environment**
+## Step 1: Set Up ESP-IDF Environment
 
 Run the alias, created during the development setup, to initialise the ESP-IDF environment in the current terminal
 session:
@@ -11,7 +13,7 @@ session:
 get_idf
 ```
 
-**Step 2: Create a New Project**
+## Step 2: Create a New Project
 
 ESP-IDF provides the [idf.py](https://docs.espressif.com/projects/esp-idf/en/v5.2.3/esp32/api-guides/tools/idf-py.html)
 command-line tool as a front-end for managing project builds, deployment, debugging, and other tasks, simplifying the
@@ -22,7 +24,7 @@ building, and esptool.py for flashing the target device.
 idf.py create-project <project name>
 ```
 
-**Step 3: Set ESP32 as the target device**
+## Step 3: Set ESP32 as the target device
 
 This command creates a new `sdkconfig` file in the root directory of the project. This configuration file is modified
 via idf.py menuconfig to customise the configuration of the project:
@@ -31,7 +33,7 @@ via idf.py menuconfig to customise the configuration of the project:
 idf.py set-target esp32h2
 ```
 
-**Step 4: Open the Project in CLion IDE**
+## Step 4: Open the Project in CLion IDE
 
 Create a toolchain named **ESP-IDF** with the environment file set to `esp-idf/script.sh`:
 
@@ -49,24 +51,24 @@ Structure of a new ESP-IDF project:
 
 ![Structure of a new ESP-IDF project](image12.png){ thumbnail="true" width="300" }
 
-**Step 5: Build the Project**
+## Step 5: Build the Project
 
 ```Bash
 idf.py build
 ```
 
-**Step 6: Determine Serial Port**
+## Step 6: Determine Serial Port
 
 Connect the ESP32 board to the computer and check under which serial port the board is visible. Serial ports have the
 following naming patterns: `/dev/tty`.
 
-**Step 7: Flash Project to Target**
+## Step 7: Flash Project to Target
 
 ```Bash
 idf.py -p <PORT> flash
 ```
 
-**Step 8: Launch IDF Monitor**
+## Step 8: Launch IDF Monitor
 
 Use the monitor application and exit using `CTRL+]`:
 
