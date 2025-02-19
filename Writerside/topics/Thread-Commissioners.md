@@ -14,10 +14,6 @@ Prerequisites:
 
 ## Build and Run
 
-### Thread External Commissioner
-
-This section demonstrates how to build a Thread External Commissioner on the **ESP32-C6-DevKitC-1**.
-
 ### ESP OpenThread CLI Example
 
 ESP-IDF includes an OpenThread CLI example. This section demonstrates how to build it and run on the
@@ -47,27 +43,6 @@ idf.py -p <PORT_TO_ESP32_H2> flash monitor
 ## Usage
 
 Before a Commissioner can operate, it must petition the Leader for permission to take on the Commissioner role.
-
-### Forming Thread network {collapsible="true"}
-
-The commands below are ran on the OTBR device to form a Thread network:
-
-1. Generate new network configuration.
-2. Commit new dataset to the Active Operational Dataset in non-volatile storage.
-3. Enable Thread interface
-
-```Bash
-factoryreset
-dataset init new
-dataset commit active
-ifconfig up
-thread start
-```
-
-The `dataset active` command shows the Active Operational Dataset. The optional `-x` argument prints it as hex-encoded
-TLVs.
-
-![Active Operational Dataset](ot_cli_1.png){ thumbnail="true" width="400" }
 
 ### Starting Commissioner {collapsible="true"}
 
@@ -165,6 +140,16 @@ Sending a UDP packet and closing the client:
 udpsockclient send fdf9:2548:ce39:efbb:79b9:4ac4:f686:8fc9 12346 hello
 udpsockclient close
 ```
+
+## Scan and Discover
+
+The `scan` command performs IEEE 802.15.4 scan to find nearby devices. The `discover` command performs an MLE Discovery
+operation to find Thread networks nearby.
+
+![Thread Discover](thc_1.png){ thumbnail="true" width="400" }
+
+![Thread Scan](thc_2.png){ thumbnail="true" width="400" }
+
 
 ## References
 
