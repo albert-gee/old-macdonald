@@ -222,6 +222,8 @@ cd ~/matter
 
 ## Commissioning
 
+This section describes the [Matter commissioning](Matter.md#commissioning) using CHIP Tool.
+
 The following command should be run on the Commissionee to print the static configuration that includes the **PIN code**
 and **Discriminator** (_0xf00_ is _3840_ in decimal):
 
@@ -229,26 +231,68 @@ and **Discriminator** (_0xf00_ is _3840_ in decimal):
 matter config
 ```
 
-### Commissioning over BLE
+### Commissioning to Wi-Fi over BLE {collapsible="true"}
 
-A Commissionee can join an existing IP network over Bluetooth LE and then be commissioned into a Matter network.
+A Commissionee joins an existing IP network over Bluetooth LE before being commissioned into a Matter network.
 
-The following CHIP-Tool command initiates commissioning onto a **Wi-Fi** network over BLE:
+The following CHIP-Tool command starts commissioning onto a **Wi-Fi** network over BLE:
 
 ```Bash
-./chip-tool pairing ble-wifi 0x1122 SSID "" 20202021 3840
+./chip-tool pairing ble-wifi 0x1122 SSID WIFIPASS 20202021 3840
 ./chip-tool pairing ble-wifi <NODE_ID_TO_ASSIGN> <SSID> <PASSWORD> <PIN> <DISCRIMINATOR>
 ```
 
 The parameters are defined as follows:
 
-- `<NODE_ID_TO_ASSIGN>` is the node ID assigned to the device being commissioned, which can be a decimal number or a
-  hexadecimal number prefixed with ‘0x’.
-- `<SSID>` represents the Wi-Fi SSID, which can be provided as a plain string or in hexadecimal format as ‘hex:
-  XXXXXXXX’, where each byte of the SSID is represented as two-digit hexadecimal numbers.
-- `<PASSWORD>` is the Wi-Fi password, which can also be given as a plain string or as hex data.
-- `<PIN>` is the PIN code for authentication
+- `<NODE_ID_TO_ASSIGN>` is the node ID assigned to the device being commissioned, which can be a decimal or hexadecimal number prefixed with ‘0x’.
+- `<SSID>` is the Wi-Fi SSID, provided as a plain string or in hexadecimal format as ‘hex:XXXXXXXX’, where each byte of the SSID is represented as two-digit hexadecimal numbers.
+- `<PASSWORD>` is the Wi-Fi password, given as a plain string or hex data.
+- `<PIN>` is the PIN code for authentication.
 - `<DISCRIMINATOR>` is the discriminator value.
+
+CHIP-Tool starts the commissioning process, which includes the following steps:
+
+1. **Initialization**
+   - Initializes storage and loads key-value store (KVS) configurations.
+   - Detects network interfaces and identifies the WiFi interface.
+   - Sets up UDP transport manager and BLE transport layers.
+
+2. **Fabric and Node Setup**
+   - Loads the fabric table, which contains information about existing secure networks.
+   - Creates a new fabric with a unique Fabric ID and Node ID.
+
+3. **BLE Scanning and Connection**
+   - Scans for nearby BLE devices.
+   - Identifies the correct device using a discriminator match.
+   - Establishes a BLE connection with the device.
+
+4. **Secure Session Establishment**
+   - Performs a PASE (Password Authenticated Session Establishment) handshake over BLE.
+   - Exchanges secure messages to establish an encrypted session.
+   - Marks the session as "Active" upon success.
+
+5. **Commissioning Process**
+   - Reads the device’s attributes and capabilities.
+   - Arms a fail-safe mechanism to prevent accidental changes.
+   - Configures the device based on regional regulatory requirements.
+
+6. **Certificate Exchange**
+   - The device provides PAI (Product Attestation Intermediate) and DAC (Device Attestation Certificate).
+   - The system verifies the certificates and device authenticity.
+
+7. **Attestation and Verification**
+   - Validates the device’s attestation data to ensure a trusted identity.
+   - Performs a revocation check to confirm the device’s legitimacy.
+
+8. **Operational Certificate Signing**
+   - The device generates a CSR (Certificate Signing Request).
+   - The system issues a NOC (Node Operational Certificate) to authenticate the device in the network.
+
+9. **Finalizing the Pairing**
+   - Sends the root certificate to the device.
+   - Marks the pairing process as "Success," making the device a trusted member of the Matter network.
+
+### Commissioning to Thread over BLE {collapsible="true"}
 
 The following CHIP-Tool command initiates commissioning onto a **Thread** network over BLE:
 
@@ -267,7 +311,7 @@ The parameters are defined as follows:
 - `<PIN>` is the PIN code for authentication.
 - `<DISCRIMINATOR>` is the discriminator value.
 
-### Commissioning over Existing IP Network
+### Commissioning over Existing IP Network {collapsible="true"}
 
 A Commissionee already connected to a Wi-Fi, Ethernet, or Thread network can be commissioned without BLE discovery,
 using **mDNS service discovery** instead.
@@ -300,7 +344,7 @@ The parameters are defined as follows:
   Thread network.
 - `<PIN>` is the **PIN code** for authentication.
 
-### Removing a Device from Fabric
+### Removing a Device from Fabric {collapsible="true"}
 
 The following CHIP-Tool command removes a device from the Matter Fabric:
 
