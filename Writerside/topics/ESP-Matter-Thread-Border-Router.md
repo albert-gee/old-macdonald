@@ -1,14 +1,10 @@
 <show-structure/>
 
-# Matter Thread Border Router
-
-The Thread Border Router management cluster allows provisioning of the Thread interface using a Matter commissioner.
+# ESP Matter Thread Border Router
 
 ## Build and Run
 
 This section demonstrates how to build and run the `ESP Matter Thread Border Router` example.
-
-The build process is similar to the [Basic Thread Border Router example](Thread-Border-Routers.md#build-and-run).
 
 Prerequisites:
 
@@ -16,32 +12,37 @@ Prerequisites:
 - [ESP-Matter development environment](ESP-Matter-Setup.md) is set up.
 - [ESP THREAD BR-ZIGBEE GW](Thread.md#border-router) board
 
-### Step 1: Build the RCP Image {collapsible="true"}
+### Step 1: Build and Configure the RCP Image {collapsible="true"}
 
-See [Basic Thread Border Router example](Thread-Border-Routers.md#step-1-build-the-rcp-image).
+The build process is similar to
+the [Basic Thread Border Router example](ESP-Basic-Thread-Border-Router.md#build-and-run).
+The following steps from the Basic Thread Border Router example are required if not already completed:
 
-### Step 2: Configure the Device (Optional) {collapsible="true"}
+1. Follow [Step 1: Build the RCP Image](ESP-Basic-Thread-Border-Router.md#step-1-build-the-rcp-image).
+2. Follow
+   optional [Step 3: Configure the Device](ESP-Basic-Thread-Border-Router.md#step-3-configure-the-device-optional).
 
-See [Basic Thread Border Router example](Thread-Border-Routers.md#step-3-configure-the-device-optional).
-
-### Step 3: Set target to ESP32-S3 {collapsible="true"}
+### Step 2: Set target to ESP32-S3 {collapsible="true"}
 
 ```Bash
 idf.py set-target esp32s3
 ```
 
-### Step 4: Connect the ESP Thread Border Router Board {collapsible="true"}
+### Step 3: Connect the ESP Thread Border Router Board {collapsible="true"}
 
-See [Basic Thread Border Router example](Thread-Border-Routers.md#step-4-connect-the-esp-thread-border-router-board).
+Follow [Step 4: Connect the ESP Thread Border Router Board](ESP-Basic-Thread-Border-Router.md#step-4-connect-the-esp-thread-border-router-board)
+from the Basic Thread Border Router example.
 
-### Step 5: Build and Flash {collapsible="true"}
+### Step 4: Build and Flash {collapsible="true"}
 
 ```Bash
 idf.py build 
 idf.py -p <PORT> flash monitor
 ```
 
-## Command Line Interface
+## Matter CLI
+
+This section demonstrates how to use the Matter CLI on the ESP Matter Thread Border Router.
 
 The device automatically starts BLE advertising when powered on. The following command can be used to check the state:
 
@@ -56,13 +57,15 @@ commissioning:
 matter config
 ```
 
-## Using CHIP Tool
+## CHIP-Tool
 
-### Step 1. Commissioning to Wi-Fi over BLE {collapsible="true"}
+The Thread Border Router management cluster allows provisioning of the Thread interface using a Matter commissioner.
+
+### Commissioning to Wi-Fi over BLE {collapsible="true"}
 
 Refer to [Commissioning to Wi-Fi over BLE using CHIP Tool](CHIP-Tool.md#commissioning-to-wi-fi-over-ble).
 
-### Step 2. Joining a Thread Network {collapsible="true"}
+### Joining a Thread Network {collapsible="true"}
 
 After commissioning, a fail-safe timer must be armed:
 

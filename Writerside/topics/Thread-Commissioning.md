@@ -17,8 +17,3 @@ The Thread Specification outlines several commissioning roles in the Mesh Commis
 4. **Border Agent** (BA) acts as a relay between a Commissioner (either External or Native) and a Thread Network.
 5. **Joiner Router** is a Thread Router or REED that acts as an intermediary between a Joiner and the Thread Network. It
    does not perform true routing but forwards Joiner messages.
-
-Commissioning Process:
-1. A Commissioner uses a Border Agent to communicate with the network.
-2. The Joiner contacts a Joiner Router, which then interacts with the Commissioner through a DTLS handshake for authentication and credential exchange​
-3. Once approved, the Joiner receives the Network Credentials and officially joins the network.

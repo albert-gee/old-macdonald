@@ -143,4 +143,10 @@
         </description>
         <accepts>Controller-Software.html</accepts>
     </rule>
+    <rule id="22699f84">
+        <description>Created after removal of "Matter Thread Border Router" from Old Macdonald - Decentralised
+            Controlled Environment Agriculture System
+        </description>
+        <accepts>Matter-Thread-Border-Router.html</accepts>
+    </rule>
 </rules>
