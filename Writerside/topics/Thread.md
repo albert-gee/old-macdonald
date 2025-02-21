@@ -89,8 +89,8 @@ Ethernet. It allows Thread devices to communicate with the internet or other sma
 
 OpenThread's implementation of a Border Router is called **OpenThread Border Router (OTBR)**.
 
-[](Espressif.md) provides the [ESP Thread Border Router SDK](Espressif.md#thread-border-router-solution)
-and [hardware platforms](Espressif.md#thread-border-router-solution) for building Thread Border Routers.
+[](Espressif.md) provides the [ESP Thread Border Router SDK](Espressif.md#esp-thread-border-router-solution)
+and [hardware platforms](Espressif.md#esp-thread-border-router-solution) for building Thread Border Routers.
 
 ## OpenThread CLI
 

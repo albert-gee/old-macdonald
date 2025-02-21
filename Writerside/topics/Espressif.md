@@ -24,13 +24,20 @@ Espressif’s development boards are used in this system to enable wireless comm
 **ESP-IDF** (**Espressif IoT Development Framework**) is Espressif’s official IoT Development Framework for the ESP32,
 ESP32-S, ESP32-C and ESP32-H series of SoCs.
 
-**Espressif's SDK for Matter** is the official Matter development framework for ESP32 series SoCs.
+## ESP Matter Solution
 
-## Thread Border Router Solution
+The **Espressif's SDK for Matter** is the official [](Matter.md) development framework for ESP32 series SoCs.
 
-Espressif provides the **Espressif Thread Border Router SDK**, a FreeRTOS-based solution built on the ESP-IDF and
-OpenThread stack. It supports both Wi-Fi and Ethernet interfaces as the backbone link, combined with 802.15.4 SoCs for
-Thread communication.
+Wi-Fi-enabled ESP32, ESP32-C, and ESP32-S series can be used to build Matter Wi-Fi devices, with the ESP32-S series also
+supporting Ethernet connectivity via an external controller.
+
+ESP32-H series SoCs, which support IEEE 802.15.4, are used for Matter-compatible Thread end devices.
+
+## ESP Thread Border Router Solution
+
+The **Espressif Thread Border Router SDK** is a FreeRTOS-based solution built on the [ESP-IDF](#esp-idf-framework) and
+[OpenThread](Thread.md) stack. It supports both Wi-Fi and Ethernet interfaces as the backbone link, combined with
+802.15.4 SoCs for Thread communication.
 
 The Wi-Fi-based Espressif Thread Border runs on two SoCs:
 
