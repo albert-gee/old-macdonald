@@ -222,7 +222,7 @@ cd ~/matter
 
 ## Commissioning
 
-This section describes the [Matter commissioning](Matter.md#commissioning) using CHIP Tool.
+This section describes the [Matter commissioning](Matter-Commissioning.md) using CHIP Tool.
 
 The following command should be run on the Commissionee to print the static configuration that includes the **PIN code**
 and **Discriminator** (_0xf00_ is _3840_ in decimal):
