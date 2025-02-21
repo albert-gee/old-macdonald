@@ -1,6 +1,11 @@
-# Pressure and Temperature Sensor
+<show-structure/>
+
+# Matter Pressure and Temperature Sensor
 
 ## Overview
+
+The **Matter Pressure and Temperature Sensor** is a [](Matter.md)-compatible [SED](Thread.md#end-device) device that
+reads temperature and pressure data from a BMP280 sensor and exposes the readings as Matter attributes.
 
 This section describes the development of a Matter-compatible temperature and pressure sensor.
 
@@ -13,15 +18,14 @@ Prerequisites:
 - [ESP32-H2-DevKitM-1](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/index.html)
   is available.
 
+## Hardware Assembly
+
+### Wiring BMP280 to ESP32 {collapsible="true"}
+
 The **ESP32-H2** development board reads data from the **BMP280**, a low-power sensor designed for battery-powered
 devices. They communicate using **I2C (Inter-Integrated Circuit)**, a serial, synchronous, half-duplex protocol. The
 ESP32 has two I2C ports, each capable of operating as a controller or target. In this project, the ESP32-H2 acts as
 the controller, while the BMP280 functions as the target.
-
-The firmware for the ESP32-H2 was developed using the **ESP-IDF framework**. The BMP280 datasheet (
-_BST-BMP280-DS001-26_) is used as a reference during development.
-
-## Wiring BMP280 to ESP32
 
 The I2C bus has two lines: the Serial Data Line (SDA) and the Serial Clock Line (SCL). On the ESP32-H2, SDA and SCL can
 be assigned to any available GPIO pins.
@@ -44,7 +48,7 @@ The pictures below show the connections for the BMP280 sensor to the ESP32-DevKi
 
 ![BMP280 connected to ESP32-DevKitM-1 (back)](image4.jpg){ thumbnail="true" width="400" }
 
-## Testing I2C Connectivity
+### Testing I2C Connectivity {collapsible="true"}
 
 The [I2C tools](https://github.com/espressif/esp-idf/tree/release/v5.4/examples/peripherals/i2c/i2c_tools) from ESP-IDF
 examples were used to test communication with the sensor device.
@@ -76,7 +80,12 @@ i2cget -c 0x76 -r 0xD0 -l 1
 - -r option to specify the register address you want to inspect.
 - -l option to specify the length of the content.
 
-## Driver Component Development
+## Firmware Development
+
+The firmware for the ESP32-H2 was developed using the **ESP-IDF framework**. The BMP280 datasheet (
+_BST-BMP280-DS001-26_) is used as a reference during development.
+
+### Driver Component Development {collapsible="true"}
 
 The command below creates a new component named bmp280_driver inside the `components` directory.
 
@@ -123,7 +132,7 @@ constants, structures, and functions needed to handle this calibration data. It 
 parameters and apply them to raw pressure and temperature readings. The `bmp280_calibration.c` file implements these
 functions, following the temperature and pressure compensation formulas specified in Section 3.11 of the datasheet.
 
-## Matter Component Development
+### Matter Component Development {collapsible="true"}
 
 The command below creates a new component named bmp280_driver inside the components directory.
 
@@ -140,7 +149,7 @@ such as temperature measurement. Endpoints are organized into Clusters that grou
 sets up a Node with an Endpoint for temperature measurement, configures its Clusters, and manages communication within
 the Matter network.
 
-## Integration of BMP280 Driver with ESP-Matter
+### Integration of BMP280 Driver with ESP-Matter {collapsible="true"}
 
 The bmp280_driver component outputs temperature and pressure readings as 32-bit signed integers (int32_t), following the
 BMP280 datasheet specifications. These integers are used to process the sensor’s raw 20-bit data for precise
@@ -165,7 +174,7 @@ pressure values were scaled by 10. This reduced the magnitude of the scaled valu
 int16_t range. For example, a pressure of 1013.25 is scaled to 10132, which fits comfortably within the range.
 Similarly, the maximum pressure of 1100.00 is scaled to 11000.
 
-## Reading the Temperature
+### Reading the Temperature {collapsible="true"}
 
 To manage temperature readings, two approaches were considered:
 
@@ -186,7 +195,11 @@ modifying the framework itself. However, it introduces additional complexity and
 as the sensor data must be fetched in real-time for each read request. Due to these challenges, the first option was
 chosen for its simplicity and faster response times.
 
-## Testing Matter Device
+## Testing
+
+### Testing with CHIP-Tool {collapsible="true"}
+
+Refer to [](CHIP-Tool.md) for more details.
 
 ```Bash
 matter onboardingcodes ble
@@ -197,9 +210,7 @@ matter esp attribute get 0x0001 0x00000402 0x00000000
 matter esp attribute get 0x0002 0x00000403 0x00000000
 ```
 
-Refer to [Telink Matter Developers Guide](https://wiki.telink-semi.cn/doc/an/TelinkMatterDevelopersGuide_en.pdf)
-
-## Offline Connectivity in Google Home
+### Connecting to Google Home {collapsible="true"}
 
 It is also possible to use third-party software, such as the Google Home app, as a controller. However, the device
 appears offline in Google Home despite being successfully commissioned. To address this issue, a structured
@@ -226,3 +237,4 @@ thumbnail="true" height="200" }
 ## References
 
 - [BMP280 – Data sheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001-26.pdf)
+- [Telink Matter Developers Guide](https://wiki.telink-semi.cn/doc/an/TelinkMatterDevelopersGuide_en.pdf)

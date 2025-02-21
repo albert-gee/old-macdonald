@@ -1,19 +1,26 @@
 # Thread Commissioning
 
-The Thread Specification outlines several commissioning roles in the Mesh Commissioning Protocol (MeshCoP):
+The **Joiner ID** is derived from the Joiner Discerner if one is set; otherwise, it is derived from the device's
+factory-assigned EUI-64 using SHA-256. This ID also serves as the device's IEEE 802.15.4 Extended Address during
+commissioning. When the device joins a Thread network, it automatically receives the Network Key.
 
-1. **Leader** is a Thread Router that manages the network configuration, assigns router IDs, and acts as a central
-   controller.
-2. **Commissioner** is responsible for authorizing and securely providing Network Credentials to **Joiner** devices.
-   Commissioner types:
-    - **External Commissioner** is not directly on the Thread Network; connects via a Border Agent (e.g., a mobile phone
-      or cloud
-      server).
-    - **On-Mesh Commissioner** has a Thread Interface and possesses Network Credentials.
-    - **Native Commissioner** – uses the same Thread Interface to establish and maintain the Commissioner Session but
-      does not
-      possess Network Credentials.
-3. **Joiner** is a Thread Device seeking to join a commissioned Thread Network.
-4. **Border Agent** (BA) acts as a relay between a Commissioner (either External or Native) and a Thread Network.
-5. **Joiner Router** is a Thread Router or REED that acts as an intermediary between a Joiner and the Thread Network. It
-   does not perform true routing but forwards Joiner messages.
+## Commissioning Roles
+
+The Thread Specification defines several commissioning roles within the **Mesh Commissioning Protocol (MeshCoP):**
+
+- **Commissioner** manages device authentication and onboarding in a Thread network. It provides network credentials to
+  new devices (**Joiners**) and can update network parameters or perform diagnostics. Types of Commissioners:
+    - **On-Mesh Commissioner** operates inside the Thread network and has full control over commissioning.
+    - **External Commissioner** resides outside the Thread network and connects via a **Border Agent** (e.g., a mobile
+      app or cloud service).
+    - **Native Commissioner** uses the same Thread interface as the mesh to manage commissioning.
+
+- **Joiner** is a Thread device attempting to join a commissioned Thread network. It does not have network credentials
+  and must authenticate with a Commissioner to gain access.
+
+- **Border Agent (BA)** relays messages between an External or Native Commissioner and the Thread Network, ensuring
+  secure communication between external networks and the Thread network.
+
+- **Joiner Router** is a Router or REED that assists a Joiner in communicating with a Commissioner when the Joiner is
+  not within direct range. It does not perform full routing but forwards Joiner messages to facilitate secure
+  commissioning.

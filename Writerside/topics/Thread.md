@@ -11,6 +11,14 @@ IEEE 802.15.4-2006 wireless mesh network.
 
 **OpenThread (OT)** is an open-source implementation of the **Thread** networking protocol.
 
+## Resilience
+
+The Thread Network prevents **single points of failure** through device redundancy and autonomous role transitions, but
+in topologies like a Thread Network Partition with only one Border Router, failure of that Border Router can disrupt
+external network access due to the lack of a backup. Devices in a Thread Network can communicate directly without an
+active Border Router. Having multiple Border Routers allows connections to one or more external networks, improving
+reliability and redundancy.
+
 ## Architecture
 
 OpenThread runs on various OS or bare-metal systems, including Linux and ESP32, due to its narrow abstraction layer and
@@ -30,60 +38,59 @@ portable C/C++ design. It supports the following designs:
   Thread-enabled chip stays active to maintain network connectivity. This design is beneficial for power-saving devices
   that require a constant network connection but do not need the host processor to remain active at all times.
 
+## Device Types
+
+There are two types of Thread devices:
+
+- **Minimal Thread Device (MTD)** communicates only with its FTD parent.
+- **Full Thread Device (FTD)** communicates with other FTDs and its MTD children.
+
 ## Device Roles
 
-Thread devices can have multiple roles. A single device can act as a Router, Border Router, and Commissioner
-simultaneously.
-
-### Border Router
-
-Thread Border Router is a device that connects a Thread Network to external IP networks, such as Wi-Fi or Ethernet. It
-allows Thread devices to
-communicate with the internet or other smart home ecosystems.
-
-OpenThread's implementation of a Border Router is called **OpenThread Border Router (OTBR)**.
-
-Espressif provides **Espressif Thread Border Router SDK**, which is a FreeRTOS-based solution built on the ESP-IDF and
-OpenThread stack. It supports both Wi-Fi and Ethernet interfaces as the backbone link, combined with 802.15.4 SoCs for
-Thread communication.
-
-The Wi-Fi-based Espressif Thread Border runs on two SoCs:
-
-- The host Wi-Fi SoC, which runs OpenThread Border Router (ESP32, ESP32-S, or ESP32-C series SoC).
-- The Radio Co-Processor (RCP), which enables the Border Router to access the 802.15.4 physical and MAC layers (ESP32-H
-  series SoC).
-
-Espressif also provides a single **ESP THREAD BR-ZIGBEE GW** board that integrates both the host SoC and the RCP into a
-single board.
-
-Espressif also provides a **ESP Thread BR-Zigbee GW_SUB** daughter board for building an Ethernet-enabled Thread Border
-Router. It must be connected to a Wi-Fi-based ESP Thread Border Router.
-
-### Commissioner and Joiner
-
-The **Commissioner** securely adds new devices to a Thread network and manages its configuration by updating Operational
-Datasets and sending management or diagnostic commands. This role can be taken by an **External Commissioner** (e.g., a
-smartphone app) or an **On-Mesh Commissioner**.
-
-**Joiner** is a new device that is not yet part of the Thread network and is requesting to join.
-
-A **Border Router** enables device onboarding by relaying messages between an **external Commissioner** and devices
-inside the **Thread Network** via its **Commissioning Border Agent**. It facilitates communication with the **Leader**,
-which manages multiple Commissioner requests, and the **Joiner Router**, which helps new devices join the network.
+A Thread device can have multiple roles. For example, it can act as a Router, Border Router, and Commissioner
+simultaneously. See also [](Thread-Commissioning.md#commissioning-roles).
 
 ### Router
 
-A device that forwards packets, provides network routing, and helps new devices join the network.
+A **Router** is an [FTD](Thread.md#device-types) that provides routing services in a Thread Network. It forwards
+packets, maintains routing information, and serves as a Parent for [End Devices](#end-device). Additionally, Routers
+support [](Thread-Commissioning.md), handling device joining and security services.
 
-### Leader
+A **Leader** is a special Router that manages a Thread Network Partition. Each Partition has one Leader, elected
+dynamically from the available Routers. If the Leader fails, another Router automatically takes over. The Leader is
+responsible for:
 
-A special **Router** responsible for managing network configurations, such as assigning addresses and maintaining
-routing tables. If the Leader fails, another Router takes over.
+- Assigning and managing Router IDs.
+- Maintaining Thread Network Data.
+- Coordinating network operations.
 
-### Child
+### End Device
 
-A device that communicates only with a **Router** or **Leader** and does not route traffic for other devices. It can be
-battery-powered and may use low-power modes.
+An **End Device** is a device that connects to the Thread Network but does not forward packets like a [Router](#router).
+Instead, it relies on a Parent Router for communication. End Devices are typically low-power devices, such as sensors or
+actuators, that do not need to maintain full network topology information.
+
+Depending on their capabilities and power management strategies, End Devices are classified into the following types:
+
+- **Router-Eligible End Device (REED)** is an [FTD](Thread.md#device-types) that operates as an End Device but can be
+  promoted to a [](#router) if the network requires additional routing capacity. It does not forward messages but
+  maintains connections with Routers and supports [](Thread-Commissioning.md).
+- A **Full End Device (FED)** is an [FTD](Thread.md#device-types) that operates as an End Device and will never become a
+  Router. Unlike a REED, a FED cannot be promoted to a Router.
+- A **Minimal End Device (MED)** is an [MTD](Thread.md#device-types) that keeps its radio on at all times and can
+  communicate with its Parent Router whenever needed. MEDs do not forward messages or participate in routing.
+- A **Sleepy End Device (SED)** is an [MTD](Thread.md#device-types) that turns off its radio when idle to save power. It
+  periodically wakes up to communicate with its Parent Router but does not forward messages.
+
+### Border Router
+
+A **Thread Border Router** is a device that connects a Thread Network to external IP networks, such as Wi-Fi or
+Ethernet. It allows Thread devices to communicate with the internet or other smart home ecosystems.
+
+OpenThread's implementation of a Border Router is called **OpenThread Border Router (OTBR)**.
+
+[](Espressif.md) provides the [ESP Thread Border Router SDK](Espressif.md#thread-border-router-solution)
+and [hardware platforms](Espressif.md#thread-border-router-solution) for building Thread Border Routers.
 
 ## OpenThread CLI
 
@@ -91,38 +98,6 @@ The **OpenThread CLI** is a command-line interface that provides configuration a
 
 It is used on OpenThread Border Routers (OTBR), Commissioners, and other Thread devices. The available commands depend
 on the device type. The `help` command prints all the supported commands.
-
-## Thread Network
-
-The **Network Key** is a 128-bit key used to secure communication within the Thread network.
-
-The **Joiner ID** is derived from the Joiner Discerner if one is set; otherwise, it is derived from the device's
-factory-assigned EUI-64 using SHA-256. This ID also serves as the device's IEEE 802.15.4 Extended Address during
-commissioning. When the device joins a Thread network, it automatically receives the Network Key.
-
-### Active Operational Dataset
-
-The **Active Operational Dataset** contains the configuration settings that Thread devices use to connect and operate
-within a specific Thread network:
-
-- **Active Timestamp** – Determines dataset priority.
-- **Channel** – PHY-layer channel for network communication.
-- **Channel Mask** – Defines channels for network discovery and scanning.
-- **Extended PAN ID** – Unique identifier for the Thread network.
-- **Mesh-Local Prefix** – IPv6 prefix for local device communication.
-- **Network Key** – Encryption key for MAC and MLE message protection.
-- **Network Name** – Human-readable network identifier.
-- **PAN ID** – MAC-layer identifier for data transmissions.
-- **PSKc** – Security key for network authentication.
-- **Security Policy** – Specifies allowed and restricted security operations.
-
-### Resilience
-
-The Thread Network prevents **single points of failure** through device redundancy and autonomous role transitions, but
-in topologies like a Thread Network Partition with only one Border Router, failure of that Border Router can disrupt
-external network access due to the lack of a backup. Devices in a Thread Network can communicate directly without an
-active Border Router. Having multiple Border Routers allows connections to one or more external networks, improving
-reliability and redundancy.
 
 ## References
 

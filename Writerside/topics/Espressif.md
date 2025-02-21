@@ -26,6 +26,24 @@ ESP32-S, ESP32-C and ESP32-H series of SoCs.
 
 **Espressif's SDK for Matter** is the official Matter development framework for ESP32 series SoCs.
 
+## Thread Border Router Solution
+
+Espressif provides the **Espressif Thread Border Router SDK**, a FreeRTOS-based solution built on the ESP-IDF and
+OpenThread stack. It supports both Wi-Fi and Ethernet interfaces as the backbone link, combined with 802.15.4 SoCs for
+Thread communication.
+
+The Wi-Fi-based Espressif Thread Border runs on two SoCs:
+
+- The host Wi-Fi SoC, which runs OpenThread Border Router (ESP32, ESP32-S, or ESP32-C series SoC).
+- The Radio Co-Processor (RCP), which enables the Border Router to access the 802.15.4 physical and MAC layers (ESP32-H
+  series SoC).
+
+Espressif also provides a single **ESP THREAD BR-ZIGBEE GW** board that integrates both the host SoC and the RCP into a
+single board.
+
+Espressif also provides a **ESP Thread BR-Zigbee GW_SUB** daughter board for building an Ethernet-enabled Thread Border
+Router. It must be connected to a Wi-Fi-based ESP Thread Border Router.
+
 ## References
 
 - [About Espressif](https://www.espressif.com/en/about)

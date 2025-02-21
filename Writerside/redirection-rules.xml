@@ -149,4 +149,10 @@
         </description>
         <accepts>Matter-Thread-Border-Router.html</accepts>
     </rule>
+    <rule id="59a1ab1">
+        <description>Created after removal of "Orchestrator" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Orchestrator.html</accepts>
+    </rule>
 </rules>
