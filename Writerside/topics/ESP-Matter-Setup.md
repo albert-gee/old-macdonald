@@ -55,7 +55,7 @@ Restart your terminal session or run:
 source ~/.bashrc
 ```
 
-Now, running `get_matter` will set up or refresh the esp-matter environment in any terminal session.
+Now, running `get_matter` will set up or refresh the ESP-Matter environment in any terminal session.
 
 ## References
 

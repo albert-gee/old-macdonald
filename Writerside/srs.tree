@@ -35,6 +35,12 @@
             <toc-element topic="ESP-Matter-Setup.md"/>
             <toc-element topic="ESP32-Project-Workflow.md"/>
         </toc-element>
+        <toc-element topic="Orchestrators.md">
+            <toc-element topic="Thread-Commissioners.md"/>
+        </toc-element>
+        <toc-element topic="Matter-Controllers.md">
+            <toc-element topic="CHIP-Tool.md"/>
+        </toc-element>
         <toc-element topic="Accessory-Devices.md">
             <toc-element topic="Matter-Pressure-and-Temperature-Sensor.md"/>
             <toc-element topic="Matter-Relay-Switch.md"/>
@@ -42,12 +48,6 @@
         <toc-element topic="Thread-Border-Routers.md">
             <toc-element topic="ESP-Basic-Thread-Border-Router.md"/>
             <toc-element topic="ESP-Matter-Thread-Border-Router.md"/>
-        </toc-element>
-        <toc-element topic="Orchestrators.md">
-            <toc-element topic="Thread-Commissioners.md"/>
-            <toc-element topic="Matter-Controllers.md">
-                <toc-element topic="CHIP-Tool.md"/>
-            </toc-element>
         </toc-element>
     </toc-element>
 

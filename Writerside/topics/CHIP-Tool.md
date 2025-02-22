@@ -244,8 +244,10 @@ The following CHIP-Tool command starts commissioning onto a **Wi-Fi** network ov
 
 The parameters are defined as follows:
 
-- `<NODE_ID_TO_ASSIGN>` is the node ID assigned to the device being commissioned, which can be a decimal or hexadecimal number prefixed with ‘0x’.
-- `<SSID>` is the Wi-Fi SSID, provided as a plain string or in hexadecimal format as ‘hex:XXXXXXXX’, where each byte of the SSID is represented as two-digit hexadecimal numbers.
+- `<NODE_ID_TO_ASSIGN>` is the node ID assigned to the device being commissioned, which can be a decimal or hexadecimal
+  number prefixed with ‘0x’.
+- `<SSID>` is the Wi-Fi SSID, provided as a plain string or in hexadecimal format as ‘hex:XXXXXXXX’, where each byte of
+  the SSID is represented as two-digit hexadecimal numbers.
 - `<PASSWORD>` is the Wi-Fi password, given as a plain string or hex data.
 - `<PIN>` is the PIN code for authentication.
 - `<DISCRIMINATOR>` is the discriminator value.
@@ -253,44 +255,44 @@ The parameters are defined as follows:
 CHIP-Tool starts the commissioning process, which includes the following steps:
 
 1. **Initialization**
-   - Initializes storage and loads key-value store (KVS) configurations.
-   - Detects network interfaces and identifies the WiFi interface.
-   - Sets up UDP transport manager and BLE transport layers.
+    - Initializes storage and loads key-value store (KVS) configurations.
+    - Detects network interfaces and identifies the WiFi interface.
+    - Sets up UDP transport manager and BLE transport layers.
 
 2. **Fabric and Node Setup**
-   - Loads the fabric table, which contains information about existing secure networks.
-   - Creates a new fabric with a unique Fabric ID and Node ID.
+    - Loads the fabric table, which contains information about existing secure networks.
+    - Creates a new fabric with a unique Fabric ID and Node ID.
 
 3. **BLE Scanning and Connection**
-   - Scans for nearby BLE devices.
-   - Identifies the correct device using a discriminator match.
-   - Establishes a BLE connection with the device.
+    - Scans for nearby BLE devices.
+    - Identifies the correct device using a discriminator match.
+    - Establishes a BLE connection with the device.
 
 4. **Secure Session Establishment**
-   - Performs a PASE (Password Authenticated Session Establishment) handshake over BLE.
-   - Exchanges secure messages to establish an encrypted session.
-   - Marks the session as "Active" upon success.
+    - Performs a PASE (Password Authenticated Session Establishment) handshake over BLE.
+    - Exchanges secure messages to establish an encrypted session.
+    - Marks the session as "Active" upon success.
 
 5. **Commissioning Process**
-   - Reads the device’s attributes and capabilities.
-   - Arms a fail-safe mechanism to prevent accidental changes.
-   - Configures the device based on regional regulatory requirements.
+    - Reads the device’s attributes and capabilities.
+    - Arms a fail-safe mechanism to prevent accidental changes.
+    - Configures the device based on regional regulatory requirements.
 
 6. **Certificate Exchange**
-   - The device provides PAI (Product Attestation Intermediate) and DAC (Device Attestation Certificate).
-   - The system verifies the certificates and device authenticity.
+    - The device provides PAI (Product Attestation Intermediate) and DAC (Device Attestation Certificate).
+    - The system verifies the certificates and device authenticity.
 
 7. **Attestation and Verification**
-   - Validates the device’s attestation data to ensure a trusted identity.
-   - Performs a revocation check to confirm the device’s legitimacy.
+    - Validates the device’s attestation data to ensure a trusted identity.
+    - Performs a revocation check to confirm the device’s legitimacy.
 
 8. **Operational Certificate Signing**
-   - The device generates a CSR (Certificate Signing Request).
-   - The system issues a NOC (Node Operational Certificate) to authenticate the device in the network.
+    - The device generates a CSR (Certificate Signing Request).
+    - The system issues a NOC (Node Operational Certificate) to authenticate the device in the network.
 
 9. **Finalizing the Pairing**
-   - Sends the root certificate to the device.
-   - Marks the pairing process as "Success," making the device a trusted member of the Matter network.
+    - Sends the root certificate to the device.
+    - Marks the pairing process as "Success," making the device a trusted member of the Matter network.
 
 ### Commissioning to Thread over BLE {collapsible="true"}
 
@@ -388,202 +390,62 @@ The following command is used to turn on and toggle the device:
 ./chip-tool onoff toggle 0x1122 1
 ```
 
+## Subscribing to Attributes and Events
 
-## Subscribing to events or attributes
+This section describes how to [subscribe](Matter.md#subscribing-to-events-or-attributes) to attributes and events in a
+Matter device using CHIP-Tool.
 
-Subscribing to an event or an attribute lets you mirror the state of the event or the attribute as it changes in the Matter network. The list of events or attributes you can subscribe to depends on the chosen cluster.
+### Subscribing to Attributes
 
-You can have more than one subscription at any given time and subscribe to more than one attribute or event within one subscription (those attributes or events can come from different clusters). However, you cannot subscribe to both attributes and events as part of a single subscription. In other words, each subscription must be dedicated exclusively to either attributes or events.
-
-For more information about subscriptions, see the Matter specification at chapter 8, section 5 (Subscribe Interaction).
-
-Note: The subscription behavior will be different if you set the subscription to be sent with the parameter isUrgent set to True. See the Matter specification for more information.
-
-Subscribing to an attribute
-
-The following procedure will use the doorlock cluster as an example. Complete the following steps:
-
-Start the CHIP Tool in interactive mode by running the following command:
+Display all the attributes available for subscription in a given cluster:
 
 ```Bash
-./chiptool interactive start
+./chip-tool <cluster-name> subscribe
 ```
 
-All the commands that follow will be executed in the interactive mode (>>>).
-
-Run the following command to display all the available attributes you can subscribe to for the given cluster-name:
+Subscribe to an attribute:
 
 ```Bash
-<cluster-name> subscribe
-```
-
-The list of all available attributes for the cluster will appears.
-
-Note: Your accessory might not support all of these attributes. You will get an error if the controller sends an unsupported attribute.
-
-For example, for the door lock cluster:
-
-```Bash
-doorlock subscribe
-```
-
-The following list will appear:
-
-| Attributes:                                                                         |
-|-------------------------------------------------------------------------------------|
-| * lock-state                                                                        |
-| * lock-type                                                                         |
-| * actuator-enabled                                                                  |
-| * door-state                                                                        |
-| * door-open-events                                                                  |
-| * door-closed-events                                                                |
-| * open-period                                                                       |
-| * number-of-total-users-supported                                                   |
-| * number-of-pinusers-supported                                                      |
-| * number-of-rfidusers-supported                                                     |
-| * number-of-week-day-schedules-supported-per-user                                   |
-| * number-of-year-day-schedules-supported-per-user                                   |
-| * number-of-holiday-schedules-supported                                             |
-| * max-pincode-length                                                                |
-| * min-pincode-length                                                                |
-| * max-rfidcode-length                                                               |
-| * min-rfidcode-length                                                               |
-| * credential-rules-support                                                          |
-| * number-of-credentials-supported-per-user                                          |
-| * language                                                                          |
-| * ledsettings                                                                       |
-| * auto-relock-time                                                                  |
-| * sound-volume                                                                      |
-| * operating-mode                                                                    |
-| * supported-operating-modes                                                         |
-| * default-configuration-register                                                    |
-| * enable-local-programming                                                          |
-| * enable-one-touch-locking                                                          |
-| * enable-inside-status-led                                                          |
-| * enable-privacy-mode-button                                                        |
-| * local-programming-features                                                        |
-| * wrong-code-entry-limit                                                            |
-| * user-code-temporary-disable-time                                                  |
-| * send-pinover-the-air                                                              |
-| * require-pinfor-remote-operation                                                   |
-| * expiring-user-timeout                                                             |
-| * generated-command-list                                                            |
-| * accepted-command-list                                                             |
-| * event-list                                                                        |
-| * attribute-list                                                                    |
-| * feature-map                                                                       |
-| * cluster-revision                                                                  |
-
-
-
-Add the argument of your choice to the subscription command, using the following pattern:
-
-```Bash
-<cluster-name> subscribe <argument> <min-interval> <max-interval> <node_id> <endpoint_id>
+./chip-tool <cluster-name> subscribe <argument> <min-interval> <max-interval> <node_id> <endpoint_id>
+./chip-tool doorlock subscribe lock-state 5 10 1 1
 ```
 
 In this command:
 
-    <cluster-name> is the name of the cluster.
+- **cluster-name** is the name of the cluster.
+- **argument** is the name of the chosen argument.
+- **min-interval** specifies the minimum number of seconds that must elapse since the last report for the server to send
+  a new report.
+- **max-interval** specifies the number of seconds that must elapse since the last report for the server to send a new
+  report.
+- **node-id** is the user-defined ID of the commissioned node.
+- **endpoint_id** is the ID of the endpoint where the chosen cluster is implemented.
 
-    <argument> is the name of the chosen argument.
+### Subscribing to Events
 
-    <min-interval> specifies the minimum number of seconds that must elapse since the last report for the server to send a new report.
-
-    <max-interval> specifies the number of seconds that must elapse since the last report for the server to send a new report.
-
-    <node-id> is the user-defined ID of the commissioned node.
-
-    <endpoint_id> is the ID of the endpoint where the chosen cluster is implemented.
-
-For example:
-
-    >>> doorlock subscribe lock-state 5 10 1 1
-
-After this command is run, the CHIP Tool will check the state of the door lock every time it changes (for example, as a result of a button press or an external ecosystem action) and update it in its own records.
-Subscribing to an event
-
-The procedure for subscribing to an event is similar to subscribing to an attribute.
-
-The following procedure will use the doorlock cluster as an example. Complete the following steps:
-
-Start the CHIP Tool in interactive mode by running the following command:
+Display all the events available for subscription in a given cluster:
 
 ```Bash
-./chiptool interactive start
+./chip-tool <cluster-name> subscribe-event
+./chip-tool doorlock subscribe-event door-lock-alarm 5 10 1 1
 ```
 
-All the commands that follow will be executed in the interactive mode (>>>).
-
-Run the following command to display all the available events you can subscribe to for the given cluster-name:
+Subscribe to an event:
 
 ```Bash
-<cluster-name> subscribe-event
-```
-
-The list of all available events for the cluster will appears.
-
-Note: Your accessory might not support all of these events. You will get an error if the controller sends an unsupported event.
-
-For example, for the door lock cluster:
-
-```Bash
-doorlock subscribe-event
-```
-
-The following list will appear:
-
-+-------------------------------------------------------------------------------------+
-| Events:                                                                             |
-+-------------------------------------------------------------------------------------+
-| * door-lock-alarm                                                                   |
-| * door-state-change                                                                 |
-| * lock-operation                                                                    |
-| * lock-operation-error                                                              |
-| * lock-user-change                                                                  |
-+-------------------------------------------------------------------------------------+
-
-Add the event of your choice to the subscription command, using the following pattern:
-
-```Bash
-<cluster-name> subscribe-event <event-name> <min-interval> <max-interval> <node_id> <endpoint_id>
+./chip-tool <cluster-name> subscribe-event <event-name> <min-interval> <max-interval> <node_id> <endpoint_id>
 ```
 
 In this command:
 
-```Bash
-<cluster-name> is the name of the cluster.
-
-<event-name> is the name of the chosen event.
-
-<min-interval> specifies the minimum number of seconds that must elapse since the last report for the server to send a new report.
-
-<max-interval> specifies the number of seconds that must elapse since the last report for the server to send a new report.
-
-<node_id> is the user-defined ID of the commissioned node.
-
-<endpoint_id> is the ID of the endpoint where the chosen cluster is implemented.
-```
-
-
-For example:
-
-```Bash
-doorlock subscribe-event door-lock-alarm 5 10 1 1
-```
-
-After this command is run, the CHIP Tool will check the state of the door lock every time it changes (for example, as a result of a button press or an external ecosystem action) and update it in its own records.
-Subscribing using attribute ID or event ID
-
-You can also use the following commands instead of subscribe to subscribe using the attribute ID or the event ID:
-
-```Bash
-subscribe-by-id
-subscribe-event-by-id
-```
-
-The steps are the same as for the subscribe or subscribe-event commands.
-
+- **cluster-name** is the name of the cluster.
+- **event-name** is the name of the chosen event.
+- **min-interval** specifies the minimum number of seconds that must elapse since the last report for the server to send
+  a new report.
+- **max-interval** specifies the number of seconds that must elapse since the last report for the server to send a new
+  report.
+- **node_id** is the user-defined ID of the commissioned node.
+- **endpoint_id** is the ID of the endpoint where the chosen cluster is implemented.
 
 ## References
 

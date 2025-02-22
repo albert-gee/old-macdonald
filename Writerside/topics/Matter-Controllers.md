@@ -28,9 +28,6 @@ void client_request_callback(peer_device_t *peer_device, request_handle_t *req_h
 
 esp_matter::client::set_request_callback(client_request_callback, NULL);
 ```
-## Matter Thread Border Router
-
-[ESP-Matter Thread Border Router](https://github.com/espressif/esp-matter/tree/main/examples/thread_border_router)
 
 ## ESP-Matter Controller
 

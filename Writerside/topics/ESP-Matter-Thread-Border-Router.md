@@ -2,9 +2,18 @@
 
 # ESP Matter Thread Border Router
 
+## Overview
+
+The `ESP Matter Thread Border Router` example from [Espressif's SDK for Matter](Espressif.md#esp-matter-solution)
+demonstrates how to build firmware for a Matter-compliant Thread Border Router device running on Espressif's hardware.
+
+When the ESP32 connects to Wi-Fi and gets an IP, it sets up Wi-Fi as the backbone for OpenThread and starts the Thread Border Router to enable communication between Thread and Wi-Fi. A static variable stops it from running more than once.
+
+
 ## Build and Run
 
-This section demonstrates how to build and run the `ESP Matter Thread Border Router` example.
+This section demonstrates how to build and run the `ESP Matter Thread Border Router` example from [Espressif's SDK for
+Matter](Espressif.md#esp-matter-solution).
 
 Prerequisites:
 
@@ -22,18 +31,28 @@ The following steps from the Basic Thread Border Router example are required if 
 2. Follow
    optional [Step 3: Configure the Device](ESP-Basic-Thread-Border-Router.md#step-3-configure-the-device-optional).
 
-### Step 2: Set target to ESP32-S3 {collapsible="true"}
+### Step 2: Set Up Environment {collapsible="true"}
+
+Set up the environment and navigate to the `ESP Matter Thread Border Router` example directory:
+
+```Bash
+get_idf
+get_matter
+cd $ESP_MATTER_PATH/examples/thread_border_router
+```
+
+### Step 3: Set target to ESP32-S3 {collapsible="true"}
 
 ```Bash
 idf.py set-target esp32s3
 ```
 
-### Step 3: Connect the ESP Thread Border Router Board {collapsible="true"}
+### Step 4: Connect the ESP Thread Border Router Board {collapsible="true"}
 
 Follow [Step 4: Connect the ESP Thread Border Router Board](ESP-Basic-Thread-Border-Router.md#step-4-connect-the-esp-thread-border-router-board)
 from the Basic Thread Border Router example.
 
-### Step 4: Build and Flash {collapsible="true"}
+### Step 5: Build and Flash {collapsible="true"}
 
 ```Bash
 idf.py build 

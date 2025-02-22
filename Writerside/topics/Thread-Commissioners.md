@@ -153,6 +153,8 @@ operation to find Thread networks nearby.
 
 ## References
 
+- [Thread Commissioning](https://www.threadgroup.org/Portals/0/documents/support/CommissioningWhitePaper_658_2.pdf)
+
 OpenThread CLI:
 
 - [OpenThread CLI Overview](https://openthread.io/reference/cli)
