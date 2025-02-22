@@ -7,8 +7,12 @@
 The `ESP Matter Thread Border Router` example from [Espressif's SDK for Matter](Espressif.md#esp-matter-solution)
 demonstrates how to build firmware for a Matter-compliant Thread Border Router device running on Espressif's hardware.
 
-When the ESP32 connects to Wi-Fi and gets an IP, it sets up Wi-Fi as the backbone for OpenThread and starts the Thread Border Router to enable communication between Thread and Wi-Fi. A static variable stops it from running more than once.
+The firmware creates a Matter node and configures a Thread Border Router endpoint. If Thread support is enabled, it
+configures the OpenThread platform with default radio, host, and port settings. Finally, it starts the Matter stack with
+an event callback to handle network events and initializes the diagnostic console if enabled.
 
+When the ESP32 connects to Wi-Fi and gets an IP, it sets up Wi-Fi as the backbone for OpenThread and starts the Thread
+Border Router to enable communication between Thread and Wi-Fi. A static variable stops it from running more than once.
 
 ## Build and Run
 
