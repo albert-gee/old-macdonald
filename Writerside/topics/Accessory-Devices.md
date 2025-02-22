@@ -2,8 +2,8 @@
 
 ## Overview
 
-Accessory devices include **sensors** and **actuators** that monitor and control environmental conditions within a Grow
-Chamber.
+**Accessory Devices** are [](Matter.md)-compatible [Thread End Devices](Thread.md#end-device) that monitor and control
+environmental conditions within a Grow Chamber. They include **sensors** and **actuators**.
 
 ## Sensors
 
