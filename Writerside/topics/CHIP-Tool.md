@@ -13,7 +13,10 @@ Raspberry Pi 24.04.1 LTS_. _Raspberry Pi Imager v1.8.5_ was used to flash the Ub
 [Matter v1.4.0.0](https://github.com/project-chip/connectedhomeip/releases/tag/v1.4.0.0) SDK was used to build the
 CHIP-Tool application.
 
-## Raspberry Pi Setup (Not recommended)
+## Raspberry Pi Setup
+
+This section describes the steps to set up a Raspberry Pi as a Matter controller using CHIP-Tool. The process is
+time-consuming.
 
 ### Step 1. Ubuntu installation {collapsible="true"}
 
@@ -407,7 +410,6 @@ Subscribe to an attribute:
 
 ```Bash
 ./chip-tool <cluster-name> subscribe <argument> <min-interval> <max-interval> <node_id> <endpoint_id>
-./chip-tool doorlock subscribe lock-state 5 10 1 1
 ```
 
 In this command:
@@ -421,13 +423,21 @@ In this command:
 - **node-id** is the user-defined ID of the commissioned node.
 - **endpoint_id** is the ID of the endpoint where the chosen cluster is implemented.
 
+For example:
+
+```Bash
+./chip-tool doorlock subscribe lock-state 5 10 1 1
+./chip-tool temperaturemeasurement subscribe measured-value 3 10 1 1
+./chip-tool relativehumiditymeasurement subscribe measured-value 3 10 1 2
+./chip-tool occupancysensing subscribe occupancy 3 10 1 3
+```
+
 ### Subscribing to Events
 
 Display all the events available for subscription in a given cluster:
 
 ```Bash
 ./chip-tool <cluster-name> subscribe-event
-./chip-tool doorlock subscribe-event door-lock-alarm 5 10 1 1
 ```
 
 Subscribe to an event:
@@ -446,6 +456,12 @@ In this command:
   report.
 - **node_id** is the user-defined ID of the commissioned node.
 - **endpoint_id** is the ID of the endpoint where the chosen cluster is implemented.
+
+For example:
+
+```Bash
+./chip-tool doorlock subscribe-event door-lock-alarm 5 10 1 1
+```
 
 ## References
 
