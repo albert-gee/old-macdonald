@@ -11,7 +11,7 @@ Prerequisites:
 - [ESP-IDF development environment](ESP-IDF-Setup.md) is set up.
 - [ESP THREAD BR-ZIGBEE GW](Thread.md#border-router) board
 
-![ESP Thread Border Router/Zigbee Gateway](esp-thread-border-router.jpg){ thumbnail="true" width="400" }
+![ESP Thread Border Router/Zigbee Gateway](esp-thread-border-router.jpg){ thumbnail="true" width="500" }
 
 ### Step 1: Build the RCP Image {collapsible="true"}
 
@@ -181,7 +181,7 @@ The following commands [form a Thread network](Forming-a-Network.md):
     ```Bash
     dataset active -x
     ```
-   ![Active Operational Dataset](ot_cli_1.png){ thumbnail="true" width="400" }
+   ![Active Operational Dataset](ot_cli_1.png){ thumbnail="true" width="500" }
 
    The [ip print](#ip-addresses-and-network-interfaces) command now shows the Thread interface with the IPv6 address:
 

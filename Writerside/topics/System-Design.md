@@ -2,7 +2,7 @@
 
 ## Architecture Overview
 
-![Architecture Diagram](architecture.png){ thumbnail="true" width="400" }
+![Architecture Diagram](architecture.png){ thumbnail="true" width="500" }
 
 This automated **Controlled Environment Agriculture** system is designed with a modular structure composed of
 independent **Grow Chambers** that include the following components:

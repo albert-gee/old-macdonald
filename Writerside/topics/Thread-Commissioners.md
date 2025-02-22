@@ -146,9 +146,9 @@ udpsockclient close
 The `scan` command performs IEEE 802.15.4 scan to find nearby devices. The `discover` command performs an MLE Discovery
 operation to find Thread networks nearby.
 
-![Thread Discover](thc_1.png){ thumbnail="true" width="400" }
+![Thread Discover](thc_1.png){ thumbnail="true" width="500" }
 
-![Thread Scan](thc_2.png){ thumbnail="true" width="400" }
+![Thread Scan](thc_2.png){ thumbnail="true" width="500" }
 
 
 ## References

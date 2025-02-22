@@ -37,7 +37,7 @@ idf.py set-target esp32h2
 
 Create a toolchain named **ESP-IDF** with the environment file set to `esp-idf/script.sh`:
 
-![Toolchain setup](image10.png){ thumbnail="true" width="300" }
+![Toolchain setup](image10.png){ thumbnail="true" width="500" }
 
 Set up a CMake profile with the following Matter environmental variables:
 
@@ -45,11 +45,11 @@ Set up a CMake profile with the following Matter environmental variables:
 ESP_MATTER_PATH=/home/albert/esp/esp-matter-1.4;ZAP_INSTALL_PATH=/home/albert/esp/esp-matter-1.4/connectedhomeip/connectedhomeip/.environment/cipd/packages/zap;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/albert/.local/share/JetBrains/Toolbox/scripts:/home/albert/esp/esp-matter-1.4/connectedhomeip/connectedhomeip/.environment/cipd/packages/pigweed
 ```
 
-![CMake profile configuration](image26.png){ thumbnail="true" width="300" }
+![CMake profile configuration](image26.png){ thumbnail="true" width="500" }
 
 Structure of a new ESP-IDF project:
 
-![Structure of a new ESP-IDF project](image12.png){ thumbnail="true" width="300" }
+![Structure of a new ESP-IDF project](image12.png){ thumbnail="true" width="500" }
 
 ## Step 5: Build the Project
 

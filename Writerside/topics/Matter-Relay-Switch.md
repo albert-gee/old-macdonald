@@ -39,13 +39,13 @@ The Normally Open (NO) terminal is used when the circuit should remain open (off
 close the circuit. The Normally Closed (NC) terminal is used when the circuit should remain closed (on) by default,
 opening only when the relay is activated.
 
-![Wiring Relay to ESP32](image39.jpg){ thumbnail="true" width="400" }
+![Wiring Relay to ESP32](image39.jpg){ thumbnail="true" width="500" }
 
-![Wiring Relay to ESP32](image40.jpg){ thumbnail="true" width="400" }
+![Wiring Relay to ESP32](image40.jpg){ thumbnail="true" width="500" }
 
-![Wiring Relay to ESP32](image13.jpg){ thumbnail="true" width="400" }
+![Wiring Relay to ESP32](image13.jpg){ thumbnail="true" width="500" }
 
-![Wiring Relay to ESP32](image24.jpg){ thumbnail="true" width="400" }
+![Wiring Relay to ESP32](image24.jpg){ thumbnail="true" width="500" }
 
 ## Firmware Development
 

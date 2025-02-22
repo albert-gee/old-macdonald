@@ -57,4 +57,4 @@ source ~/.bashrc
 
 Now, running `get_idf` will set up or refresh the esp-idf environment in any terminal session.
 
-![get_idf output](esp-idf-v5-4.jpg){ thumbnail="true" width="300" }
+![get_idf output](esp-idf-v5-4.jpg){ thumbnail="true" width="500" }

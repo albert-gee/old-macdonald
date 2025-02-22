@@ -28,17 +28,17 @@ CHIP-Tool application.
     4. Select the Ubuntu image and the SD card in Raspberry Pi Imager.
     5. Edit Settings (Wi-Fi and SSH credentials and enable SSH) and flash the image onto the SD card.
 
-![Alt Text](rpi_1.jpg){thumbnail="true" width="400"}
+![Alt Text](rpi_1.jpg){thumbnail="true" width="500"}
 
-![Alt Text](rpi_2.jpg){thumbnail="true" width="400"}
+![Alt Text](rpi_2.jpg){thumbnail="true" width="500"}
 
-![Alt Text](rpi_3.jpg){thumbnail="true" width="400"}
+![Alt Text](rpi_3.jpg){thumbnail="true" width="500"}
 
-![Alt Text](rpi_4.jpg){thumbnail="true" width="400"}
+![Alt Text](rpi_4.jpg){thumbnail="true" width="500"}
 
-![Alt Text](rpi_5.jpg){thumbnail="true" width="400"}
+![Alt Text](rpi_5.jpg){thumbnail="true" width="500"}
 
-![Alt Text](rpi_6.jpg){thumbnail="true" width="400"}
+![Alt Text](rpi_6.jpg){thumbnail="true" width="500"}
 
 ### Step 2. Connecting to Raspberry Pi {collapsible="true"}
 
@@ -50,7 +50,7 @@ connect to it using SSH with the credentials provided during the installation pr
 ssh ggc_user@mattercontroller.local
 ```
 
-![Connecting to Raspberry Pi](rpi_7.png){ thumbnail="true" width="400" }
+![Connecting to Raspberry Pi](rpi_7.png){ thumbnail="true" width="500" }
 
 ### Step 3. Installing Pre-requisites {collapsible="true"}
 
@@ -144,7 +144,7 @@ The application will require installation of Matter SDK on Raspberry Pi:
    source ~/matter/connectedhomeip/scripts/activate.sh
    ```
 
-   ![Matter SDK Installation](rpi_8.png){ thumbnail="true" width="400" }
+   ![Matter SDK Installation](rpi_8.png){ thumbnail="true" width="500" }
 
 3. Build CHIP Tool using build_examples.py:
 

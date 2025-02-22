@@ -44,9 +44,9 @@ The table below shows the connections for the BMP280 sensor to the ESP32-DevKitM
 
 The pictures below show the connections for the BMP280 sensor to the ESP32-DevKitM-1 microcontroller:
 
-![BMP280 connected to ESP32-DevKitM-1 (front)](image7.jpg){ thumbnail="true" width="400" }
+![BMP280 connected to ESP32-DevKitM-1 (front)](image7.jpg){ thumbnail="true" width="500" }
 
-![BMP280 connected to ESP32-DevKitM-1 (back)](image4.jpg){ thumbnail="true" width="400" }
+![BMP280 connected to ESP32-DevKitM-1 (back)](image4.jpg){ thumbnail="true" width="500" }
 
 ### Testing I2C Connectivity {collapsible="true"}
 
@@ -65,7 +65,7 @@ The following command scans an I2C bus for devices and output a table with the l
 i2cdetect
 ```
 
-![i2cconfig output](image20.png){ thumbnail="true" width="400" }
+![i2cconfig output](image20.png){ thumbnail="true" width="500" }
 
 It displays the address 0x76 since the SDO pin is connected to GND.
 
@@ -93,7 +93,7 @@ The command below creates a new component named bmp280_driver inside the `compon
 idf.py create-component bmp280_driver -C components
 ```
 
-![Creating a new component within an ESP-IDF project](image1.png){ thumbnail="true" width="400" }
+![Creating a new component within an ESP-IDF project](image1.png){ thumbnail="true" width="500" }
 
 The ESP-IDF framework includes a driver for working with I2C devices. To ensure that this component can use the driver,
 the `REQUIRES` directive must be added to `components/bmp280_driver/CMakeLists.txt` as follows:
@@ -102,7 +102,7 @@ the `REQUIRES` directive must be added to `components/bmp280_driver/CMakeLists.t
 REQUIRES "driver"
 ```
 
-![Using the REQUIRES Directive](image25.png){ thumbnail="true" width="400" }
+![Using the REQUIRES Directive](image25.png){ thumbnail="true" width="500" }
 
 This directive ensures that the build system includes the I2C driver as a dependency for the component during the build
 process.
@@ -116,7 +116,7 @@ The `i2c_utils.c` file implements these functions and includes `driver/i2c_maste
 The BMP280 code is designed according to the specifications outlined in the BST-BMP280-DS001-26 datasheet. Communication
 with the sensor is performed through read and write operations on its 8-bit registers.
 
-![BMP280 Memory Map. Source: BST-BMP280-DS001-26 datasheet](image35.png){ thumbnail="true" width="400" }
+![BMP280 Memory Map. Source: BST-BMP280-DS001-26 datasheet](image35.png){ thumbnail="true" width="500" }
 
 The `bmp280_driver.h` header file declares the configurations, constants, and functions needed to interface with and
 operate the sensor, based on the datasheet.
