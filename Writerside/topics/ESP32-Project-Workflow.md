@@ -2,7 +2,14 @@
 
 # ESP32 Project Workflow
 
-To create, build, and deploy a new project for ESP32, the steps below are required.
+This section describes the workflow for creating, building, and deploying a new project.
+
+Prerequisites:
+
+- [ESP-IDF](ESP-IDF-Setup.md) development environment is set up.
+- [ESP-Matter](ESP-Matter-Setup.md) development environment is set up.
+- [ESP32](Espressif.md#development-boards) development board is available.
+- CLion 2024.3.3 or later is installed.
 
 ## Step 1: Set Up ESP-IDF Environment
 
@@ -26,12 +33,15 @@ idf.py create-project <project name>
 
 ## Step 3: Set ESP32 as the target device
 
-This command creates a new `sdkconfig` file in the root directory of the project. This configuration file is modified
-via idf.py menuconfig to customise the configuration of the project:
+The following sets the target device:
 
 ```Bash
+idf.py set-target <chip_name>
 idf.py set-target esp32h2
 ```
+
+It creates a new `sdkconfig` file in the root directory of the project. This configuration file can be modified via
+`idf.py menuconfig`.
 
 ## Step 4: Open the Project in CLion IDE
 
