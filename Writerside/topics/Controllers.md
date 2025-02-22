@@ -2,7 +2,7 @@
 
 ## Overview
 
-A **Controller** (not to be confused with [](Matter-Controllers.md)) is a Graphical User Interface (GUI) that allows
+A **Controller** (not to be confused with [](Matter-Infrastructure.md)) is a Graphical User Interface (GUI) that allows
 farmers to monitor and control the environmental conditions within the system.
 
 Controllers allow farmers to configure [](Orchestrators.md) for specific crops. Farmers can set up a new plant by

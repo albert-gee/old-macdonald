@@ -105,5 +105,6 @@ on the device type. The `help` command prints all the supported commands.
 - [OpenThread Node Roles and Types](https://openthread.io/guides/thread-primer/node-roles-and-types)
 - [OpenThread Border Router](https://openthread.io/guides/border-router)
 - [Espressif OpenThread API](https://docs.espressif.com/projects/esp-idf/en/stable/esp32s2/api-guides/openthread.html)
+- [OpenThread CLI Overview](https://openthread.io/reference/cli)
 - [Espressif OpenThread CLI](https://github.com/espressif/esp-idf/tree/v5.4/examples/openthread/ot_cli)
 - [ESP Thread Border Router SDK](https://docs.espressif.com/projects/esp-thread-br/en/latest/)
