@@ -2,6 +2,15 @@
 
 # ESP Basic Thread Border Router
 
+## Overview
+
+The `ESP Basic Thread Border Router` example from [ESP_IDF](Espressif.md#esp-idf-framework) demonstrates how to build
+firmware for a basic Thread Border Router device running on Espressif's hardware.
+
+The firmware configures the OpenThread platform using default radio, host, and port settings. Optionally, it enables
+external coexistence and sets up mDNS (with the hostname "esp-ot-br"), along with OTA and web server support if enabled.
+Finally, it launches the Border Router.
+
 ## Build and Run
 
 This section demonstrates how to build and run the **ESP Basic Thread Border Router** example.
