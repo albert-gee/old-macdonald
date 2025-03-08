@@ -1,4 +1,4 @@
-# Matter Infrastructure
+# Matter Interface
 
 ## Reading
 
@@ -26,8 +26,8 @@ void client_request_callback(peer_device_t *peer_device, request_handle_t *req_h
 esp_matter::client::set_request_callback(client_request_callback, NULL);
 ```
 
-## ESP-Matter Controller
+## References
 
-- [ESP-Matter Controller Source Code](https://github.com/espressif/esp-matter/tree/main/examples/controller)
+- [ESP-Matter Controller Example](https://github.com/espressif/esp-matter/tree/main/examples/controller)
 - [ESP-Matter Controller Docs](https://docs.espressif.com/projects/esp-matter/en/latest/esp32/developing.html#matter-controller)
-- [ESP-Matter Controller Component Source Code](https://github.com/espressif/esp-matter/tree/main/components/esp_matter_controller/commands)
+- [ESP-Matter Controller Component](https://github.com/espressif/esp-matter/tree/main/components/esp_matter_controller/commands)

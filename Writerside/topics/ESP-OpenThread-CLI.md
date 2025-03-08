@@ -2,18 +2,17 @@
 
 # ESP OpenThread CLI
 
-The [ESP-IDF](Espressif.md#esp-idf-framework) framework includes the [](Thread.md#openthread-cli) example. It can be
-used to test and debug the OpenThread stack on [ESP32 series SoCs](Espressif.md#development-boards).
+This section describes how to build and run the [](Thread.md#openthread-cli) example project from
+the [ESP-IDF](Espressif.md#esp-idf-framework). It can be used to test and debug the OpenThread stack
+on [ESP32 series SoCs](Espressif.md#hardware).
 
 Prerequisites:
 
 - [ESP-IDF development environment](ESP-IDF-Setup.md) is set up.
-- [ESP32-H2-DevKitM-1](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/index.html)
-  is available.
+- ESP32 series development board is available. This example is tested
+  on [ESP32-H2-DevKitM-1](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/index.html).
 
 ## Build and Run
-
-This section demonstrates how to build and run the OpenThread CLI example on the **ESP32-H2 devkit**.
 
 ### Step 1: Prepare the Environment {collapsible="true"}
 
@@ -22,19 +21,21 @@ get_idf
 cd $IDF_PATH/examples/openthread/ot_cli
 ```
 
-### Step 2: Set target to ESP32-H2 {collapsible="true"}
+### Step 2: Set target {collapsible="true"}
+
+The following command sets the target device to ESP32-H2:
 
 ```Bash
 idf.py set-target esp32h2
 ```
 
-### Step 3 (Optional): Configure the Device {collapsible="true"}
+### Step 3 (Optional): Configure Device {collapsible="true"}
 
 The example can run with the default configuration. `idf.py menuconfig` can be used for customized settings:
 
 - Enabling Joiner Role: `Component Config → OpenThread → Thread Core Features → Enable Joiner`
 
-### Step 4: Connect to the Computer {collapsible="true"}
+### Step 4: Connect to Computer {collapsible="true"}
 
 Connect the ESP32-H2-DevKitM-1 to the computer using a USB cable.
 
@@ -47,71 +48,83 @@ idf.py -p <PORT_TO_ESP32_H2> flash monitor
 
 ## Usage
 
-### Starting Commissioner {collapsible="true"}
+### Joining Thread Network {collapsible="true"}
 
-The commands below are ran on the Commissioner device to start the Commissioner role and retrieve the Network Key:
+A Thread device can join the network using either a minimal dataset (providing only the Network Key) or a complete
+Active Operational Dataset.
 
-```Bash
-commissioner start
-networkkey
+**Example 1: Joining with Minimal Provisioning (Network Key Only)**
+
+The device is initially provisioned with only the Network Key. After joining, the device synchronizes with the network
+and automatically receives the complete Active Operational Dataset.
+
+```bash
+dataset networkkey 00112233445566778899aabbccddeeff
+dataset commit active
+ifconfig up
+thread start
 ```
 
-### Joining OTBR to Thread network {collapsible="true"}
+Display the full Active Operational Dataset:
 
-A Thread device only needs the Network Key to attach to a network. Once attached, it automatically retrieves the full
-Active Operational Dataset from the network.
+```bash
+dataset active
+```
 
-After retrieving the Network Key from the Commissioner, the OTBR device can join the Thread network by creating a
-partial Active Operational Dataset and enabling the Thread interface:
+**Example 2: Joining with the Full Active Operational Dataset**
 
-```Bash
+In this method, all network parameters (such as PAN ID, channel, Mesh-Local Prefix, etc.) are provisioned upfront. The
+device is configured with the complete dataset before starting the Thread interface.
 
-[//]: # (dataset networkkey 00112233445566778899aabbccddeeff)
-
-[//]: # (dataset commit active)
+```bash
 dataset set active 0e080000000000010000000300001835060004001fffe00208fe7bb701f5f1125d0708fd75cbde7c6647bd0510b3914792d44f45b6c7d76eb9306eec94030f4f70656e5468726561642d35383332010258320410e35c581af5029b054fc904a24c2b27700c0402a0fff8
 ifconfig up
 thread start
 ```
 
-After joining the network, the device receives the complete Active Operational Dataset. The command `dataset active`
-displays the Active Operational Dataset.
-
-The device becomes a child or a router in the Thread network. The following command sets the role to Router:
-
-```Bash
-state router
-```
-
 ### Commissioning {collapsible="true"}
 
-The `eui64` command is used on the **Joiner** device to get the factory-assigned IEEE EUI-64 address (e.g.,
-`744dbdfffe63f5c8`).
+**Joiner device**:
 
-The commands below are used on the **Commissioner** to add a joiner entry and then list all Joiner entries in table
-format:
+- Get the factory-assigned IEEE EUI-64 address (e.g., `744dbdfffe63f5c8`).
+  ```Bash
+  eui64
+  ```
+- Bring the IPv6 interface up, enable the Thread Joiner role, and start the Thread protocol:
+  ```Bash
+  ifconfig up
+  joiner start J00MMM
+  thread start
+  ```
 
-```Bash
-commissioner joiner add <eui64|discerner> <pksd>    # Example: commissioner joiner add 744dbdfffe63f5c8 J00MMM or commissioner joiner add * J00MMM
-commissioner joiner table
-```
+**Commissioner device**:
 
-The **Joiner** device brings the IPv6 interface up, enables the Thread Joiner role, and starts the Thread protocol:
-
-```Bash
-ifconfig up
-joiner start J00MMM
-thread start
-```
+- Start the Commissioner role:
+  ```Bash
+  commissioner start
+  ```
+- Add a joiner entry:
+  ```Bash
+  commissioner joiner add <eui64|discerner> <pksd>
+  ```
+  Example:
+  ```Bash
+  commissioner joiner add 744dbdfffe63f5c8 J00MMM or commissioner joiner add * J00MMM
+  ```
+- Display all Joiner entries in table format:
+  ```Bash
+  commissioner joiner table
+  ```
 
 The Joiner device receives the Network Key when joining the network.
 
-The `joiner id` command returns the Joiner ID used for commissioning.
-
-### Testing {collapsible="true"}
+### Retrieving Information {collapsible="true"}
 
 The command `router table` prints a list of routers in a table format. Each router is identified by its Extended MAC.
+
 The command `extaddr` returns the Extended MAC address of a device.
+
+The `joiner id` command returns the Joiner ID used for commissioning.
 
 ### Sending UDP packets {collapsible="true"}
 
@@ -144,7 +157,7 @@ udpsockclient send fdf9:2548:ce39:efbb:79b9:4ac4:f686:8fc9 12346 hello
 udpsockclient close
 ```
 
-### Scan and Discover {collapsible="true"}
+### Scanning and Discovering {collapsible="true"}
 
 The `scan` command performs IEEE 802.15.4 scan to find nearby devices. The `discover` command performs an MLE Discovery
 operation to find Thread networks nearby.
@@ -152,7 +165,6 @@ operation to find Thread networks nearby.
 ![Thread Discover](thc_1.png){ thumbnail="true" width="500" }
 
 ![Thread Scan](thc_2.png){ thumbnail="true" width="500" }
-
 
 ## References
 
@@ -163,3 +175,5 @@ operation to find Thread networks nearby.
 - [OpenThread CLI - Operational Datasets](https://github.com/openthread/openthread/blob/main/src/cli/README_DATASET.md)
 - [ESP OT-CLI Example](https://github.com/espressif/esp-idf/tree/master/examples/openthread/ot_cli)
 - [Build and Run CLI device](https://docs.espressif.com/projects/esp-thread-br/en/latest/dev-guide/build_and_run.html#build-and-run-the-thread-cli-device)
+
+- [Set Up Service Registration Protocol (SRP) Server-Client Connectivity With OT CLI](https://openthread.io/reference/cli/concepts/srp)

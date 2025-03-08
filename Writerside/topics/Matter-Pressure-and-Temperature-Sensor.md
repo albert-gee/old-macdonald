@@ -82,12 +82,24 @@ i2cget -c 0x76 -r 0xD0 -l 1
 
 ## Firmware Development
 
-The firmware for the ESP32-H2 was developed using the **ESP-IDF framework**. The BMP280 datasheet (
-_BST-BMP280-DS001-26_) is used as a reference during development.
+The firmware for the ESP32-H2 was developed using the **ESP-IDF framework**. 
+
+The BMP280 datasheet (_BST-BMP280-DS001-26_) is used as a reference during development.
+
+### Project Bootstrap {collapsible="true"}
+
+Follow the following steps from the [](ESP32-Project-Workflow.md) guide:
+
+- [](ESP32-Project-Workflow.md#step-1-set-up-esp-idf-environment)
+- [](ESP32-Project-Workflow.md#step-2-create-a-new-project)
+- [](ESP32-Project-Workflow.md#step-3-set-esp32-as-the-target-device)
+- [](ESP32-Project-Workflow.md#step-4-open-the-project-in-clion-ide)
+- [](ESP32-Project-Workflow.md#step-5-create-default-configuration)
+- [](ESP32-Project-Workflow.md#step-6-update-cmakelists-txt)
 
 ### Driver Component Development {collapsible="true"}
 
-The command below creates a new component named bmp280_driver inside the `components` directory.
+The command below creates a new component named `bmp280_driver` inside the `components` directory.
 
 ```Bash
 idf.py create-component bmp280_driver -C components
@@ -238,3 +250,4 @@ thumbnail="true" height="200" }
 
 - [BMP280 – Data sheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001-26.pdf)
 - [Telink Matter Developers Guide](https://wiki.telink-semi.cn/doc/an/TelinkMatterDevelopersGuide_en.pdf)
+- [ESP-Matter Sensors Example](https://github.com/espressif/esp-matter/tree/main/examples/sensors)

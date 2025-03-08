@@ -5,9 +5,13 @@
 **Espressif** is a semiconductor company that develops SoCs, microcontrollers, and development boards for IoT
 applications.
 
-## Development Boards
+## Hardware
 
-Espressif’s development boards are used in this system to enable wireless communication and automation:
+Espressif's SoCs (System-on-Chips) enable wireless communication for IoT applications. Development boards integrate
+these SoCs with power circuits, USB interfaces, and breakout pins, making them easy to use for prototyping and
+automation projects.
+
+The following development boards are used in this system:
 
 - [ESP32-H2-DevKitM-1](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/index.html)
   is a development board with Thread and Bluetooth LE connectivity, designed for low-power applications.
@@ -51,8 +55,20 @@ single board.
 Espressif also provides a **ESP Thread BR-Zigbee GW_SUB** daughter board for building an Ethernet-enabled Thread Border
 Router. It must be connected to a Wi-Fi-based ESP Thread Border Router.
 
+## ESP-Mesh-Lite
+
+**ESP-Mesh-Lite** is a Wi-Fi Mesh networking solution based on the Wi-Fi protocol. It
+supports [Espressif's Wi-Fi SoCs](#hardware), including ESP32, ESP32-C, and ESP32-S.
+
+In a traditional Wi-Fi network, all devices must connect directly to the router, limiting coverage and the number of
+connected devices based on the router's capacity. With **ESP-Mesh-Lite**, devices can connect to nearby nodes instead of
+relying solely on the router. This extends Wi-Fi coverage and allows more devices to join the network without router
+limitations.
+
 ## References
 
 - [About Espressif](https://www.espressif.com/en/about)
 - [Espressif Development Boards](https://www.espressif.com/en/products/devkits/)
 - [ESP IoT Development Framework](https://www.espressif.com/en/products/sdks/esp-idf)
+- [ESP-Mesh-Lite](https://www.espressif.com/en/sdks/esp-mesh-lite)
+- [ESP-Mesh-Lite User Guide](https://github.com/espressif/esp-mesh-lite/blob/master/components/mesh_lite/User_Guide.md)

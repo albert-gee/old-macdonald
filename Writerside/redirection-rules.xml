@@ -155,4 +155,40 @@
         </description>
         <accepts>Orchestrator.html</accepts>
     </rule>
+    <rule id="2a708791">
+        <description>Created after removal of "Bootstrapping the Project" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>Bootstrapping-the-Project.html</accepts>
+    </rule>
+    <rule id="11b52d56">
+        <description>Created after removal of "Forming a Network" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>Forming-a-Network.html</accepts>
+    </rule>
+    <rule id="6334610e">
+        <description>Created after removal of "Thread Commissioning" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>Thread-Commissioning.html</accepts>
+    </rule>
+    <rule id="16484731">
+        <description>Created after removal of "Matter Commissioning" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>Matter-Commissioning.html</accepts>
+    </rule>
+    <rule id="5736154c">
+        <description>Created after removal of "Matter Controllers" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>Matter-Controllers.html</accepts>
+    </rule>
+    <rule id="1e232e96">
+        <description>Created after removal of "System Control" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>System-Control.html</accepts>
+    </rule>
 </rules>

@@ -4,8 +4,8 @@
 
 ## Overview
 
-CHIP Tool (chip-tool) is a Matter controller implementation that allows to commission a Matter device into a network
-and to communicate with it. It was used for testing accessory devices.
+**CHIP Tool** is a [Matter controller](Matter.md#controllers) implementation that allows to commission a [](Matter.md)
+device into a network and to communicate with it. It is used for testing and debugging Matter devices.
 
 CHIP Tool was built and installed on a **Raspberry Pi 4 Model B** (4GB RAM and 32GB SD card) running _Ubuntu Server for
 Raspberry Pi 24.04.1 LTS_. _Raspberry Pi Imager v1.8.5_ was used to flash the Ubuntu image onto the SD card.
@@ -15,7 +15,7 @@ CHIP-Tool application.
 
 ## Raspberry Pi Setup
 
-This section describes the steps to set up a Raspberry Pi as a Matter controller using CHIP-Tool. The process is
+This section outlines the steps to set up a Raspberry Pi as a Matter controller using CHIP-Tool. The process is
 time-consuming.
 
 ### Step 1. Ubuntu installation {collapsible="true"}
@@ -225,7 +225,7 @@ cd ~/matter
 
 ## Commissioning
 
-This section describes the [Matter commissioning](Matter-Commissioning.md) using CHIP Tool.
+This section describes the [Matter commissioning](Matter.md#commissioning) using CHIP Tool.
 
 The following command should be run on the Commissionee to print the static configuration that includes the **PIN code**
 and **Discriminator** (_0xf00_ is _3840_ in decimal):
@@ -395,8 +395,8 @@ The following command is used to turn on and toggle the device:
 
 ## Subscribing to Attributes and Events
 
-This section describes how to [subscribe](Matter.md#subscribing-to-events-or-attributes) to attributes and events in a
-Matter device using CHIP-Tool.
+This section describes how to [subscribe](Matter.md#subscribing-to-events-or-attributes) to attributes and
+events in a Matter device using CHIP-Tool.
 
 ### Subscribing to Attributes
 
@@ -466,6 +466,7 @@ For example:
 ## References
 
 - [How to Install Matter on RPi](https://mattercoder.com/codelabs/how-to-install-matter-on-rpi/)
+- [Setting up the Matter Hub (Raspberry Pi)](https://docs.silabs.com/matter/latest/matter-thread/raspi-img)
 - [CHIP-Tool - Commissioning Device over BLE](https://github.com/project-chip/connectedhomeip/blob/master/examples/chip-tool/README.md#commission-a-device-over-ble)
 - [CHIP-tool Source Code](https://github.com/project-chip/connectedhomeip/tree/master/examples/chip-tool)
 - [Silicone Labs' Matter Commissioning Guide](https://docs.silabs.com/matter/2.2.1/matter-overview-guides/matter-commissioning)
