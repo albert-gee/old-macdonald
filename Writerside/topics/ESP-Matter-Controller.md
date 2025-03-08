@@ -111,8 +111,6 @@ The following steps are applied **only to the ESP32-C6 board**:
   # Cut and paste before the if(NOT DEFINED ENV{ESP_MATTER_DEVICE_PATH}) block:
     set(ESP_MATTER_PATH $ENV{ESP_MATTER_PATH})
     set(MATTER_SDK_PATH ${ESP_MATTER_PATH}/connectedhomeip/connectedhomeip)
-  
-  # Add Pigweed to PATH after setting MATTER_SDK_PATH:
     set(ENV{PATH} "$ENV{PATH}:${ESP_MATTER_PATH}/connectedhomeip/connectedhomeip/.environment/cipd/packages/pigweed")
 
   # Add ESP32-C6 Support by modifying the `if` block checking `IDF_TARGET`:

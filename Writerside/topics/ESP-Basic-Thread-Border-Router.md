@@ -164,7 +164,7 @@ ping6 -I wlo1 2604::aaaa:0000:0000:0000
 
 ### Forming Thread network {collapsible="true"}
 
-The following commands [form a Thread network](Forming-a-Network.md):
+The following commands [form a Thread network](Thread.md#network):
 
 1. _Optional_. Delete any previous settings stored on non-volatile memory, and then trigger a platform reset:
     ```Bash

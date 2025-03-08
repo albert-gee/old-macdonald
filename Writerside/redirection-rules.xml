@@ -191,4 +191,10 @@
         </description>
         <accepts>System-Control.html</accepts>
     </rule>
+    <rule id="1aa895fe">
+        <description>Created after removal of "Project Workflow" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>Project-Workflow.html</accepts>
+    </rule>
 </rules>

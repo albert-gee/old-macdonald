@@ -8,6 +8,9 @@ Matter applications on ESP32 SoCs.
 This project uses Espressif's SDK for Matter [v1.4](https://github.com/espressif/esp-matter/tree/release/v1.4), locked to
 commit [30af618](https://github.com/espressif/esp-matter/commit/30af618a6e962623a0098ad6a33b468f33dc49c7).
 
+Prerequisites:
+- [ESP-IDF](ESP-IDF-Setup.md) development environment is set up.
+
 ## Step 1: Install Prerequisites
 
 ```Bash
@@ -33,6 +36,7 @@ git checkout 30af618a6e962623a0098ad6a33b468f33dc49c7
 ## Step 3: Bootstrap ESP-Matter
 
 ```Bash
+get_idf
 ~/esp/esp-matter-1.4/install.sh
 ```
 
