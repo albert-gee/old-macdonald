@@ -123,4 +123,3 @@ The response includes a `DatasetResponse` containing the active dataset in hex-e
 ## References
 
 - [ESP-Matter Thread Border Router](https://github.com/espressif/esp-matter/tree/main/examples/thread_border_router)
-- [CHIP-Tool - Thread Border Router Usage](https://project-chip.github.io/connectedhomeip-doc/platforms/nxp/nxp_otbr_guide.html)

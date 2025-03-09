@@ -13,11 +13,12 @@ Prerequisites:
 
 ## Step 1: Set Up ESP-IDF Environment
 
-Run the alias, created during the development setup, to initialise the ESP-IDF environment in the current terminal
-session:
+Run the aliases, created during the development setup, to initialise the ESP-IDF and ESP-Matter environments in the 
+current terminal session:
 
 ```Bash
 get_idf
+get_matter
 ```
 
 ## Step 2: Create a New Project
@@ -32,12 +33,17 @@ idf.py create-project <project name>
 cd <project name>
 ```
 
-## Step 3: Set ESP32 as the target device
+## Step 3: Set Target Device
 
-The following sets the target device:
+The following command sets the target device:
 
 ```Bash
 idf.py set-target <chip_name>
+```
+
+For example, to set the target device to ESP32-H2:
+
+```Bash
 idf.py set-target esp32h2
 ```
 
@@ -53,7 +59,7 @@ Create a toolchain named **ESP-IDF** with the environment file set to `esp-idf/s
 Set up a CMake profile with the following Matter environmental variables:
 
 ```Bash
-ESP_MATTER_PATH=/home/albert/esp/esp-matter-1.4;ZAP_INSTALL_PATH=/home/albert/esp/esp-matter-1.4/connectedhomeip/connectedhomeip/.environment/cipd/packages/zap;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/albert/.local/share/JetBrains/Toolbox/scripts:/home/albert/esp/esp-matter-1.4/connectedhomeip/connectedhomeip/.environment/cipd/packages/pigweed
+ESP_MATTER_PATH=~/esp/esp-matter-1.4;ZAP_INSTALL_PATH=~/esp/esp-matter-1.4/connectedhomeip/connectedhomeip/.environment/cipd/packages/zap
 ```
 
 ![CMake profile configuration](image26.png){ thumbnail="true" width="500" }

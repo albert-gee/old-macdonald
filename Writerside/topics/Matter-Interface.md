@@ -1,4 +1,64 @@
+<show-structure/>
+
 # Matter Interface
+
+[ESP-Matter Controller](ESP-Matter-Controller.md)
+
+## Overview
+
+This section outlines the development of the **Matter Interface** component, which provides the features and functions
+to [commission](Matter.md#commissioning) and manage [](Matter.md) devices.
+
+This component is part of the [](Orchestrator.md) firmware.
+
+Pre-requisites:
+- The steps in [Project Bootstrap](Orchestrator.md#project-bootstrap) section are completed.
+- [](Orchestrator.md#general-system-initialization) is completed.
+
+## Development
+
+### Step 1: Create Component {collapsible="true"}
+
+The command below creates a new component named `matter_interface` inside the `components` directory.
+
+```Bash
+idf.py create-component matter_interface -C components
+```
+
+### Step 2: Fix Bluetooth Stack Path {collapsible="true"}
+
+[libble_app.a](https://github.com/espressif/esp32h2-bt-lib/) is ESP32-H2 Bluetooth stack precompiled library. Its path
+must be fixed in the following `CMakeLists.txt` file of Matter component:
+
+```Bash
+nano $ESP_MATTER_PATH/connectedhomeip/connectedhomeip/config/esp32/components/chip/CMakeLists.txt
+```
+
+Change the `if(CONFIG_BT_ENABLED)` block to include the ESP32-C6 Bluetooth library:
+
+```cmake
+if(CONFIG_BT_ENABLED)
+    idf_component_get_property(bt_lib bt COMPONENT_LIB)
+    idf_component_get_property(bt_dir bt COMPONENT_DIR)
+
+    if((target_name STREQUAL "esp32h2") OR (target_name STREQUAL "esp32c2"))
+        list(APPEND chip_libraries $<TARGET_FILE:${bt_lib}>)
+        list(APPEND chip_libraries "${bt_dir}/controller/lib_${target_name}/${target_name}-bt-lib/libble_app.a")
+
+    elseif (target_name STREQUAL "esp32c6")
+        list(APPEND chip_libraries $<TARGET_FILE:${bt_lib}>)
+        list(APPEND chip_libraries "${bt_dir}/controller/lib_esp32c6/esp32c6-bt-lib/esp32c6/libble_app.a")
+
+    elseif (target_name STREQUAL "esp32p4")
+        list(APPEND chip_libraries $<TARGET_FILE:${bt_lib}>)
+
+    else()
+        list(APPEND chip_libraries $<TARGET_FILE:${bt_lib}> -lbtdm_app)
+    endif()
+endif()
+```
+
+{collapsible="true" collapsed-title="Changes to CMakelists.txt"}
 
 ## Reading
 
@@ -25,6 +85,8 @@ void client_request_callback(peer_device_t *peer_device, request_handle_t *req_h
 
 esp_matter::client::set_request_callback(client_request_callback, NULL);
 ```
+
+{collapsible="true" collapsed-title="Reading"}
 
 ## References
 
