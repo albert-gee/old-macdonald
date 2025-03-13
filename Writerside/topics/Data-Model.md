@@ -1,3 +1,5 @@
+<show-structure/>
+
 # Data Model
 
 ## Overview
