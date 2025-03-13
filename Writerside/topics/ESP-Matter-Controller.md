@@ -244,7 +244,7 @@ matter esp controller read-attr 0x1122 1 0x0452 0x0001
 
 #### Access Control Cluster {collapsible="true"}
 
-[](Matter.md#access-control) cluster (0x001F).
+[](Access-Control.md) cluster (0x001F).
 
 ```Bash
 matter esp controller read-attr 0x1122 0 0x001F 0x0000

@@ -197,4 +197,10 @@
         </description>
         <accepts>Project-Workflow.html</accepts>
     </rule>
+    <rule id="55873e07">
+        <description>Created after removal of "Clusters" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Clusters.html</accepts>
+    </rule>
 </rules>
