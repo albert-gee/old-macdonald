@@ -7,7 +7,7 @@
 ## Overview
 
 This section outlines the development of the **Matter Interface** component, which provides the features and functions
-to [commission](Matter.md#commissioning) and manage [](Matter.md) devices.
+to [commission](Node-Roles.md#commissioners) and manage [](Matter.md) devices.
 
 This component is part of the [](Orchestrator.md) firmware.
 

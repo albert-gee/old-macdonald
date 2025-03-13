@@ -214,6 +214,7 @@ chosen for its simplicity and faster response times.
 Refer to [](CHIP-Tool.md) for more details.
 
 ```Bash
+matter config
 matter onboardingcodes ble
 ```
 

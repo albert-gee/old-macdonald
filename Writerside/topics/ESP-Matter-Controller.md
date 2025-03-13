@@ -5,9 +5,12 @@
 ## Overview
 
 This section demonstrates how to build and run the **ESP Matter Controller Example** from
-the [**ESP-Matter SDK**](Espressif.md#esp-matter-solution) on [**ESP Thread Border Router**](Espressif.md#hardware) board.
+the [**ESP-Matter SDK**](Espressif.md#esp-matter-solution) on [**ESP Thread Border Router**](Espressif.md#hardware)
+board. 
 
-This [Matter Controller](Matter.md#controllers) implementation supports the following features:
+See also [Matter Controller implementation on **ESP32-C6**](https://github.com/albert-gee/esp_matter_controller).
+
+This [Matter Controller](Node-Roles.md#controllers) implementation supports the following features:
 
 - BLE-WiFi pairing
 - BLE-Thread pairing
@@ -37,7 +40,7 @@ get_idf
 get_matter
 ```
 
-### Step 2: Open Matter Controller Examples {collapsible="true"}
+### Step 2: Open Matter Controller Example {collapsible="true"}
 
 Navigate to the `Matter Controller` examples directory:
 
@@ -74,7 +77,7 @@ The following changes have to be made to the `CMakeLists.txt` file:
 
 Connect the board to the computer using a USB cable.
 
-The **ESP32-C6** board should be connected using UART USB.
+The **ESP Thread Border Router** board should be connected using USB-2.
 
 ### Step 6: Build and Flash {collapsible="true"}
 
@@ -85,73 +88,182 @@ idf.py -p <PORT> erase-flash flash monitor
 
 ## Testing
 
+### Wi-Fi Management
+
+#### Connect to Wi-Fi {collapsible="true"}
+
 ```Bash
-# Connect to Wi-Fi
 matter esp wifi connect <SSID> <PASSWORD>
 
 # Example: Connect to Wi-Fi with SSID "MyWiFi" and password "MyPass"
 matter esp wifi connect MyWiFi MyPass
 ```
 
-{collapsible="true" collapsed-title="Connect to Wi-Fi"}
+### Thread CLI
+
+See also [ESP OpenThread CLI Usage](ESP-OpenThread-CLI.md#usage) for more Thread commands.
+
+#### Initialize and Commit Thread Dataset {collapsible="true"}
 
 ```Bash
-# Initialize and Commit Thread Dataset
 matter esp ot_cli dataset init new
 matter esp ot_cli dataset commit active
 ```
 
-{collapsible="true" collapsed-title="Initialize and Commit Thread Dataset"}
+#### Start Thread Network {collapsible="true"}
 
 ```Bash
-# Invoke a command on a Matter device
-matter esp controller invoke-cmd <NODE_ID> <ENDPOINT> <CLUSTER_ID> <COMMAND_ID> {}
-
-# Example: Turn on a light (cluster 0x6, command 0x1) on node 0x1122 at endpoint 0x1
-matter esp controller invoke-cmd 0x1122 0x1 0x6 0x1 {}
+matter esp ot_cli ifconfig up
+matter esp ot_cli thread start
 ```
 
-{collapsible="true" collapsed-title="Invoke a command on a Matter device"}
+### Commissioning Matter Devices
+
+#### BLE-Wi-Fi Commissioning {collapsible="true"}
+
+Commission a Matter device using BLE and Wi-Fi:
 
 ```Bash
-# Read all attributes of a cluster on a Matter device
-matter esp controller read-attr <NODE_ID> <ENDPOINT> <CLUSTER_ID> all
-
-# Example: Read all attributes of the On/Off cluster (0x6) on node 0x1122 at endpoint 0x1
-matter esp controller read-attr 0x1122 0x1 0x6 all
-```
-
-{collapsible="true" collapsed-title="Read all attributes of a cluster on a Matter device"}
-
-```Bash
-# Read a specific attribute from a cluster on a Matter device
-matter esp controller read-attr <NODE_ID> <ENDPOINT> <CLUSTER_ID> <ATTRIBUTE_ID>
-
-# Example: Read the OnOff attribute (0x0) from the On/Off cluster (0x6)
-matter esp controller read-attr 0x1122 0x1 0x6 0x0
-```
-
-{collapsible="true" collapsed-title="Read a specific attribute from a cluster on a Matter device"}
-
-```Bash
-# Pair a Matter device using BLE and Wi-Fi
 matter esp controller pairing ble-wifi <NODE_ID> <WIFI_SSID> <WIFI_PASSWORD> <PIN_CODE> <DISCRIMINATOR>
 
-# Example: Pair a device over BLE Wi-Fi with SSID "MyWiFi" and password "MyPass"
+Example: Pair a device over BLE Wi-Fi with SSID "MyWiFi" and password "MyPass"
 matter esp controller pairing ble-wifi 0x1122 MyWiFi MyPass 20202021 3840
 ```
-
 {collapsible="true" collapsed-title="Pair a Matter device using BLE and Wi-Fi"}
 
+#### BLE-Thread Commissioning {collapsible="true"}
+
+Pair a Matter device using BLE and Thread:
+
 ```Bash
-# Pair a Matter device using BLE and Thread
 matter esp controller pairing ble-thread <NODE_ID> <THREAD_DATASET> <PIN_CODE> <DISCRIMINATOR>
 
 # Example: Pair a device over BLE Thread with a dataset string
 matter esp controller pairing ble-thread 0x1122 <DATASET> 20202021 3840
 ```
-
 {collapsible="true" collapsed-title="Pair a Matter device using BLE and Thread"}
+
+### Reading Attributes
+
+Read a specific attribute from a cluster on a Matter device:
+
+```Bash
+matter esp controller read-attr <NODE_ID> <ENDPOINT> <CLUSTER_ID> <ATTRIBUTE_ID>
+```
+
+#### Root Node Clusters {collapsible="true"}
+
+The root node (Endpoint 0) has the following clusters:
+- Basic Information (0x0028)
+- General Commissioning (0x0030)
+- Network Commissioning (0x0031)
+- General Diagnostics (0x0033)
+- Administrator Commissioning (0x003C)
+- Operational Credentials (0x003E)
+- Group Key Management (0x003F)
+
+```Bash
+# Example: BASIC INFORMATION CLUSTER (0x0028)
+## VendorName
+matter esp controller read-attr 0x1122 0 0x0028 1
+## VendorID
+matter esp controller read-attr 0x1122 0 0x0028 2
+## ProductName
+matter esp controller read-attr 0x1122 0 0x0028 3
+## ProductID
+matter esp controller read-attr 0x1122 0 0x0028 4
+
+# Example: GENERAL DIAGNOSTICS CLUSTER (0x0033)
+## NetworkInterfaces
+matter esp controller read-attr 0x1122 0 0x0033 0
+## RebootCount
+matter esp controller read-attr 0x1122 0 0x0033 1
+## UpTime
+matter esp controller read-attr 0x1122 0 0x0033 2
+
+# Example: NODE OPERATIONAL CREDENTIALS CLUSTER (0x003D)
+## NOCs
+matter esp controller read-attr 0x1122 0 0x003E 0
+## Fabrics
+matter esp controller read-attr 0x1122 0 0x003E 1
+## SupportedFabrics
+matter esp controller read-attr 0x1122 0 0x003E 2
+## CommissionedFabrics
+matter esp controller read-attr 0x1122 0 0x003E 3
+## TrustedRootCertificates
+matter esp controller read-attr 0x1122 0 0x003E 4
+## CurrentFabricIndex
+matter esp controller read-attr 0x1122 0 0x003E 5
+```
+
+#### On/Off Cluster {collapsible="true"}
+
+On/Off cluster (0x6).
+
+```Bash
+# Example: OnOff attribute (0x0) from the On/Off cluster (0x6)
+matter esp controller read-attr 0x1122 0x1 0x6 0x0
+```
+
+#### Temperature Measurement Cluster {collapsible="true"}
+
+Temperature Measurement cluster (0x0402).
+
+```Bash
+## Example: Read Temperature Measurement's measured value
+matter esp controller read-attr 0x1122 1 0x0402 0x0000
+## Example: Read Temperature Measurement's min measured value
+matter esp controller read-attr 0x1122 1 0x0402 0x0001
+## Example: Read Temperature Measurement's max measured value
+matter esp controller read-attr 0x1122 1 0x0402 0x0002
+```
+
+#### Pressure Measurement Cluster {collapsible="true"}
+
+Pressure Measurement cluster (0x0403).
+
+```Bash
+## Example: Read Pressure Measurement's measured value
+matter esp controller read-attr 0x1122 1 0x0403 0x0000
+## Example: Read Pressure Measurement's min measured value
+matter esp controller read-attr 0x1122 1 0x0403 0x0001
+## Example: Read Pressure Measurement's max measured value
+matter esp controller read-attr 0x1122 1 0x0403 0x0002
+`````
+
+#### Thread Border Router Management Cluster {collapsible="true"}
+
+Thread Border Router Management cluster (0x0452).
+
+```Bash
+## Example: Read Thread Border Router's name
+matter esp controller read-attr 0x1122 1 0x0452 0x0000
+## Example: Read Thread Border Router's vendor
+matter esp controller read-attr 0x1122 1 0x0452 0x0001
+```
+
+#### Access Control Cluster {collapsible="true"}
+
+[](Matter.md#access-control) cluster (0x001F).
+
+```Bash
+matter esp controller read-attr 0x1122 0 0x001F 0x0000
+```
+
+### Invoking Cluster Commands
+
+Invoke a command on a Matter device:
+
+```Bash
+matter esp controller invoke-cmd <NODE_ID> <ENDPOINT> <CLUSTER_ID> <COMMAND_ID> {}
+```
+
+#### On/Off Cluster Commands {collapsible="true"}
+
+```Bash
+# Example: Turn on a light (cluster 0x6, command 0x1) on node 0x1122 at endpoint 0x1
+matter esp controller invoke-cmd 0x1122 0x1 0x6 0x1 {}
+```
 
 ## References
 

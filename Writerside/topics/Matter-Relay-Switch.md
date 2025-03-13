@@ -84,6 +84,14 @@ or
 PRIV_REQUIRES esp_driver_gpio
 ```
 
+### Startup Process {collapsible="true"}
+
+The device boots up and loads the firmware, initializing flash memory, configuring system memory, setting up GPIOs, and
+loading stored data from NVS.
+
+Once initialization is complete, it starts the Matter stack, creates the relay node, and runs the OpenThread stack.
+Finally, it begins BLE advertising (CHIPoBLE) to enable pairing.
+
 ## Testing
 
 ### Testing with CHIP-Tool {collapsible="true"}
@@ -91,6 +99,7 @@ PRIV_REQUIRES esp_driver_gpio
 Refer to [](CHIP-Tool.md) for more details.
 
 ```Bash
+matter config
 matter onboardingcodes ble
 
 matter esp attribute set 0x1 0x6 0x0 1

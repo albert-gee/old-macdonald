@@ -13,81 +13,58 @@ A **Matter Fabric** is a private virtual network that connects Matter Devices an
 and Ethernet physical networks. During the Matter commissioning process, controllers assign Fabric credentials to ensure
 secure integration.
 
-## Controllers
+## Data Model
 
-A Matter Controller is a Node in a Matter Fabric that has the permissions needed to send commands or otherwise manage or
-coordinate other Nodes on the same Fabric.
+Devices in Matter follow a hierarchical **data model**.
 
-### Subscribing to events or attributes
+At the top of this hierarchy is the **Device** (like a smartphone and home assistant).
 
-Subscribing to an event or attribute means that its current state is automatically refreshed whenever changes occur
-within the Matter network. The events or attributes available for subscription are defined by the cluster in use.
+Devices are made up of **Nodes**. A Node is a uniquely identifiable resource in the network. Nodes may have different
+[roles](Node-Roles.md), such as Commissioner, Controller, etc.
 
-Multiple subscriptions can run at once, and a single subscription can cover several events or several attributes - even
-if
-those come from different clusters. However, each subscription must be dedicated to either events or attributes; they
-cannot be mixed in one subscription.
+Nodes consist of **Endpoints**, each representing a specific function (e.g., lighting, motion detection).
 
-## Commissioning
+Endpoints contain **Clusters**, which group specific functions (e.g., an on/off cluster for a smart plug). A device may
+have several Endpoints, each with its own Clusters for different functionalities (e.g., controlling individual lights or
+power sockets).
 
-**Matter Commissioning** is the process of adding a **Commissionee** device to a **Fabric** by a **Commissioner**
-device. It involves the following steps:
+Each Cluster contains **Attributes**, which hold the device’s state (e.g., the current brightness level).
 
-1. The Commissioner retrieves the [Onboarding Payload](#onboarding-payload) and [discovers](#device-discovery) the
-   Commissionee device.
-2. Passcode-Authenticated Session Establishment (PASE) is used to establish encryption keys, securing communication
-   between the Commissioner and Commissionee. This process also sets up an attestation challenge for verifying the
-   device’s authenticity.
-3. The Commissioner verifies the Commissionee’s authenticity through Device Attestation, ensuring it is a certified
-   Matter device.
-4. The Commissioner configures the Commissionee by providing essential information including network configuration
-   settings, such as Wi-Fi credentials (SSID and passphrase) or Thread network credentials.
-5. The Commissionee joins the operational network, unless it is already connected. The Commissioner or Administrator
-   identifies or discovers the device’s IPv6 address to enable further communication.
-6. Certificate-Authenticated Session Establishment (CASE) is used to derive long-term encryption keys, securing all
-   future unicast communication between the Commissioner or Administrator and the Commissionee.
-7. The Commissioning process completes with an encrypted message exchange, confirming successful onboarding using
-   CASE-derived encryption keys on the operational network.
+**Commands** are actions within a Cluster (e.g., "lock door"). Commands can trigger responses, also defined as Commands.
 
-### Onboarding Payload
+**Events** represent changes in the device’s state (e.g., "door opened").
 
-The **Commissionee** shares the **Onboarding Payload** with the **Commissioner** through a _QR Code_, _Manual Pairing
-Code_, or _NFC Tag_. It is composed of required and optional information. The following information may be included:
+Device Types are defined in the **Device Library** rather than the main **Matter specification** document. Application
+Clusters are specified in the **Application Cluster Library**. These three documents can be requested from the
+**Connectivity Standards Alliance** (**CSA**) members' website. The **Matter Data Model** is also available on GitHub in
+the **Connected Home over IP** repository.
 
-- **Version** specifies the payload format version, allowing future updates. It is 3 bits (0b000) for machine-readable
-  formats and 1 bit (0b0) for Manual Pairing Codes.
-- **Vendor ID** is a 16-bit identifier assigned by the Connectivity Standards Alliance (CSA) to uniquely identify a
-  device manufacturer. It ensures that devices from different manufacturers can be distinguished within the Matter
-  ecosystem.
-- **Product ID** is a 16-bit identifier assigned by the manufacturer to differentiate between their products. It helps
-  identify specific device models and is used in commissioning and attestation processes.
-- **Custom Flow** is a 2-bit enumeration that specifies whether additional steps are required before commissioning. It
-  informs the Commissioner if the device is ready for commissioning immediately, requires user interaction (such as
-  pressing a button), or needs an external service interaction before being available for setup.
-- **Discovery Capabilities Bitmask** is an 8-bit bitmask included in machine-readable formats. It indicates the
-  discovery technologies (e.g., BLE, Wi-Fi, Thread) supported by the device, helping the Commissioner determine how to
-  find and connect to it.
-- **Discriminator** is a 12-bit identifier used to distinguish between multiple commissionable device advertisements.
-  When a device enters commissioning mode, it broadcasts this value over BLE, Wi-Fi, or Thread, and it must match the
-  value the device advertises. Each device should have a unique Discriminator to improve discovery and setup
-  reliability. In machine-readable formats, the full 12-bit Discriminator is used, while in Manual Pairing Codes, only
-  the upper 4 bits are included.
-- **Passcode** is a 27-bit numeric value used to authenticate the device during commissioning, serving as proof of
-  possession. It is encoded as an 8-digit decimal number ranging from 00000001 to 99999998, excluding invalid values.
-  The Passcode is also used as a shared secret to establish a secure channel between the Commissioner and the device for
-  further onboarding steps.
-- **TLV Data** is optional, variable-length information stored in machine-readable formats using the Tag-Length-Value
-  encoding. This data provides additional commissioning details.
+## Access Control
 
-### Device Discovery
+All Matter Interaction Model operations require verification by the Access Control mechanism. Before a client can read,
+subscribe, write attributes, or invoke commands on a server, Access Control must confirm sufficient privileges. If not
+granted, the operation is denied (status 0x7E: Access Denied).
 
-**Device Discovery** is the process where a **Commissioner** identifies a **Commissionee** before onboarding it to a
-**Fabric**. Devices announce their presence through the following methods:
+Matter enforces access levels for secure operations:
 
-- **BLE** is used by devices without network credentials to advertise their presence. The Commissioner scans for
-  advertisements containing the Discriminator, Vendor ID, and Product ID to identify the correct device.
-- **Wi-Fi / Ethernet** is used by devices already connected to a network, announcing themselves via mDNS.
-- **Thread** is used by Thread-enabled devices, which register with a Thread Border Router using Service Registration
-  Protocol (SRP).
-- **User-Directed Commissioning (UDC)** allows a device to actively search for Commissioners, letting the user select
-  one for onboarding.
+- **View** (**1**) – Can read and subscribe to all attributes and events, except the Access Control Cluster.
+- Proxy (2) - _not yet supported in Matter SDK_ – Can read and subscribe to all attributes and events when acting as a Proxy device.
+- **Operate** (**3**) – Can perform the main function of the Node, plus all View privileges (except Access Control
+  Cluster).
+- **Manage** (**4**) – Can modify the Node’s settings and configuration, plus all Operate privileges (except Access
+  Control Cluster).
+- **Administer** (**5**) – Can manage the Access Control Cluster, plus all Manage privileges.
+
+The Administer privilege is initially granted to the commissioner over the PASE commissioning channel, allowing it to
+invoke commands during commissioning.
+
+Administrators manage ACLs by reading and writing the fabric-scoped ACL attribute in the Access Control Cluster (always
+on endpoint 0). These ACLs control which Interaction Model operations are allowed or denied for fabric nodes via CASE
+and group messaging.
+
+## References
+
+- [CSA - Specification Download Request](https://csa-iot.org/developer-resource/specifications-download-request/)
+- [Google Developer Centre - Matter - The Device Data Model](https://developers.home.google.com/matter/primer/device-data-model)
+- [GitHub - Matter Data Model](https://github.com/project-chip/connectedhomeip/tree/master/data_model/1.4)
+- [GitHub - Matter - Access Control Guide](https://github.com/project-chip/connectedhomeip/blob/master/docs/guides/access-control-guide.md)
