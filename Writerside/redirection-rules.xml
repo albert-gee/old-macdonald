@@ -203,4 +203,16 @@
         </description>
         <accepts>Clusters.html</accepts>
     </rule>
+    <rule id="3320da3b">
+        <description>Created after removal of "Node Roles" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Node-Roles.html</accepts>
+    </rule>
+    <rule id="7886dd72">
+        <description>Created after removal of "Fabrics" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Fabrics.html</accepts>
+    </rule>
 </rules>

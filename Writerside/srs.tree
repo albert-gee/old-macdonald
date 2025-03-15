@@ -24,9 +24,8 @@
             <toc-element topic="Thread.md">
             </toc-element>
             <toc-element topic="Matter.md">
-                <toc-element topic="Node-Roles.md"/>
                 <toc-element topic="Data-Model.md"/>
-                <toc-element topic="Fabrics.md"/>
+                <toc-element topic="Matter-Commissioning.md"/>
                 <toc-element topic="Access-Control.md"/>
             </toc-element>
             <toc-element topic="Espressif.md"/>

@@ -1,34 +1,12 @@
-<show-structure/>
-
-# Node Roles
+# Matter Commissioning
 
 ## Overview
 
-[](Matter.md) Nodes may have different roles:
-- **Commissioner**: Handles device commissioning.
-- **Controller**: Can control other nodes (e.g., Google Home app).
-- **Controlee**: Can be controlled by other nodes.
-- **OTA Provider**: Supplies software updates.
-- **OTA Requestor**: Requests software updates.
-
-## Controllers
-
-A **Matter Controller** is a Node in a Matter Fabric that has the permissions needed to send commands or otherwise
-manage or coordinate other Nodes on the same Fabric.
-
-### Subscribing to events or attributes {collapsible="true"}
-
-Subscribing to an event or attribute means that its current state is automatically refreshed whenever changes occur
-within the Matter network. The events or attributes available for subscription are defined by the cluster in use.
-
-Multiple subscriptions can run at once, and a single subscription can cover several events or several attributes - even
-if
-those come from different clusters. However, each subscription must be dedicated to either events or attributes; they
-cannot be mixed in one subscription.
-
-## Commissioners
-
 **Commissioners** add a **Commissionee** device to a **Fabric**.
+
+A **Fabric** is a private virtual network that connects Matter Devices and extends across Wi-Fi, Thread, and Ethernet
+physical networks. During the Matter commissioning process, controllers assign Fabric credentials to ensure secure
+integration.
 
 ### Commissioning Process {collapsible="true"}
 

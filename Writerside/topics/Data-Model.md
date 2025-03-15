@@ -4,29 +4,34 @@
 
 ## Overview
 
-Devices in Matter follow a hierarchical **Data Model**.
+[**Matter**](Matter.md) devices follow a hierarchical **Data Model**.
 
-At the top of this hierarchy is the **Device** (like a smartphone and home assistant).
+At the top of this hierarchy is the **Device**, which represents a physical entity.
 
-Devices are made up of **Nodes**. A Node is a uniquely identifiable resource in the network. Nodes may have different
-[roles](Node-Roles.md), such as Commissioner, Controller, etc.
+Each Device contains one or more **Nodes** - addressable entities that support the Matter protocol stack. Once
+commissioned, each Node has its own **Operational Node ID** and **Node Operational Credentials**. Nodes can have
+different roles:
 
-Nodes consist of **Endpoints**, each representing a specific function (e.g., lighting, motion detection).
+- **Controllers** (e.g., Google Home app) manage other nodes.
+- **Commissioners** are responsible for commissioning devices by assigning Fabric credentials to **Commissionee**
+  devices.
+- **OTA Providers** supply software updates to **OTA Requesters**.
 
-Endpoints contain **[Clusters](#clusters)**, which group specific functions (e.g., an on/off cluster for a smart plug).
-A device may have several Endpoints, each with its own Clusters for different functionalities (e.g., controlling
-individual lights or power sockets).
+Nodes can contain one or more individually addressable **Endpoints**, each representing a specific feature set.
 
-Each Cluster contains **Attributes**, which hold the device’s state (e.g., the current brightness level).
+Endpoints contain one or more **[Clusters](#clusters)**, which enable independent utility or application functions. Each
+Cluster may include the following:
 
-**Commands** are actions within a Cluster (e.g., "lock door"). Commands can trigger responses, also defined as Commands.
+- **Attributes**, which represent a physical quantity or state.
+- **Commands**, which are actions.
+- **Events**, which represent notifications of state changes or significant conditions.
 
-**Events** represent changes in the device’s state (e.g., "door opened").
+Example: a Smart Thermostat Device contains two Nodes:
 
-Device Types are defined in the **Device Library** rather than the main **Matter specification** document. Application
-Clusters are specified in the **Application Cluster Library**. These three documents can be requested from the
-**Connectivity Standards Alliance** (**CSA**) members' website. The **Matter Data Model** is also available on GitHub in
-the **Connected Home over IP** repository.
+- A Thermostat Node with a Thermostat Cluster (Attributes: Current Temperature, Commands: Set Heating Setpoint, Events:
+  Temperature Changed).
+- A Humidity Sensor Node with a Humidity Measurement Cluster (Attributes: Humidity Percentage, Commands: Read Humidity,
+  Events: Humidity Changed).
 
 ## Device Types
 
@@ -59,8 +64,11 @@ Clusters:
 
 Conditions:
 
-- CustomNetworkConfig: The node only supports out-of-band-configured networking (e.g., rich user interface, manufacturer-specific means, custom commissioning flows, or future IP-compliant network technology not yet directly supported by the `NetworkCommissioning` cluster).
-- ManagedAclAllowed: The node has at least one endpoint where some Device Type present on the endpoint has a Device Library element requirement table entry that sets this condition to true.
+- CustomNetworkConfig: The node only supports out-of-band-configured networking (e.g., rich user interface,
+  manufacturer-specific means, custom commissioning flows, or future IP-compliant network technology not yet directly
+  supported by the `NetworkCommissioning` cluster).
+- ManagedAclAllowed: The node has at least one endpoint where some Device Type present on the endpoint has a Device
+  Library element requirement table entry that sets this condition to true.
 
 Clusters:
 
@@ -418,6 +426,11 @@ Commands:
 - OperationalDatasetResponse (0x03): Response containing the Operational Dataset (max length: 254 bytes)
 
 ## References
+
+Device Types are defined in the **Device Library** rather than the main **Matter specification** document. Application
+Clusters are specified in the **Application Cluster Library**. These three documents can be requested from the
+**Connectivity Standards Alliance** (**CSA**) members' website. The **Matter Data Model** is also available on GitHub in
+the **Connected Home over IP** repository.
 
 - [Google Developer Centre - Matter - The Device Data Model](https://developers.home.google.com/matter/primer/device-data-model)
 - [GitHub - Matter Data Model](https://github.com/project-chip/connectedhomeip/tree/master/data_model/)
