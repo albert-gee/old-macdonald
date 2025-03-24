@@ -90,7 +90,7 @@ The BMP280 datasheet (_BST-BMP280-DS001-26_) is used as a reference during devel
 
 Follow the following steps from the [](ESP32-Project-Workflow.md) guide:
 
-- [](ESP32-Project-Workflow.md#step-1-set-up-esp-idf-environment)
+- [](ESP32-Project-Workflow.md#step-1-set-up-esp-idf-and-esp-matter-environment)
 - [](ESP32-Project-Workflow.md#step-2-create-a-new-project)
 - [](ESP32-Project-Workflow.md#step-3-set-target-device)
 - [](ESP32-Project-Workflow.md#step-4-open-the-project-in-clion-ide)

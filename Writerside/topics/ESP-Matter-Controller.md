@@ -6,11 +6,9 @@
 
 This section demonstrates how to build and run the **ESP Matter Controller Example** from
 the [**ESP-Matter SDK**](Espressif.md#esp-matter-solution) on [**ESP Thread Border Router**](Espressif.md#hardware)
-board. 
+board. See also [Matter Controller implementation on **ESP32-C6**](https://github.com/albert-gee/esp_matter_controller).
 
-See also [Matter Controller implementation on **ESP32-C6**](https://github.com/albert-gee/esp_matter_controller).
-
-This [Matter Controller](Node-Roles.md#controllers) implementation supports the following features:
+This Matter Controllers implementation supports the following features:
 
 - BLE-WiFi pairing
 - BLE-Thread pairing
@@ -28,7 +26,7 @@ This [Matter Controller](Node-Roles.md#controllers) implementation supports the 
 Prerequisites:
 
 - [ESP-IDF development environment](ESP-IDF-Setup.md) is set up.
-- [Matter development environment](Matter-Interface.md) is set up.
+- [ESP-Matter development environment](ESP-Matter-Setup.md) is set up.
 - [ESP Thread Border Router](Espressif.md#hardware) board is available.
 
 ### Step 1: Set Up Environment {collapsible="true"}

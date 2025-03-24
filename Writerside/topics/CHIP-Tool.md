@@ -4,7 +4,7 @@
 
 ## Overview
 
-**CHIP Tool** is a [Matter controller](Node-Roles.md#controllers) implementation that allows to commission
+**CHIP Tool** is a Matter Controllers implementation that allows to commission
 a [](Matter.md)
 device into a network and to communicate with it. It is used for testing and debugging Matter devices.
 
@@ -226,7 +226,7 @@ cd ~/matter
 
 ## Commissioning
 
-This section describes the [Matter commissioning](Node-Roles.md#commissioners) using CHIP Tool.
+This section describes the [Matter commissioning](Matter-Commissioning.md) using CHIP Tool.
 
 The following command should be run on the Commissionee to print the static configuration that includes the **PIN code**
 and **Discriminator** (_0xf00_ is _3840_ in decimal):

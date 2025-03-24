@@ -50,14 +50,14 @@
             <toc-element topic="ESP-Matter-Controller.md"/>
         </toc-element>
         <toc-element topic="Orchestrator.md">
+            <toc-element topic="Matter-Controller-Interface.md"/>
+            <toc-element topic="Websocket-Server.md"/>
             <toc-element topic="Thread-Interface.md"/>
-            <toc-element topic="Matter-Interface.md"/>
             <toc-element topic="Wi-Fi-Interface.md"/>
             <toc-element topic="WiFi-Mesh-Lite-Interface.md">
                 <toc-element topic="ESP-Mesh-Lite-Network.md"/>
             </toc-element>
             <toc-element topic="Control-Panel.md"/>
-            <toc-element topic="Websocket-Interface.md"/>
         </toc-element>
     </toc-element>
 

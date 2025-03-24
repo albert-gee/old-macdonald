@@ -139,10 +139,8 @@ ip print
 The output lists network interfaces (netif):
 
 - **nt**
-- **ot
-  ** ([OpenThread Network Interface](https://github.com/espressif/esp-idf/blob/release/v5.3/components/openthread/src/esp_openthread_lwip_netif.c#L136)),
-- **st
-  ** ([Wi-Fi Station (STA) interface](https://github.com/espressif/esp-idf/blob/release/v5.3/components/esp_netif/lwip/netif/wlanif.c#L223)),
+- **ot** ([OpenThread Network Interface](https://github.com/espressif/esp-idf/blob/release/v5.3/components/openthread/src/esp_openthread_lwip_netif.c#L136)),
+- **st** ([Wi-Fi Station (STA) interface](https://github.com/espressif/esp-idf/blob/release/v5.3/components/esp_netif/lwip/netif/wlanif.c#L223)),
   this includes the **Global Unicast Address** (**GUA**), which falls within the 2000::/3 range (starts with 2xxx,
   3xxx).
   This address is globally routable and can be used for external access if the Wi-Fi router’s firewall allows incoming

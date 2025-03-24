@@ -19,8 +19,8 @@ different roles:
 
 Nodes can contain one or more individually addressable **Endpoints**, each representing a specific feature set.
 
-Endpoints contain one or more **[Clusters](#clusters)**, which enable independent utility or application functions. Each
-Cluster may include the following:
+Endpoints contain one or more **[Clusters](#clusters)**, which enable independent utility or application functions. The
+_Endpoint 0_ is reserved for the Utility Clusters. Each Cluster may include the following:
 
 - **Attributes**, which represent a physical quantity or state.
 - **Commands**, which are actions.
@@ -112,7 +112,21 @@ Clusters:
 
 This section describes the **Clusters** in the Matter data model used in this project.
 
-### Basic Information (0x0028) {collapsible="true"}
+### Descriptor Cluster (0x001D) {collapsible="true"}
+
+Features:
+
+- TagList: The TagList attribute is present.
+
+Attributes:
+
+- DeviceTypeList (0x0000): List of device types associated with this endpoint.
+- ServerList (0x0001): List of server clusters implemented on this endpoint.
+- ClientList (0x0002): List of client clusters implemented on this endpoint.
+- PartsList (0x0003): List of endpoints that are part of this endpoint.
+- TagList (0x0004): List of semantic tags (available if the **TagList** feature is supported).
+
+### Basic Information Cluster (0x0028) {collapsible="true"}
 
 Attributes:
 

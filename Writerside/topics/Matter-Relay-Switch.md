@@ -12,7 +12,7 @@ Source Code: [GitHub](https://github.com/albert-gee/matter_relay)
 Prerequisites:
 
 - [ESP-IDF development environment](ESP-IDF-Setup.md) is set up.
-- [Matter development environment](Matter-Interface.md) is set up.
+- [Matter development environment](Matter-Controller-Interface) is set up.
 - [ESP32-H2-DevKitM-1](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/index.html)
   is available.
 
@@ -56,7 +56,7 @@ endpoint and configures callbacks to manage Matter attributes, enabling GPIO-bas
 
 Follow the following steps from the [](ESP32-Project-Workflow.md) guide:
 
-- [](ESP32-Project-Workflow.md#step-1-set-up-esp-idf-environment)
+- [](ESP32-Project-Workflow.md#step-1-set-up-esp-idf-and-esp-matter-environment)
 - [](ESP32-Project-Workflow.md#step-2-create-a-new-project)
 - [](ESP32-Project-Workflow.md#step-3-set-target-device)
 - [](ESP32-Project-Workflow.md#step-4-open-the-project-in-clion-ide)

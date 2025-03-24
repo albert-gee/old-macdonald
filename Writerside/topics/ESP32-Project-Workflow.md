@@ -11,7 +11,7 @@ Prerequisites:
 - [ESP32](Espressif.md#hardware) development board is available.
 - CLion 2024.3.3 or later is installed.
 
-## Step 1: Set Up ESP-IDF Environment
+## Step 1: Set Up ESP-IDF and ESP-Matter Environment
 
 Run the aliases, created during the development setup, to initialise the ESP-IDF and ESP-Matter environments in the 
 current terminal session:
