@@ -12,7 +12,7 @@ Source Code: [GitHub](https://github.com/albert-gee/matter_relay)
 Prerequisites:
 
 - [ESP-IDF development environment](ESP-IDF-Setup.md) is set up.
-- [Matter development environment](Matter-Controller-Interface) is set up.
+- [ESP-Matter development environment](ESP-Matter-Setup.md) is set up.
 - [ESP32-H2-DevKitM-1](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/index.html)
   is available.
 

@@ -30,7 +30,7 @@ The system uses [](Thread.md) protocol for low-power, mesh-based wireless commun
 control units.
 
 Wi-Fi and Thread integration through [](Thread-Border-Routers.md) allows remote monitoring and control
-through [](Control-Panel.md).
+through [](Dashboard.md).
 
 [](Matter.md) is used as the application layer protocol to enable device interoperability and secure communication over
 Wi-Fi, Ethernet, and Thread, allowing the devices to work together without compatibility issues.

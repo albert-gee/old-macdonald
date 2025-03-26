@@ -396,8 +396,7 @@ The following command is used to turn on and toggle the device:
 
 ## Subscribing to Attributes and Events
 
-This section describes how to [subscribe](Node-Roles.md#subscribing-to-events-or-attributes) to attributes and
-events in a Matter device using CHIP-Tool.
+This section describes how to subscribe to attributes and events in a Matter device using CHIP-Tool.
 
 ### Subscribing to Attributes
 

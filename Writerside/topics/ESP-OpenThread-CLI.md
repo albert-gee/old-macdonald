@@ -177,3 +177,9 @@ operation to find Thread networks nearby.
 - [Build and Run CLI device](https://docs.espressif.com/projects/esp-thread-br/en/latest/dev-guide/build_and_run.html#build-and-run-the-thread-cli-device)
 
 - [Set Up Service Registration Protocol (SRP) Server-Client Connectivity With OT CLI](https://openthread.io/reference/cli/concepts/srp)
+
+ESP Thread Sniffer:
+
+- https://docs.espressif.com/projects/esp-zigbee-sdk/en/latest/esp32h2/developing.html#sniffer-and-wireshark
+- https://openthread.io/guides/pyspinel/sniffer
+- https://github.com/espressif/esp-idf/blob/master/examples/openthread/ot_rcp/README.md

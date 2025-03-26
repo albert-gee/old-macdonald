@@ -1,8 +1,5 @@
 # Introduction
 
-> This document is a work in progress. The content is subject to change.
-> {style="warning"}
-
 ## Overview
 
 This project aims to develop a **decentralized system** for **Controlled Environment Agriculture** (CEA).

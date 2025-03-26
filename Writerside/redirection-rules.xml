@@ -215,4 +215,10 @@
         </description>
         <accepts>Fabrics.html</accepts>
     </rule>
+    <rule id="5fda654c">
+        <description>Created after removal of "ESP Thread Sniffer" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>ESP-Thread-Sniffer.html</accepts>
+    </rule>
 </rules>
