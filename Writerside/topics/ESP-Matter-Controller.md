@@ -127,7 +127,6 @@ matter esp controller pairing ble-wifi <NODE_ID> <WIFI_SSID> <WIFI_PASSWORD> <PI
 Example: Pair a device over BLE Wi-Fi with SSID "MyWiFi" and password "MyPass"
 matter esp controller pairing ble-wifi 0x1122 MyWiFi MyPass 20202021 3840
 ```
-{collapsible="true" collapsed-title="Pair a Matter device using BLE and Wi-Fi"}
 
 #### BLE-Thread Commissioning {collapsible="true"}
 
@@ -139,7 +138,6 @@ matter esp controller pairing ble-thread <NODE_ID> <THREAD_DATASET> <PIN_CODE> <
 # Example: Pair a device over BLE Thread with a dataset string
 matter esp controller pairing ble-thread 0x1122 <DATASET> 20202021 3840
 ```
-{collapsible="true" collapsed-title="Pair a Matter device using BLE and Thread"}
 
 ### Reading Attributes
 

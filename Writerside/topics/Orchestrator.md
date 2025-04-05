@@ -73,12 +73,43 @@ The main function initializes the essential components:
 - [](Websocket-Server.md)
 - [](Thread-Interface.md)
 
+#### Netif Library
+
+The [ESP-NETIF](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/network/esp_netif.html)
+library is an abstraction layer that provides thread-safe APIs for managing network interfaces on top of a TCP/IP
+stack.
+
+#### Event Loop Library
+
+The [Event Loop Library](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/system/esp_event.html)
+lets components publish **events** indicating important occurrences, such as a successful Wi-Fi connection to the
+**event loop**, while other components can register handlers to respond. This decouples event producers from consumers,
+allowing components to react to state changes without direct application involvement.
+
+
+## Matter Start
+
+The [start](https://github.com/espressif/esp-matter/blob/f9f62dd6851d93dd9c770f0ed0066e822f955c35/components/esp_matter/esp_matter_core.cpp#L849)
+function in `esp_matter_core.cpp` creates the **default event loop**,
+using [esp_event_loop_create_default](https://github.com/espressif/esp-idf/blob/a45d713b03fd96d8805d1cc116f02a4415b360c7/components/esp_event/default_event_loop.c#L92).
+It is shared across other system components.
+
+ESP-Netif is initialized during the initialization of the Matter stack in
+the [ESP32-specific implementation](https://github.com/espressif/connectedhomeip/blob/9b8fffe0bb4e7ba7aac319f5905070a3476db7cb/src/platform/ESP32/PlatformManagerImpl.cpp#L73)
+of `PlatformManager`, which manages the interaction between the application and platform-specific features.
+
+
+The [ConnectivityManagerImpl_WiFi](https://github.com/espressif/connectedhomeip/blob/9b8fffe0bb4e7ba7aac319f5905070a3476db7cb/src/platform/ESP32/ConnectivityManagerImpl_WiFi.cpp) implements an ESP32-specific WiFi connectivity manager for Matter
+
+The `event_callback_t callback` function is passed
+
 ### Deployment {collapsible="true"}
 
 Follow the steps from the [](ESP32-Project-Workflow.md) guide:
 
 - [**Step 1: Build the Project**](ESP32-Project-Workflow.md#step-7-build-the-project)
-- [**Step 2: Connect ESP Thread Border Router board**](ESP-Basic-Thread-Border-Router.md#step-4-connect-the-esp-thread-border-router-board)
+- [**Step 2: Connect ESP Thread Border Router board
+  **](ESP-Basic-Thread-Border-Router.md#step-4-connect-the-esp-thread-border-router-board)
 - [**Step 3: Determine Serial Port**](ESP32-Project-Workflow.md#step-8-determine-serial-port)
 - [**Step 4: Flash Project to Target**](ESP32-Project-Workflow.md#step-9-flash-project-to-target)
 - [**Step 5: Launch IDF Monitor**](ESP32-Project-Workflow.md#step-10-launch-idf-monitor)
