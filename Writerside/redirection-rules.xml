@@ -221,4 +221,22 @@
         </description>
         <accepts>ESP-Thread-Sniffer.html</accepts>
     </rule>
+    <rule id="65334145">
+        <description>Created after removal of "Requirements" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Requirements.html</accepts>
+    </rule>
+    <rule id="2e67dc08">
+        <description>Created after removal of "Backlog" from Old Macdonald - Decentralised Controlled Environment
+            Agriculture System
+        </description>
+        <accepts>Backlog.html</accepts>
+    </rule>
+    <rule id="36f18efb">
+        <description>Created after removal of "Development Plan" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>Development-Plan.html</accepts>
+    </rule>
 </rules>
