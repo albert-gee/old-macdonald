@@ -1,6 +1,6 @@
 <show-structure/>
 
-# ESP Development Environment
+# Development Environment
 
 This chapter describes the development environment setup for building and deploying projects on ESP32 series SoCs.
 

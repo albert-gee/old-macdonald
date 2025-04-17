@@ -1,6 +1,6 @@
 <show-structure/>
 
-# Matter Controller Interface
+# Matter Interface
 
 ## Overview
 
@@ -56,6 +56,21 @@ to the `src` folder.
 ```Bash
 mv components/matter_controller_interface/matter_controller_interface.c components/matter_controller_interface/src/matter_controller_interface.cpp
 ```
+
+
+## Matter Start
+
+The [start](https://github.com/espressif/esp-matter/blob/f9f62dd6851d93dd9c770f0ed0066e822f955c35/components/esp_matter/esp_matter_core.cpp#L849)
+function in `esp_matter_core.cpp` creates the **default event loop**,
+using [esp_event_loop_create_default](https://github.com/espressif/esp-idf/blob/a45d713b03fd96d8805d1cc116f02a4415b360c7/components/esp_event/default_event_loop.c#L92).
+It is shared across other system components.
+
+ESP-Netif is initialized during the initialization of the Matter stack in
+the [ESP32-specific implementation](https://github.com/espressif/connectedhomeip/blob/9b8fffe0bb4e7ba7aac319f5905070a3476db7cb/src/platform/ESP32/PlatformManagerImpl.cpp#L73)
+of `PlatformManager`, which manages the interaction between the application and platform-specific features.
+
+The [ConnectivityManagerImpl_WiFi](https://github.com/espressif/connectedhomeip/blob/9b8fffe0bb4e7ba7aac319f5905070a3476db7cb/src/platform/ESP32/ConnectivityManagerImpl_WiFi.cpp)
+implements an ESP32-specific WiFi connectivity manager for Matter
 
 ## Reading
 
