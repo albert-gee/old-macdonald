@@ -28,7 +28,7 @@ Enable WebSocket Support by setting the `CONFIG_HTTPD_WS_SUPPORT` option to `y` 
 
 ### JSON Data {collapsible="true"}
 
-The `cJSON` library is used to parse and generate JSON data. 
+The `cJSON` library is used to parse and generate JSON data.
 
 It is part of the ESP-IDF components. `json` should be added to the `REQUIRES` section of the `CMakeLists.txt` file.
 
@@ -70,7 +70,55 @@ void parse_object(cJSON *item) {
     }
 }
 ```
+
 {collapsible="true" collapsed-title="cJSON Usage"}
+
+### WebSocket Message Format {collapsible="true"}
+
+Message is a UTF-8 JSON object with the following fields:
+
+| Field   | Type   | Description                                                                                                   |
+|---------|--------|---------------------------------------------------------------------------------------------------------------|
+| type    | string | Defines the type of message:<br>- command<br>- info<br>- error                                                |
+| action  | string | The name of the command or event.<br>- Required for "command" and "info" types<br>- Not used for "error" type |
+| payload | object | Contents depend on message type                                                                               |
+
+Examples:
+
+```json
+{
+  "type": "command",
+  "action": "wifi_sta_connect",
+  "payload": {
+    "ssid": "MyWiFi",
+    "password": "pass1234"
+  }
+}
+```
+{collapsible="true" collapsed-title="Command"}
+
+```json
+{
+  "type": "info",
+  "action": "sensor_update",
+  "payload": {
+    "temperature": 22.4,
+    "humidity": 48
+  }
+}
+```
+{collapsible="true" collapsed-title="Info"}
+
+```json
+{
+  "type": "error",
+  "payload": {
+    "code": 400,
+    "message": "Missing 'ssid' field"
+  }
+}
+```
+{collapsible="true" collapsed-title="Error"}
 
 ## References
 
