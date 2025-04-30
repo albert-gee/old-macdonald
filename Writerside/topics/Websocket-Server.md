@@ -77,11 +77,11 @@ void parse_object(cJSON *item) {
 
 Message is a UTF-8 JSON object with the following fields:
 
-| Field   | Type   | Description                                                                                                   |
-|---------|--------|---------------------------------------------------------------------------------------------------------------|
-| type    | string | Defines the type of message:<br>- command<br>- info<br>- error                                                |
-| action  | string | The name of the command or event.<br>- Required for "command" and "info" types<br>- Not used for "error" type |
-| payload | object | Contents depend on message type                                                                               |
+| Field   | Type   | Description                                                                                                             |
+|---------|--------|-------------------------------------------------------------------------------------------------------------------------|
+| type    | string | Defines the type of message:<br></br>- command<br></br>- info<br></br>- error                                           |
+| action  | string | The name of the command or event.<br></br>- Required for "command" and "info" types<br></br>- Not used for "error" type |
+| payload | object | Contents depend on message type                                                                                         |
 
 Examples:
 
