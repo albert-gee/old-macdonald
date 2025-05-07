@@ -239,4 +239,10 @@
         </description>
         <accepts>Development-Plan.html</accepts>
     </rule>
+    <rule id="3a28d6ba">
+        <description>Created after removal of "WiFi-Mesh-Lite Interface" from Old Macdonald - Decentralised Controlled
+            Environment Agriculture System
+        </description>
+        <accepts>WiFi-Mesh-Lite-Interface.html</accepts>
+    </rule>
 </rules>
