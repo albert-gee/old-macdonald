@@ -55,6 +55,7 @@
                 <toc-element topic="Wi-Fi-Interface.md"/>
             </toc-element>
             <toc-element topic="Event-Handlers.md"/>
+            <toc-element topic="Messages.md"/>
             <toc-element topic="Dashboard.md"/>
         </toc-element>
     </toc-element>
