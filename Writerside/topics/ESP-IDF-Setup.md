@@ -12,8 +12,24 @@ commit [fb25eb0](https://github.com/espressif/esp-idf/commit/fb25eb02ebcf78a78b4
 
 ## Step 1: Install Prerequisites
 
+The following packages are required for the ESP-IDF development environment:
+
 ```Bash
 sudo apt-get install git wget flex bison gperf python3 python3-pip python3-venv cmake ninja-build ccache libffi-dev libssl-dev dfu-util libusb-1.0-0
+```
+
+`idf.py` uses `#!/usr/bin/env python` in its shebang, which expects the `python` command to be available. On Ubuntu
+20.04 and later, `python` is not included by default, as Python 2 has been deprecated. Check with:
+
+```bash
+which python
+which python3
+```
+
+If `python` is missing, a symlink can be created to point to `python3`:
+
+```bash
+sudo ln -s /usr/bin/python3 /usr/bin/python
 ```
 
 ## Step 2: Get ESP-IDF
@@ -27,6 +43,8 @@ git checkout fb25eb02ebcf78a78b4c34a839238a4a56accec7
 ```
 
 ## Step 3: Set up the Tools
+
+For newer versions of Ubuntu, the `install.sh` script may not work as expected because `
 
 ESP-IDF provides a script `install.sh` that installs the required tools such as the compiler, debugger, Python packages,
 etc.:
