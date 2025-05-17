@@ -87,8 +87,9 @@ The main function initializes the essential components:
 
 Follow the steps from the [](ESP32-Project-Workflow.md) guide:
 
-- [**Step 1: Build the Project**](ESP32-Project-Workflow.md#step-7-build-the-project)
-- [**Step 2: Connect to Computer**](ESP-Basic-Thread-Border-Router.md#step-4-connect-the-esp-thread-border-router-board)
-- [**Step 3: Determine Serial Port**](ESP32-Project-Workflow.md#step-8-determine-serial-port)
-- [**Step 4: Flash Project to Target**](ESP32-Project-Workflow.md#step-9-flash-project-to-target)
-- [**Step 5: Launch IDF Monitor**](ESP32-Project-Workflow.md#step-10-launch-idf-monitor)
+- [**Step 1: Generate TLS Certificates**](Websocket-Server.md#websocket-secure-wss)
+- [**Step 2: Build the Project**](ESP32-Project-Workflow.md#step-7-build-the-project)
+- [**Step 3: Connect to Computer**](ESP-Basic-Thread-Border-Router.md#step-4-connect-the-esp-thread-border-router-board)
+- [**Step 4: Determine Serial Port**](ESP32-Project-Workflow.md#step-8-determine-serial-port)
+- [**Step 5: Flash Project to Target**](ESP32-Project-Workflow.md#step-9-flash-project-to-target)
+- [**Step 6: Launch IDF Monitor**](ESP32-Project-Workflow.md#step-10-launch-idf-monitor)
