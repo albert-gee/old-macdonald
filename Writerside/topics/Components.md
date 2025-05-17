@@ -1,4 +1,4 @@
-# Custom Components
+# Components
 
 The following custom components have been developed for the Orchestrator:
 

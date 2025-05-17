@@ -81,7 +81,7 @@ The main function initializes the essential components:
 - [**ESP-NETIF**](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/network/esp_netif.html)
   library is an abstraction layer that provides thread-safe APIs for managing network interfaces on top of a TCP/IP
   stack.
-- [](Custom-Components.md)
+- [](Components.md)
 
 ### Deployment {collapsible="true"}
 
