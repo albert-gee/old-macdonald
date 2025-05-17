@@ -65,7 +65,7 @@ Generating Certificates:
 ./components/websocket_server/certs/cert_generate.sh 192.168.1.50
 ```
 
-### Keep-Alive Mechanism .3{collapsible="true"}
+### Keep-Alive Mechanism {collapsible="true"}
 
 The keep-alive mechanism automatically monitors active WebSocket clients to detect and remove dead connections. It sends
 periodic `PING` messages to each client and waits for a `PONG` response. If a client fails to respond within the
